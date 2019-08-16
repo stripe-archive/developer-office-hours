@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="http://pay.cjavilla.com/demo.css" type="text/css" />
+  </head>
+  <body>
+    <div id="main">
+      <div id="checkout">
+        <div id="payment-form">
+          <img src="http://pay.cjavilla.com/logo.svg" alt="logo" />
+          <h1>Auto Confirm Shop</h1>
+
+          <fieldset>
+            <label>
+              <span>Name</span>
+              <input id="cardholder-name" type="text" class="field" value="Jenny Rosen">
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <label>
+              <div id="card-element" class="field"></div>
+            </label>
+          </fieldset>
+
+          <button id="card-button">Submit Payment $10.99</button>
+          <div id="card-message"></div>
+        </div>
+      </div>
+    </div>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+      // Pass the PaymentIntent’s client secret to the client
+      var paymentIntent;
+      fetch('/payment_intents').then(function(r) {
+        return r.json();
+      }).then(function(response) {
+        paymentIntent = response;
+        console.log("Fetched PI: ", response);
+      });
+
+      // Collect payment method details on the client
+      // var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+      var stripe = Stripe('pk_test_9X75ivLekg65a5rlcxEb4kZS00gL2A82l9');
+
+      var elements = stripe.elements();
+      var cardElement = elements.create('card');
+      cardElement.mount('#card-element');
+
+      // Submit the payment to Stripe from the client
+      var cardholderName = document.getElementById('cardholder-name');
+      var cardButton = document.getElementById('card-button');
+      var cardMessage = document.getElementById('card-message');
+
+      // var clientSecret = cardButton.dataset.secret;
+      cardButton.addEventListener('click', function(ev) {
+        ev.preventDefault();
+        cardMessage.textContent = "Calling handleCardPayment...";
+        stripe.handleCardPayment(
+          paymentIntent.client_secret, cardElement, {
+            payment_method_data: {
+              billing_details: {name: cardholderName.value}
+            }
+          }
+        ).then(function(result) {
+          cardMessage.textContent = JSON.stringify(result, null, 2);
+          // if (result.error) {
+          //   // Display error.message in your UI.
+          // } else {
+          //   // The payment has succeeded. Display a success message.
+          // }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,151 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: none;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  font-size: 15px;
+  line-height: 1.4em;
+  color: #525f7f;
+}
+
+body {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: #f8fbfd;
+}
+
+button {
+  display: block;
+  background: #666ee8;
+  color: #fff;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  border: 0;
+  font-weight: 700;
+  width: 100%;
+  height: 40px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+#main {
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  transition: width 0.3s ease-in-out;
+}
+
+#main.checkout:not(.success):not(.error) {
+  width: calc(100% - 450px);
+}
+#checkout {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 30px 0;
+}
+h1 {
+  margin: 0 0 20px 0;
+  font-size: 20px;
+  font-weight: 500;
+}
+#main.checkout #checkout {
+  visibility: visible;
+  opacity: 1;
+}
+#payment-form {
+  margin: 0 -30px;
+  padding: 20px 30px 30px;
+  border-radius: 4px;
+  border: 1px solid #e8e8fb;
+}
+
+input {
+  flex: 1;
+  border-style: none;
+  outline: none;
+  color: #313b3f;
+}
+
+.field {
+  flex: 1;
+  padding: 0 15px;
+  background: transparent;
+  font-weight: 400;
+  color: #31325f;
+  outline: none;
+  cursor: text;
+}
+
+.field::-webkit-input-placeholder {
+  color: #aab7c4;
+}
+.field::-moz-placeholder {
+  color: #aab7c4;
+}
+.field:-ms-input-placeholder {
+  color: #aab7c4;
+}
+fieldset {
+  margin-bottom: 20px;
+  background: #fff;
+  box-shadow: 0 1px 3px 0 rgba(50, 50, 93, 0.15),
+  0 4px 6px 0 rgba(112, 157, 199, 0.15);
+  border-radius: 4px;
+  border: none;
+  font-size: 0;
+}
+
+fieldset label {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: 42px;
+  padding: 10px 0;
+  align-items: center;
+  justify-content: center;
+  color: #8898aa;
+  font-weight: 400;
+}
+
+fieldset label:not(:last-child) {
+  border-bottom: 1px solid #f0f5fa;
+}
+
+fieldset label.state {
+  display: inline-flex;
+  width: 75%;
+}
+
+fieldset:not(.with-state) label.state {
+  display: none;
+}
+
+fieldset label.zip {
+  display: inline-flex;
+  width: 25%;
+  padding-right: 60px;
+}
+
+fieldset:not(.with-state) label.zip {
+  width: 100%;
+}
+
+fieldset label span {
+  min-width: 125px;
+  padding: 0 15px;
+  text-align: right;
+}
+
+fieldset .redirect label span {
+  width: 100%;
+  text-align: center;
+}
+
+#card-message {
+  text-align: left;
+  white-space: pre-wrap;
+}

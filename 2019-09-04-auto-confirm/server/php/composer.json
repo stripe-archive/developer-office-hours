@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "start": "php -S localhost:4242 index.php"
+  },
+  "require": {
+    "stripe/stripe-php": "^6.43",
+    "slim/slim": "3.2",
+    "vlucas/phpdotenv": "^3.4"
+  }
+}
