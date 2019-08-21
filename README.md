@@ -8,7 +8,7 @@ Stripe Engineers answering questions and walking through code examples on variou
 ## Upcoming office hours
 Session | Hosts | Topic | Resources
 ---------|----------|---------|--------
- 2019-08-28 | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) and [Sophie Wiepking-Brown](https://www.linkedin.com/in/sophiewb/) | **Saving and Reusing Cards (SCA)**<br />Live walkthrough of Setup Intents, storing and reusing cards, and off-session confirmation workflows. | [🎦 YouTube](https://www.youtube.com/watch?v=95qSebQrm5E&list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs&index=3&t=0s)
+ [2019-08-28](./2019-08-28-save-and-reuse-cards) | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) and [Sophie Wiepking-Brown](https://www.linkedin.com/in/sophiewb/) | **Saving and Reusing Cards (SCA)**<br />Live walkthrough of Setup Intents, storing and reusing cards, and off-session confirmation workflows. | [🎦 YouTube](https://www.youtube.com/watch?v=95qSebQrm5E&list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs&index=3&t=0s)
 
 
 ## Past office hours
