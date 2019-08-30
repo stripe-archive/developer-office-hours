@@ -2,20 +2,17 @@
 # Stripe Developer Office Hours
 Stripe Engineers answering questions and walking through code examples on various topics.
 
-> ℹ To receive notifications for upcoming developer office hours, please subscribe to our [🎬Stripe Developers YouTube playlist](https://www.youtube.com/playlist?list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs)
-
 
 ## Upcoming office hours
-Session | Hosts | Topic | Resources
----------|----------|---------|--------
- [2019-08-28](./2019-08-28-save-and-reuse-cards) | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) and [Sophie Wiepking-Brown](https://www.linkedin.com/in/sophiewb/) | **Saving and Reusing Cards (SCA)**<br />Live walkthrough of Setup Intents, storing and reusing cards, and off-session confirmation workflows. | [🎦 YouTube](https://www.youtube.com/watch?v=95qSebQrm5E&list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs&index=3&t=0s)
+> ℹ To receive notifications for future office hours, please subscribe to our [🎬YouTube playlist](https://www.youtube.com/playlist?list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs)
 
 
-## Past office hours
+## Previous office hours
 
 Session | Hosts | Topic | Resources
 ---------|----------|---------|--------
- [2019-08-14](./2019-08-14-auto-confirm) | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) and [Olivier Godement](https://www.linkedin.com/in/oliviergodement/) | **One-Time Payments (SCA)**<br />Live walkthrough of Payment Intents, one-time payments, and automatic confirmation workflows. | [🎦 YouTube](https://www.youtube.com/watch?v=ltv44zkpgo0&list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs)
+ [2019-08-14](./2019-08-14-auto-confirm) | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) and [Olivier Godement](https://www.linkedin.com/in/oliviergodement/) | [**One-Time Payments (SCA)**](./2019-08-14-auto-confirm)<br />Live walkthrough of Payment Intents, one-time payments, and automatic confirmation workflows. | [🎦 YouTube](https://www.youtube.com/watch?v=ltv44zkpgo0&list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs)
+ [2019-08-28](./2019-08-28-save-and-reuse-cards) | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) and [Sophie Wiepking-Brown](https://www.linkedin.com/in/sophiewb/) | [**Saving and Reusing Cards (SCA)**](./2019-08-28-save-and-reuse-cards) <br />Live walkthrough of Setup Intents, storing and reusing cards, and off-session confirmation workflows. | [🎦 YouTube](https://www.youtube.com/watch?v=95qSebQrm5E&list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs&index=3&t=0s)
 
 
 ## Additional Support
