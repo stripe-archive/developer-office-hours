@@ -146,7 +146,7 @@ fieldset .redirect label span {
   text-align: center;
 }
 
-#card-message {
+#card-message, #debug-message {
   text-align: left;
   white-space: pre-wrap;
 }
