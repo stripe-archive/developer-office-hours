@@ -261,14 +261,3 @@ h1 {
 .plan.recommended button {
   background: #d782d9;
 }
-
-button {
-  position: relative;
-  border-radius: 4px;
-  color: black;
-  font-size: 15px;
-  font-weight: 500;
-  padding: 0 20px;
-  height: 48px;
-  cursor: pointer;
-}
