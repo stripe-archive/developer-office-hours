@@ -1,3 +1,4 @@
+/* Payments Demos */
 * {
   margin: 0;
   padding: 0;
@@ -184,4 +185,90 @@ fieldset .redirect label span {
   border-top-color: rgb(245, 146, 94);
   color: #cd3d64;
   box-shadow: 0 7px 14px 0 rgba(60,66,87, .12), 0 3px 6px 0 rgba(0,0,0, .12);
+}
+
+
+/* Billing Demo */
+#app {
+  margin: 0 auto;
+  max-width: 960px;
+  margin-bottom: 100px;
+  color: #fff;
+}
+
+.pricing {
+  display: flex;
+  margin-top: 40px;
+}
+
+.pricing-overview {
+  flex-grow: 1;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: 400;
+  margin: 0;
+  text-align: center;
+}
+
+.plans {
+  display: flex;
+  align-items: center;
+  margin-top: 45px;
+}
+
+.plans h2 {
+  font-weight: 500;
+  font-size: 20px;
+  margin: 0;
+  margin-bottom: 8px;
+}
+
+.plans h3 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 15px;
+  margin-bottom: 30px;
+}
+
+.plan {
+  flex-grow: 1;
+  padding: 25px 15px;
+  text-align: center;
+  margin-right: 30px;
+  border-top: 3px solid transparent;
+  box-shadow: 0 1px 6px 0 rgba(50, 50, 93, 0.15);
+  border-radius: 4px;
+}
+
+.plan.active, .plan.recommended {
+  flex-grow: 2;
+  border-top: 3px solid #d782d9;
+  box-shadow: 0 15px 35px 0 rgba(50, 50, 93, 0.1), 0 5px 15px 0
+  rgba(0, 0, 0, 0.07);
+  padding-top: 20px;
+  padding-bottom: 56px;
+}
+
+.plan button {
+  background: #525f7f;
+  color: white;
+  min-width: 190px;
+  margin: 0 auto;
+}
+
+.plan.recommended button {
+  background: #d782d9;
+}
+
+button {
+  position: relative;
+  border-radius: 4px;
+  color: black;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 0 20px;
+  height: 48px;
+  cursor: pointer;
 }
