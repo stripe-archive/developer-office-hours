@@ -1,4 +1,5 @@
 # Office Hours 2019-08-14
+
 Walk through the basics of building a simple one-time SCA compliant payment flow
 with the Stripe API and PHP following [this guide](https://stripe.com/docs/payments/payment-intents/quickstart#automatic-confirmation-flow).
 > [🎬 Watch on YouTube](https://www.youtube.com/watch?v=ltv44zkpgo0&list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs)
