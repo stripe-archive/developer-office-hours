@@ -4,6 +4,11 @@ Stripe Engineers answering questions and walking through code examples on variou
 
 
 ## Upcoming office hours
+
+Session | Hosts | Topic | Resources
+---------|----------|---------|--------
+ 2019-10-02 | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) | **Billing and Subscriptions (SCA)**<br />Live demonstration of a Billing implementation for subscription-based payment flows. | [🎦 YouTube](https://www.youtube.com/watch?v=GOp-Pt82Bes&list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs)
+
 > ℹ To receive notifications for future office hours, please subscribe to our [🎬YouTube playlist](https://www.youtube.com/playlist?list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs)
 
 
