@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stripe-samples.github.io/developer-office-hours/demo.css" type="text/css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="pricing">
+        <div class="pricing-overview">
+          <h1>Choose a plan to get started</h1>
+          <div class="plans">
+            <div class="plan recommended">
+              <h2>Starter</h2>
+              <h3>$9/month</h3>
+              <button id="btn-starter">Subscribe</button>
+              <p> 14 day free trial </p>
+            </div>
+            <div class="plan">
+              <h2>Growth</h2>
+              <h3>$39/month</h3>
+              <button id="btn-growth">Subscribe</button>
+              <p> 14 day free trial </p>
+            </div>
+          </div>
+          <div id="debug-message"></div>
+        </div>
+      </div>
+    </div>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+      var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+      var params = new URLSearchParams(window.location.search);
+      var customerId = params.get('customer');
+
+      var starterButton = document.getElementById('btn-starter');
+      var growthButton = document.getElementById('btn-growth');
+
+      starterButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        subscribeTo('starter');
+      });
+
+      growthButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        subscribeTo('growth');
+      });
+
+      function subscribeTo(plan) {
+        debug('Subscribing to ' + plan);
+        fetch('/create_subscription', {
+          method: 'POST',
+          body: JSON.stringify({
+            plan: plan,
+            customer: customerId
+          })
+        }).then(function(r) {
+          return r.json();
+        }).then(function(response) {
+          debug('Subscription ' + response.id + ' created with status ' + response.status);
+          if(response.status === 'incomplete' &&
+            response.latest_invoice.payment_intent) {
+            handleCardAuth(response.latest_invoice.payment_intent);
+          } else if(response.status === 'trialing' && response.pending_setup_intent) {
+            handleSetupAuth(response.pending_setup_intent);
+          }
+        });
+      }
+
+      function handleSetupAuth(setupIntent) {
+        stripe.handleCardSetup(setupIntent.client_secret).then(function(resp) {
+          if(resp.error) {
+            debug(resp.error.message);
+          } else {
+            debug('Card details authenticated!');
+            debug(resp.setupIntent.id);
+          }
+        });
+      }
+
+      function handleCardAuth(paymentIntent) {
+        stripe.handleCardPayment(paymentIntent.client_secret).then(function(resp) {
+          if(resp.error) {
+            debug(resp.error.message);
+          } else {
+            debug('Collected payment!');
+            debug(resp.paymentIntent.id);
+          }
+        });
+      }
+
+      function debug(message) {
+        var debugMessage = document.getElementById('debug-message');
+        console.log('DEBUG: ', message);
+        debugMessage.innerText += "\n" + message;
+      }
+    </script>
+  </body>
+</html>

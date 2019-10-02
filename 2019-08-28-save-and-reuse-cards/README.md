@@ -1,4 +1,4 @@
-# Office Hours 2019-08-28
+# Saving and Reusing Cards (SCA) - Office Hours 2019-08-28
 
 Walk through the basics of building a simple SCA compliant payment flow for
 saving cards and charging them later with the Stripe API and PHP following [this guide](https://stripe.com/docs/payments/cards/saving-cards-without-payment).
