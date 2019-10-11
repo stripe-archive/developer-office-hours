@@ -57,7 +57,7 @@ h1 {
   visibility: visible;
   opacity: 1;
 }
-#payment-form {
+#payment-form, #webhooks-list {
   margin: 0 -30px;
   padding: 20px 30px 30px;
   border-radius: 4px;
