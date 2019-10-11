@@ -20,4 +20,9 @@ to show you how to go about evolving a webhook handling system.
 
 ## Step by Step
 
+1. Install dependencies
+
+```sh
+bundle install
+```
 
