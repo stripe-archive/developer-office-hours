@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stripe-samples.github.io/developer-office-hours/demo.css" type="text/css" />
+  </head>
+  <body>
+    <button id="checkout-button">Buy Pins!</button>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+      var stripe = Stripe('pk_test_T190Sn41t9a34rBuhqhJfKBI00pOT83WNw');
+      var checkoutButton = document.getElementById('checkout-button');
+      checkoutButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        stripe.redirectToCheckout({
+          customerEmail: "jenny.rosen@example.com",
+          items: [{sku: 'sku_Fy62JwNX8W9Fsk', quantity: 5}],
+          successUrl: 'http://localhost:3000?success',
+          cancelUrl: 'http://localhost:3000?cancel',
+        });
+      });
+    </script>
+  </body>
+</html>
