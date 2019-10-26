@@ -136,7 +136,7 @@ fieldset:not(.with-state) label.zip {
 }
 
 fieldset label span {
-  min-width: 125px;
+  min-width: 200px;
   padding: 0 15px;
   text-align: right;
 }
