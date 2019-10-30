@@ -123,4 +123,27 @@ app.post("/create-person", async (req, res) => {
 });
 
 
+// Final part for updating the file on a person
+app.post("/update-person-file", async (req, res) => {
+  const data = req.body;
+  try {
+    var person = await stripe.accounts.updatePerson(
+      data.account,
+      data.person, {
+        verification: {
+          document: {
+            front: data.file
+          }
+        }
+      }
+    )
+  } catch (err) {
+    console.log(err);
+    res.status(400)
+    res.send({ error: err })
+    return;
+  }
+  res.send(person);
+});
+
 app.listen(4242, () => console.log());

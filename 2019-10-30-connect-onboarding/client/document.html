@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stripe-samples.github.io/developer-office-hours/demo.css" type="text/css" />
+  </head>
+  <body>
+    <div id="main">
+      <div id="checkout">
+        <div id="payment-form">
+          <form id="document-form" enctype="multipart/form-data">
+            <fieldset>
+              <label>
+                <span>Account</span>
+                <input type="text" name="account" id="account" value="" class="field">
+              </label>
+              <label>
+                <span>Person</span>
+                <input type="text" name="person" id="person" class="field">
+              </label>
+            </fieldset>
+            <fieldset>
+              <label>Identity File</label>
+              <input type="file" id="file" class="field">
+            </fieldset>
+            <button id="document-button">Upload</button>
+          </form>
+        </div>
+        <div id="debug-message"></div>
+      </div>
+    </div>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+      var stripe = Stripe('pk_test_T190Sn41t9a34rBuhqhJfKBI00pOT83WNw');
+      var documentForm = document.getElementById('document-form');
+      documentForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        uploadDocument().then(updatePerson);
+      });
+      function updatePerson(fileId) {
+        var person = document.getElementById('person');
+        var account = document.getElementById('account');
+        debug('Updating person...');
+        fetch('/update-person-file', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            person: person.value,
+            account: account.value,
+            file: fileId
+          })
+        }).then(function(r) {
+          return r.json();
+        }).then(function(response) {
+          debug(JSON.stringify(response, null, 2));
+        });
+      }
+      function uploadDocument() {
+        var fd = new FormData();
+        fd.set('purpose', 'identity_document');
+        fd.set('file', document.getElementById('file').files[0]);
+        debug('Uploading document...');
+        return fetch('https://files.stripe.com/v1/files', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${stripe._apiKey}`
+          },
+          body: fd
+        }).then(function(r) {
+          return r.json();
+        }).then(function(response) {
+          debug(JSON.stringify(response, null, 2));
+          return response.id;
+        });
+      }
+      function debug(message) {
+        var debugMessage = document.getElementById('debug-message');
+        console.log('DEBUG: ', message);
+        debugMessage.innerText += "\n" + message;
+      }
+    </script>
+  </body>
+</html>

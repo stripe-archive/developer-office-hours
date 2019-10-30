@@ -54,10 +54,50 @@ them to person objects. The following is the client and server code to update
 the verification document:
 
 
-```html
+```js
+// client.
+function uploadDocument() {
+  var fd = new FormData();
+  fd.set('purpose', 'identity_document');
+  fd.set('file', document.getElementById('file').files[0]);
 
+  // NOTE: this is `files.stripe.com`
+
+  return fetch('https://files.stripe.com/v1/files', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${stripe._apiKey}`
+    },
+    body: fd
+  }).then(function(r) {
+    return r.json();
+  }).then(function(response) {
+    return response.id;
+  });
+}
 ```
 
 ```js
-
+// server
+app.post("/update-person-file", async (req, res) => {
+  const data = req.body;
+  try {
+    var person = await stripe.accounts.updatePerson(
+      data.account,
+      data.person, {
+        verification: {
+          document: {
+            front: data.file
+          }
+        }
+      }
+    )
+  } catch (err) {
+    console.log(err);
+    res.status(400)
+    res.send({ error: err })
+    return;
+  }
+  res.send(person);
+});
 ```
