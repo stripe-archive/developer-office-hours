@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stripe-samples.github.io/developer-office-hours/demo.css" type="text/css" />
+  </head>
+  <body>
+    <div id="admin">
+      <div id="tools">
+        <div id="tool">
+          <form id="person-form">
+            <fieldset>
+              <label>
+                <span>First Name</span>
+                <input type="text" name="first_name" id="first_name" value="Jenny" class="field">
+              </label>
+              <label>
+                <span>Last Name</span>
+                <input type="text" name="last_name" id="last_name" value="Rosen" class="field">
+              </label>
+              <label>
+                <span>Phone</span>
+                <input type="text" name="phone" value="4088675309" class="field">
+              </label>
+              <label>
+                <span>SSN</span>
+                <input type="text" name="id_number" value="000000000" class="field">
+              </label>
+              <label>
+                <span>Email</span>
+                <input type="text" name="email" value="jenny.rosen@example.com" class="field">
+              </label>
+            </fieldset>
+
+            <fieldset>
+              <label>
+                <span>Address</span>
+                <input type="text" name="line1" id="line1" class="field" value="200 S. Virginia St.">
+              </label>
+              <label>
+                <span>City</span>
+                <input type="text" name="city" id="city" class="field" value="Reno">
+              </label>
+              <label>
+                <span>State</span>
+                <input type="text" name="state" id="state" class="field" value="NV">
+              </label>
+              <label>
+                <span>Postal Code</span>
+                <input type="text" name="postal_code" id="postal_code" class="field" value="89501">
+              </label>
+            </fieldset>
+            <fieldset>
+              <label>
+                <span>Owner</span>
+                <input type="hidden" name="owner" value="false">
+                <input type="checkbox" name="owner" value="true" class="field">
+              </label>
+
+              <label>
+                <span>Representative</span>
+                <input type="hidden" name="representative" value="false">
+                <input type="checkbox" name="representative" value="true" class="field">
+              </label>
+
+              <label>
+                <span>Percent Ownership</span>
+                <input type="text" name="percent_ownership" id="percent_ownership" value="100" class="field">
+              </label>
+              <label>
+                <span>Title</span>
+                <input type="text" name="title" id="title" value="CEO" class="field">
+              </label>
+            </fieldset>
+            <button id="person-button">Create Person!</button>
+          </form>
+        </div>
+        <div id="debug-message"></div>
+      </div>
+    </div>
+    <script>
+      var personForm = document.getElementById('person-form');
+      var params = new URLSearchParams(window.location.search);
+      var accountId = params.get('account');
+
+      personForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        createPerson();
+      });
+
+      function createPerson() {
+        var fd = new FormData(personForm);
+        fd.set('account', accountId);
+        debug('Creating person...');
+        return fetch('/create-person', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(Object.fromEntries(fd))
+        }).then(function(r) {
+          return r.json();
+        }).then(function(response) {
+          debug(JSON.stringify(response, null, 2));
+        });
+      }
+
+      function debug(message) {
+        var debugMessage = document.getElementById('debug-message');
+        console.log('DEBUG: ', message);
+        debugMessage.innerText += "\n" + message;
+      }
+    </script>
+  </body>
+</html>

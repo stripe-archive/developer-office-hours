@@ -1,5 +1,6 @@
 .env
 **/vendor/*
+/2019-10-30-connect-onboarding/server/node/node_modules/*
 /2019-10-16-webhooks/.bundle
 /2019-10-16-webhooks/log/*
 /2019-10-16-webhooks/tmp/*
