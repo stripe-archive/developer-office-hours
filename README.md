@@ -7,8 +7,8 @@ Stripe Engineers answering questions and walking through code examples on variou
 
 Session | Hosts | Topic | Resources
 ---------|----------|---------|--------
+2019-11-21 | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) and [Adam Solove](https://www.linkedin.com/in/adam-solove-9727237b/) | **Checkout**<br />Live demonstration of using Stripe hosted Checkout to collect payment, store cards, and create recurring billing Subscriptions. | [🎦 YouTube](https://www.youtube.com/watch?v=OWHIxeFIa-8&list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs&index=2&t=0s)
 2019-12-04 | [Ali Riaz](https://www.linkedin.com/in/syedaliriaz/) | **One-Time Payments with iOS**<br />Live demonstration of collecting one-time payments with iOS and the [stripe-ios client library](https://github.com/stripe/stripe-ios). | [🎦 YouTube]()
-2019-12-18 | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) | **Checkout**<br />Live demonstration of using Stripe hosted Checkout to collect payment, store cards, and create recurring billing Subscriptions. | [🎦 YouTube]()
 2020-01-07 | [Paul Asjes](https://www.linkedin.com/in/paul-asjes-4a903a18) | **React Stripe Elements**<br />Live demonstration of using [react-stripe-elements](https://github.com/stripe/react-stripe-elements) to collect payment details. | [🎦 YouTube]()
 
 > ℹ To receive notifications for future office hours, please subscribe to our [🎬YouTube playlist](https://www.youtube.com/playlist?list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs)
