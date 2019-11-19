@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stripe-samples.github.io/developer-office-hours/demo.css" type="text/css" />
+  </head>
+  <body>
+    <div id="main">
+      <div id="checkout">
+        <div id="payment-form">
+          <h1>Success!</h1>
+
+          Payment Status: <span id="payment-status"></span>
+        </div>
+        <a href="/">Restart demo.</a>
+      </div>
+    </div>
+    <script>
+      var params = new URLSearchParams(window.location.search);
+      var sessionId = params.get('session_id');
+      var paymentStatus = document.getElementById('payment-status');
+
+      fetch(`/session-status?session_id=${sessionId}`).then(function(r) {
+        return r.json();
+      }).then(function(response) {
+        paymentStatus.innerHTML = response;
+      });
+    </script>
+  </body>
+</html>

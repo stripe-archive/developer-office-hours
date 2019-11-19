@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stripe-samples.github.io/developer-office-hours/demo.css" type="text/css" />
+  </head>
+  <body>
+    <div id="main">
+      <div id="checkout">
+        <div id="payment-form">
+          <h1>Awesome Photos</h1>
+          <img src="https://picsum.photos/280/320?random=4" width="140" height="160" />
+          <button id="buy-button">Buy</button>
+        </div>
+      </div>
+    </div>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+      var stripe = Stripe('pk_test_T190Sn41t9a34rBuhqhJfKBI00pOT83WNw');
+      var sessionId;
+      var buyButton = document.getElementById('buy-button');
+
+      buyButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        stripe.redirectToCheckout({
+          sessionId: sessionId
+        })
+      });
+
+      fetch('/create-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({})
+      }).then(function(r) {
+        return r.json();
+      }).then(function(response) {
+        console.log("Session Created!");
+        console.log(response);
+        sessionId = response.id;
+      });
+    </script>
+  </body>
+</html>
