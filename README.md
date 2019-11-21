@@ -24,6 +24,10 @@ Session | Hosts | Topic | Resources
  [2019-10-16](./2019-10-16-webhooks) | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) and [Adrienne Dreyfus](https://www.linkedin.com/in/adreyfus) | [**Webhooks**](./2019-10-16-webhooks)<br />Live demonstration of implementing a webhook endpoint for Stripe events. | [🎦 YouTube](https://www.youtube.com/watch?v=oYSLhriIZaA&list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs&index=2&t=0s)
  [2019-10-30](./2019-10-30-connect-onboarding) | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) and [Hamish Kerr](https://www.linkedin.com/in/hamish-kerr-04270373/) | [**Connect Onboarding**](./2019-10-30-connect-onboarding)<br />Live demonstration of implementing custom connect account onboarding. | [🎦 YouTube](https://www.youtube.com/watch?v=RYiscsdICrs&list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs&index=2&t=0s)
 
+## Changes
+
+The Stripe API's and libraries are always being updated. It's possible that since recording, an API or library function has been deprecated. Please refer to this [changelog](https://stripe.com/blog/changelog) for updates.
+
 
 ## Additional Support
 Find help and support for Stripe. Our support center provides answers on all types of situations, including account information, charges and refunds, and subscriptions information.
