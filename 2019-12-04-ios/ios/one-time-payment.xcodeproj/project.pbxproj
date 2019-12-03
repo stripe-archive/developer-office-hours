@@ -13,6 +13,7 @@
 		0FDC06DC2395D39B0011BDE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FDC06DA2395D39B0011BDE6 /* Main.storyboard */; };
 		0FDC06DE2395D39D0011BDE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FDC06DD2395D39D0011BDE6 /* Assets.xcassets */; };
 		0FDC06E12395D39D0011BDE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FDC06DF2395D39D0011BDE6 /* LaunchScreen.storyboard */; };
+		0FDC06EB23970C4B0011BDE6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDC06EA23970C4B0011BDE6 /* Constants.swift */; };
 		55FE044880335F490B6825DD /* Pods_one_time_payment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8B48118DED7A6D5A74673D /* Pods_one_time_payment.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 		0FDC06DD2395D39D0011BDE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0FDC06E02395D39D0011BDE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0FDC06E22395D39D0011BDE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0FDC06EA23970C4B0011BDE6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1453EF9A9E42ED06C33675A9 /* Pods-one-time-payment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-one-time-payment.release.xcconfig"; path = "Target Support Files/Pods-one-time-payment/Pods-one-time-payment.release.xcconfig"; sourceTree = "<group>"; };
 		C71D86EBBE2C477348A433DC /* Pods-one-time-payment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-one-time-payment.debug.xcconfig"; path = "Target Support Files/Pods-one-time-payment/Pods-one-time-payment.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,6 +68,7 @@
 				0FDC06D42395D39B0011BDE6 /* AppDelegate.swift */,
 				0FDC06D62395D39B0011BDE6 /* SceneDelegate.swift */,
 				0FDC06D82395D39B0011BDE6 /* ViewController.swift */,
+				0FDC06EA23970C4B0011BDE6 /* Constants.swift */,
 				0FDC06DA2395D39B0011BDE6 /* Main.storyboard */,
 				0FDC06DD2395D39D0011BDE6 /* Assets.xcassets */,
 				0FDC06DF2395D39D0011BDE6 /* LaunchScreen.storyboard */,
@@ -209,6 +212,7 @@
 				0FDC06D92395D39B0011BDE6 /* ViewController.swift in Sources */,
 				0FDC06D52395D39B0011BDE6 /* AppDelegate.swift in Sources */,
 				0FDC06D72395D39B0011BDE6 /* SceneDelegate.swift in Sources */,
+				0FDC06EB23970C4B0011BDE6 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

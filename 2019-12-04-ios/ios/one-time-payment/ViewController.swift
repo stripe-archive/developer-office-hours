@@ -22,7 +22,7 @@ class ViewController: UIViewController, STPAuthenticationContext {
     var outputTextView = UITextView()
     var paymentTextField = STPPaymentCardTextField()
     
-    let backendURL : String = "https://office-hours-one-time-payment.herokuapp.com/"
+    let backendURL : String = Constants.herokuBackendUrl
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        Stripe.setDefaultPublishableKey("pk_test_XBeVOiJfdrsz56X2j9qhMP59")
+        Stripe.setDefaultPublishableKey(Constants.stripePublishableKey)
         
         return true
     }
