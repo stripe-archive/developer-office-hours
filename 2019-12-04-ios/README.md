@@ -2,7 +2,7 @@
 
 Learn how to collect one-time Payments using Stripe's iOS SDK
 
-> Join us on [YouTube https://www.youtube.com/watch?v=s5Ml41bZidw&list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs&index=4&t=0s](https://www.youtube.com/watch?v=s5Ml41bZidw&list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs&index=4&t=0s)
+> [YouTube](https://www.youtube.com/watch?v=s5Ml41bZidw&list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs&index=4&t=41s)
 
 
 # Getting Started
