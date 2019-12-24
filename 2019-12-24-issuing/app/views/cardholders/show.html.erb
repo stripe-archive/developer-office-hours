@@ -1,0 +1,24 @@
+<h1><%= @cardholder.name %></h1>
+
+<hr>
+
+<h3>Cards</h3>
+
+<form action="/cards" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="cardholder" value="<%= params[:id] %>">
+  <button>Create Card</button>
+</form>
+
+<ul>
+  <% @cards.each do |card| %>
+  <li><%= link_to card.id, card_path(card.id) %></li>
+  <% end %>
+</ul>
+
+
+<hr>
+
+<pre class="code">
+  <%= @cardholder %>
+</pre>

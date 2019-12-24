@@ -1,0 +1,38 @@
+<h1>Cardholders</h1>
+
+<form action="/cardholders" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <fieldset>
+    <label>
+      <span>First Name</span>
+      <input type="text" name="first_name" id="" value="">
+    </label>
+
+    <label>
+      <span>Last Name</span>
+      <input type="text" name="last_name" id="last_name" value="" class="field">
+    </label>
+    <label>
+      <span>Email</span>
+      <input type="text" name="email" id="email" value="" class="field">
+    </label>
+    <label>
+      <span>Line1</span>
+      <input type="text" name="line1" id="line1" value="" class="field">
+    </label>
+    <label>
+      <span>City</span>
+      <input type="text" name="city" id="city" value="" class="field">
+    </label>
+    <label>
+      <span>State</span>
+      <input type="text" name="state" id="state" value="" class="field">
+    </label>
+    <label>
+      <span>Postal Code</span>
+      <input type="text" name="postal_code" id="postal_code" value="" class="field">
+    </label>
+  </fieldset>
+
+  <button>Create Cardholder</button>
+</form>

@@ -7,7 +7,7 @@ Stripe Engineers answering questions and walking through code examples on variou
 
 Session | Hosts | Topic | Resources
 ---------|----------|---------|--------
-2020-01-07 | [Paul Asjes](https://www.linkedin.com/in/paul-asjes-4a903a18) | **React Stripe Elements**<br />Live demonstration of using [react-stripe-elements](https://github.com/stripe/react-stripe-elements) to collect payment details. | [🎦 YouTube]()
+2020-02-05 | [Paul Asjes](https://www.linkedin.com/in/paul-asjes-4a903a18) | **React Stripe Elements**<br />Live demonstration of using [react-stripe-elements](https://github.com/stripe/react-stripe-elements) to collect payment details. | [🎦 YouTube]()
 
 > ℹ To receive notifications for future office hours, please subscribe to our [🎬YouTube playlist](https://www.youtube.com/playlist?list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs)
 
@@ -23,6 +23,7 @@ Session | Hosts | Topic | Resources
  [2019-10-30](./2019-10-30-connect-onboarding) | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) and [Hamish Kerr](https://www.linkedin.com/in/hamish-kerr-04270373/) | [**Connect Onboarding**](./2019-10-30-connect-onboarding)<br />Live demonstration of implementing custom connect account onboarding. | [🎦 YouTube](https://www.youtube.com/watch?v=RYiscsdICrs&list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs&index=2&t=0s)
  [2019-11-21](./2019-11-21-checkout) | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) and [Sam Gerstenzang](https://www.linkedin.com/in/samgerstenzang/) | [**Checkout**](./2019-11-21-checkout)<br />Live demonstration of using Stripe hosted Checkout to collect payment, store cards, and create recurring billing Subscriptions. | [🎦 YouTube](https://www.youtube.com/watch?v=VQ5jccnZ2Ow&list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs&index=2&t=0s)
  [2019-12-04](./2019-12-04-ios) | [Ali Riaz](https://www.linkedin.com/in/syedaliriaz/) | **One-Time Payments with iOS**<br />Live demonstration of collecting one-time payments with iOS and the [stripe-ios client library](https://github.com/stripe/stripe-ios). | [🎦 YouTube](https://www.youtube.com/watch?v=s5Ml41bZidw&list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs&index=4&t=41s)
+ [2019-12-24](./2019-12-24-issuing) | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) | **Issuing Cards**<br />Live demonstration of issuing Credit Cards with [**Stripe Issuing**](https://stripe.com/issuing) | [🎦 YouTube](https://youtu.be/hetzy6IQG9k)
 
 ## Changes
 

@@ -1,0 +1,30 @@
+<h1>Cards</h1>
+
+<p>Card Number: <%= @card.number %></p>
+<p>Card Expiration: <%= @card.exp_month %>/<%= @card.exp_year %></p>
+<p>Card CVC: <%= @card.cvc %></p>
+
+<hr>
+
+<h3>Transactions</h3>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Amount</th>
+    <th>Merchant</th>
+  </tr>
+  <% @transactions.each do |transaction| %>
+    <tr>
+      <td><%= transaction.id %></td>
+      <td><%= transaction.amount %></td>
+      <td><%= transaction.merchant_data.name %></td>
+    </tr>
+  <% end %>
+</table>
+
+<hr>
+
+<pre class="code">
+  <%= @card %>
+</pre>
