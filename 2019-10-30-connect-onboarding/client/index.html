@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stripe-samples.github.io/developer-office-hours/demo.css" type="text/css" />
+  </head>
+  <body>
+    <div id="main">
+      <div id="checkout">
+        <div id="payment-form">
+          <form id="account-form">
+            <fieldset>
+              <label>
+                <span>Name</span>
+                <input type="text" name="name" id="name" value="Demo Inc" class="field">
+              </label>
+              <label>
+                <span>URL</span>
+                <input type="text" name="url" id="url" value="http://rocketrides.io" class="field">
+              </label>
+              <label>
+                <span>Tax ID</span>
+                <input type="text" name="tax_id" id="tax_id" value="000000000" class="field">
+              </label>
+              <label>
+                <span>Phone</span>
+                <input type="text" name="phone" value="4088675309" class="field">
+              </label>
+            </fieldset>
+
+            <fieldset>
+              <label>
+                <span>Address</span>
+                <input type="text" name="line1" id="line1" class="field" value="200 S. Virginia St.">
+              </label>
+              <label>
+                <span>City</span>
+                <input type="text" name="city" id="city" class="field" value="Reno">
+              </label>
+              <label>
+                <span>State</span>
+                <input type="text" name="state" id="state" class="field" value="NV">
+              </label>
+              <label>
+                <span>Postal Code</span>
+                <input type="text" name="postal_code" id="postal_code" class="field" value="89501">
+              </label>
+            </fieldset>
+
+            <fieldset>
+              <label>
+                <span>Account Number</span>
+                <input type="text" name="account_number" id="account_number" value="000123456789" class="field">
+              </label>
+              <label>
+                <span>Routing Number</span>
+                <input type="text" name="routing_number" id="routing_number" value="110000000" class="field">
+              </label>
+            </fieldset>
+
+            <button id="account-button">Submit</button>
+          </form>
+        </div>
+        <div id="debug-message"></div>
+      </div>
+    </div>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+      var stripe = Stripe('pk_test_T190Sn41t9a34rBuhqhJfKBI00pOT83WNw');
+      var accountForm = document.getElementById('account-form');
+      accountForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        createBankAccount().then(createAccount);
+      });
+
+      // when submitted,
+      // - tokenize bank details
+      function createBankAccount() {
+        var account = document.getElementById('account_number');
+        var routing = document.getElementById('routing_number');
+        var name = document.getElementById('name');
+        debug('Creating bank account...')
+        return stripe.createToken('bank_account', {
+          country: 'us',
+          currency: 'USD',
+          account_number: account.value,
+          routing_number: routing.value,
+          account_holder_type: 'company',
+          account_holder_name: name.value,
+        }).then(function(response) {
+          debug('Created bank account' + response.token.id);
+          return response.token.id; //btok_xxx
+        });
+      }
+
+      // - create account
+      function createAccount(bankToken) { // btok_xxx
+        var fd = new FormData(accountForm);
+        fd.set('external_account', bankToken);
+        debug('Creating account...');
+        return fetch('/create-account', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(Object.fromEntries(fd))
+        }).then(function(r) {
+          return r.json();
+        }).then(function(response) {
+          debug(JSON.stringify(response, null, 2));
+        });
+      }
+
+      function debug(message) {
+        var debugMessage = document.getElementById('debug-message');
+        console.log('DEBUG: ', message);
+        debugMessage.innerText += "\n" + message;
+      }
+    </script>
+  </body>
+</html>
