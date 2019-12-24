@@ -265,3 +265,7 @@ h1 {
 .plan.recommended button {
   background: #d782d9;
 }
+
+.code {
+  text-align: left;
+}
