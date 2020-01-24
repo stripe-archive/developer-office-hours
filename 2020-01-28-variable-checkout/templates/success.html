@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Success!</title>
+    <link href="https://stripe-samples.github.io/developer-office-hours/demo.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="main">
+      <div id="checkout">
+        <div id="payment-form">
+          <h1>Success!</h1>
+
+          <p>
+          Thanks so much for donating <strong id="amount"></strong> to <strong id="cause"></strong>
+          </p>
+
+          <a href="/">Donate More?!</a>
+        </div>
+      </div>
+    </div>
+    <script charset="utf-8">
+      var params = new URLSearchParams(window.location.search);
+      var sessionId = params.get('id');
+      var amount = document.getElementById('amount');
+      var cause = document.getElementById('cause');
+      var formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2
+      })
+      fetch('/retrieve-session?id=' + sessionId)
+      .then((response) => response.json())
+      .then((session) => {
+        cause.innerText = session.metadata.cause;
+        amount.innerText = formatter.format(session.payment_intent.amount / 100);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    </script>
+  </body>
+</html>
