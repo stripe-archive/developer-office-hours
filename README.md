@@ -7,6 +7,7 @@ Stripe Engineers answering questions and walking through code examples on variou
 
 Session | Hosts | Topic | Resources
 ---------|----------|---------|--------
+2020-01-28 | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) | **Variable Amount with Checkout**<br />Live demonstration for taking donations where amount is defined by the donor. | [🎦 YouTube](https://www.youtube.com/watch?v=X2SmLzQ5kfY)
 2020-02-05 | [Paul Asjes](https://www.linkedin.com/in/paul-asjes-4a903a18) | **React Stripe Elements**<br />Live demonstration of using [react-stripe-elements](https://github.com/stripe/react-stripe-elements) to collect payment details. | [🎦 YouTube]()
 
 > ℹ To receive notifications for future office hours, please subscribe to our [🎬YouTube playlist](https://www.youtube.com/playlist?list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs)
