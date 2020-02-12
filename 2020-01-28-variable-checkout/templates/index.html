@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Donation Page</title>
+    <link href="https://stripe-samples.github.io/developer-office-hours/demo.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="main">
+      <div id="checkout">
+        <div id="payment-form">
+          <h1>Donate Today</h1>
+          <fieldset>
+            <label>
+              <span>Amount</span>
+              <input type="number" class="field" id="amount-input" value="500" min="50">
+            </label>
+            <label>
+              <span>Causes</span>
+              <select id="causes" class="field">
+                <option>Cause A</option>
+                <option>Cause B</option>
+                <option>Cause C</option>
+                <option>Cause D</option>
+                <option>Cause E</option>
+              </select>
+            </label>
+          </fieldset>
+          <button id="donate-button">Donate</button>
+        </div>
+      </div>
+    </div>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script charset="utf-8">
+      var stripe = Stripe('pk_test_T190Sn41t9a34rBuhqhJfKBI00pOT83WNw');
+      var button = document.getElementById('donate-button');
+      var amount = document.getElementById('amount-input');
+      var causes = document.getElementById('causes');
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        fetch('/create-session', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            amount: amount.value,
+            cause: causes.value,
+          }),
+        })
+        .then((response) => response.json())
+        .then((session) => {
+          stripe.redirectToCheckout({
+            sessionId: session.id
+          });
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+      });
+    </script>
+  </body>
+</html>

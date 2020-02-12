@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>IssuingDemo</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://stripe-samples.github.io/developer-office-hours/demo.css" type="text/css" />
+  </head>
+
+  <body>
+    <div id="main">
+      <div id="checkout">
+        <div id="payment-form">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

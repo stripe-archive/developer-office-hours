@@ -1,0 +1,9 @@
+<h1>Cardholders</h1>
+
+<a href="/cardholders/new">Add Cardholder</a>
+
+<ul>
+  <% @cardholders.each do |cardholder| %>
+  <li><%= link_to "#{cardholder.id} #{cardholder.name}", cardholder_path(cardholder.id) %></li>
+  <% end %>
+</ul>

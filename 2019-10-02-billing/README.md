@@ -16,7 +16,7 @@ no-trial Subscriptions.
 * PHP
 * [Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos)
 * [Stripe CLI](https://github.com/stripe/stripe-cli/)
-* [Create a stripe account](https://dashboard.stripe.com/register)
+* [A Stripe account](https://dashboard.stripe.com/register)
 * [Stripe API Keys](https://stripe.com/docs/keys)
 
 ## Step by step
