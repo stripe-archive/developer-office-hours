@@ -1,4 +1,4 @@
-# Bank Account Setup for ACH - Office Hours 2019-10-02
+# Bank Account Setup for ACH - Office Hours 2020-02-13
 
 Walk through the basics of collecting and verifying Bank Account details for
 ACH with Stripe API and Go lang.
