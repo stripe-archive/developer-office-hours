@@ -7,6 +7,7 @@ Stripe Engineers answering questions and walking through code examples on variou
 
 Session | Hosts | Topic | Resources
 ---------|----------|---------|--------
+2020-02-13 | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) | **ACH**<br />Live demonstration of collecting and verifying Bank Account details for ACH with and without plaid. | [🎦 YouTube](https://www.youtube.com/watch?v=_1EX-DrikoA&list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs&index=2&t=0s)
 2020-03-07 | [Paul Asjes](https://www.linkedin.com/in/paul-asjes-4a903a18) | **React Stripe Elements**<br />Live demonstration of using [react-stripe-elements](https://github.com/stripe/react-stripe-elements) to collect payment details. | [🎦 YouTube]()
 
 > ℹ To receive notifications for future office hours, please subscribe to our [🎬YouTube playlist](https://www.youtube.com/playlist?list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs)
