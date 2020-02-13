@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link href="https://stripe-samples.github.io/developer-office-hours/demo.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <div id="main">
+      <div id="checkout">
+        <div id="payment-form">
+          <h1>Connect Bank Account</h1>
+          <h3>With Plaid</h3>
+          <button id='linkButton'>Open Plaid Link</button>
+          <div id="debug-message"></div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
+    <script>
+      fetch('/public-keys')
+      .then((response) => response.json())
+      .then((data) => {
+        debug('Fetched keys!');
+        console.log('Success:', data);
+        registerLinkHandler(data.plaid_key);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+
+      function registerLinkHandler(plaidKey) {
+        var linkHandler = Plaid.create({
+          env: 'sandbox',
+          clientName: 'Stripe/Plaid Test',
+          key: plaidKey,
+          product: ['auth'],
+          selectAccount: true,
+          onSuccess: function(public_token, metadata) {
+            debug('Plaid link setup complete');
+            // Send the public_token and account ID to your app server.
+            console.log('public_token: ' + public_token);
+            console.log('account ID: ' + metadata.account_id);
+            exchangeTokens(public_token, metadata.account_id)
+          },
+          onExit: function(err, metadata) {
+            // The user exited the Link flow.
+            if (err != null) {
+              // The user encountered a Plaid API error prior to exiting.
+            }
+          },
+        });
+
+        // Trigger the Link UI
+        document.getElementById('linkButton').onclick = function() {
+          linkHandler.open();
+        };
+      }
+
+      function exchangeTokens(public_token, account_id) {
+        debug('Exchanging tokens...')
+        fetch('/exchange-tokens', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            public_token: public_token,
+            account_id: account_id,
+          }),
+        })
+        .then((response) => response.json())
+        .then((bankAccountToken) => {
+          debug('Token Exchanged! ' + bankAccountToken);
+          console.log('Success:', bankAccountToken);
+          createCustomer(bankAccountToken)
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+      }
+
+      function createCustomer(bankAccountToken) {
+        debug('Creating customer...')
+        fetch('/create-customer', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            bank_account: bankAccountToken
+          }),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          debug('Created customer!')
+          debug(JSON.stringify(data, null, 2))
+          console.log('Success:', data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+      }
+
+      function debug(message) {
+        var debugMessage = document.getElementById('debug-message');
+        console.log('Debug: ', message);
+        debugMessage.innerText += '\n' + message;
+      }
+    </script>
+  </body>
+</html>

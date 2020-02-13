@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link href="https://stripe-samples.github.io/developer-office-hours/demo.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="main">
+      <div id="checkout">
+        <div id="payment-form">
+          <h1>Verify Bank Account</h1>
+          <fieldset>
+            <label>
+              <span>Amount</span>
+              <input type="number" class="field" id="amount-input" value="32">
+            </label>
+            <label>
+              <span>Amount 2</span>
+              <input type="number" class="field" id="amount-2-input" value="45">
+            </label>
+          </fieldset>
+          <button id="verify-button">Verify</button>
+          <div id="debug-message">
+          </div>
+        </div>
+      </div>
+    </div>
+    <script charset="utf-8">
+      var amountInput = document.getElementById('amount-input');
+      var amount2Input = document.getElementById('amount-2-input');
+      var button = document.getElementById('verify-button');
+      var params = new URLSearchParams(window.location.search);
+      var customerId = params.get('customer');
+      var bankAccountId = params.get('bank');
+
+      button.addEventListener('click', function(e) {
+        debug('Verifying amounts...')
+        e.preventDefault();
+        fetch('/verify', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            amounts: [parseInt(amountInput.value), parseInt(amount2Input.value)],
+            customer: customerId,
+            bank_account: bankAccountId,
+          }),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          debug('Verified amounts')
+          debug(JSON.stringify(data, null, 2))
+          console.log('Success:', data);
+        })
+        .catch((error) => {
+          debug('Verification failed');
+          debug(JSON.stringify(error, null, 2));
+          console.error('Error:', error);
+        });
+      });
+
+      function debug(message) {
+        var debugMessage = document.getElementById('debug-message');
+        console.log('Debug: ', message);
+        debugMessage.innerText += '\n' + message;
+      }
+    </script>
+  </body>
+</html>
