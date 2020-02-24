@@ -1,0 +1,11 @@
+{
+  "name": "office-hours",
+  "configureDotEnv": true,
+  "integrations": [
+    {
+      "name": "starter",
+      "clients": ["web"],
+      "servers": ["node", "node-typescript", "php-slim", "php", "python", "ruby"]
+    }
+  ]
+}
