@@ -1,4 +1,4 @@
-# Name of sample
+# Office Hours Starter
 
 ## Requirements
 * PHP >= 7.1.3

@@ -1,4 +1,4 @@
-# Name of sample
+# Office Hours Starter
 
 A [Sinatra](http://sinatrarb.com/) implementation.
 

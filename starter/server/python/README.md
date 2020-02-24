@@ -1,7 +1,7 @@
-# Name of sample
+# Office Hours Starter
 
 ## Requirements
-* Python 3 
+* Python 3
 * [Configured .env file](../README.md)
 
 
