@@ -1,4 +1,5 @@
-# Name of sample
+# Office Hours Starter
+
 An [Express server](http://expressjs.com) implementation
 
 ## Requirements

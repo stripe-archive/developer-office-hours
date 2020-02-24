@@ -22,18 +22,6 @@ app.get("/", (req, res) => {
   res.sendFile(path);
 });
 
-app.post("/", async (req, res) => {
-  const { data } = req.body;
-
-  res.send({
-    someData: data
-  });
-});
-
-app.get("/publishable-key", (req, res) => {
-  res.send({ publishableKey: process.env.STRIPE_PUBLISHABLE_KEY });
-});
-
 // Stripe requires the raw body to construct the event
 app.post(
   "/webhook",

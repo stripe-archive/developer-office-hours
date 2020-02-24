@@ -33,6 +33,7 @@ button {
   cursor: pointer;
   transition: all 0.15s ease;
 }
+
 #main {
   width: 100%;
   height: 100vh;
@@ -43,21 +44,25 @@ button {
 #main.checkout:not(.success):not(.error) {
   width: calc(100% - 450px);
 }
-#checkout {
+
+#checkout, #container {
   max-width: 480px;
   margin: 0 auto;
   padding: 30px 0;
 }
+
 h1 {
   margin: 0 0 20px 0;
   font-size: 20px;
   font-weight: 500;
 }
-#main.checkout #checkout {
+
+#main.checkout #checkout, #main #container {
   visibility: visible;
   opacity: 1;
 }
-#payment-form, #webhooks-list {
+
+#payment-form, #webhooks-list, #panel {
   margin: 0 -30px;
   padding: 20px 30px 30px;
   border-radius: 4px;

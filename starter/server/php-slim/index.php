@@ -26,17 +26,9 @@ $app->add(function ($request, $response, $next) {
     Stripe::setApiKey(getenv('STRIPE_SECRET_KEY'));
     return $next($request, $response);
 });
-  
 
-$app->get('/', function (Request $request, Response $response, array $args) {   
+$app->get('/', function (Request $request, Response $response, array $args) {
   return $response->write(file_get_contents(getenv('STATIC_DIR') . '/index.html'));
-});
-
-$app->get('/publishable-key', function (Request $request, Response $response, array $args) {
-    $pub_key = getenv('STRIPE_PUBLISHABLE_KEY');
-
-    $response->getBody()->write("Hello, $pub_key");
-    return $response;
 });
 
 $app->post('/webhook', function(Request $request, Response $response) {
@@ -59,7 +51,7 @@ $app->post('/webhook', function(Request $request, Response $response) {
     }
     $type = $event['type'];
     $object = $event['data']['object'];
-  
+
     $logger->info('🔔  Webhook received! ' . $type);
 
     return $response->withJson([ 'status' => 'success' ])->withStatus(200);

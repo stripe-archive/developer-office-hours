@@ -15,15 +15,6 @@ get '/' do
   send_file File.join(settings.public_folder, 'index.html')
 end
 
-post '/' do
-  content_type 'application/json'
-  data = JSON.parse request.body.read
-
-  {
-    data: data
-  }.to_json
-end
-
 post '/webhook' do
   # You can use webhooks to receive information about asynchronous payment events.
   # For more about our webhook events check out https://stripe.com/docs/webhooks.

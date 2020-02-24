@@ -5,9 +5,7 @@ Pick the language you are most comfortable in and follow the instructions in the
 
 # Supported languages
 
-* [Java (Spark)](java/README.md)
 * [JavaScript (Node)](node/README.md)
 * [PHP (Slim)](php/README.md)
 * [Python (Flask)](python/README.md)
 * [Ruby (Sinatra)](ruby/README.md)
-* [TypeScript (Node)](typescript/README.md)

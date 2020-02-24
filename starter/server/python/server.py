@@ -16,24 +16,13 @@ from dotenv import load_dotenv, find_dotenv
 # Setup Stripe python client library
 load_dotenv(find_dotenv())
 stripe.api_key = os.getenv('STRIPE_SECRET_KEY')
-stripe.api_version = os.getenv('STRIPE_API_VERSION')
 
 static_dir = str(os.path.abspath(os.path.join(__file__ , "..", os.getenv("STATIC_DIR"))))
-app = Flask(__name__, static_folder=static_dir,
-            static_url_path="", template_folder=static_dir)
+app = Flask(__name__, static_folder=static_dir, static_url_path="", template_folder=static_dir)
 
 @app.route('/', methods=['GET'])
-def get_example():
+def index():
     return render_template('index.html')
-
-@app.route('/', methods=['POST'])
-def post_example():
-    # Reads application/json and returns a response
-    data = json.loads(request.data)
-    try:
-        return jsonify({'data': data})
-    except Exception as e:
-        return jsonify(error=str(e)), 403
 
 @app.route('/webhook', methods=['POST'])
 def webhook_received():
@@ -57,7 +46,7 @@ def webhook_received():
         data = request_data['data']
         event_type = request_data['type']
     data_object = data['object']
-    
+
     print('event ' + event_type)
 
     if event_type == 'some.event':
