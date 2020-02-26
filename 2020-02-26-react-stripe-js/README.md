@@ -1,12 +1,11 @@
 # React Stripe.js Walkthrough
 
-![donut-shop](https://user-images.githubusercontent.com/59585336/74299251-111fb300-4d1a-11ea-932b-a6e7b33f6ea8.gif)
+Walk through the basics of collecting payment details with [React Stripe.js](https://github.com/stripe/react-stripe-js) and next.js.
 
-### Getting Started
+> [🎬 Watch on YouTube](https://www.youtube.com/watch?v=w1oLdAPyuok)
 
-- clone this repo locally by clicking on "Clone or Download"
-- from a terminal, cd into the project folder `cd react-stripe-js-demo`
-- checkout the getting started branch `git checkout getting-started`
+### Step by step
+
 - install the dependencies `npm install`
 - start developing! `npm run dev`
 
@@ -22,3 +21,7 @@
 - font size: `16px`
 - placeholder text color: `#87bbfd`
 - invalid text color: `#FFC7EE`
+
+### Demo
+
+![donut-shop](https://user-images.githubusercontent.com/59585336/74299251-111fb300-4d1a-11ea-932b-a6e7b33f6ea8.gif)
