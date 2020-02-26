@@ -25,7 +25,7 @@ Session | Hosts | Topic | Resources
  [2019-12-04](./2019-12-04-ios) | [Ali Riaz](https://www.linkedin.com/in/syedaliriaz/) | [**One-Time Payments with iOS**](./2019-12-04)<br />Live demonstration of collecting one-time payments with iOS and the [stripe-ios client library](https://github.com/stripe/stripe-ios). | [🎦 YouTube](https://www.youtube.com/watch?v=s5Ml41bZidw&list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs&index=4&t=41s)
  [2019-12-24](./2019-12-24-issuing) | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) | [**Issuing Cards**](./2019-12-24-issuing)<br />Live demonstration of issuing Credit Cards with [**Stripe Issuing**](https://stripe.com/issuing) | [🎦 YouTube](https://www.youtube.com/watch?v=knBWhYMqLds)
  [2020-01-28](./2020-01-28-variable-checkout) | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) | [**Variable Amount with Checkout**](./2020-01-28-variable-checkout)<br />Live demonstration for taking donations where amount is defined by the donor. | [🎦 YouTube](https://www.youtube.com/watch?v=X2SmLzQ5kfY)
- [2020-02-13](./2020-02-13-ach) | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) | **ACH**<br />Live demonstration of collecting and verifying Bank Account details for ACH with and without plaid. | [🎦 YouTube](https://www.youtube.com/watch?v=_1EX-DrikoA&list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs&index=2&t=0s)
+ [2020-02-13](./2020-02-13-ach) | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) | [**Setup Bank Account for ACH**](./2020-02-13-ach)<br />Live demonstration for collecting and verifying Bank Account details for ACH. | [🎦 YouTube](https://www.youtube.com/watch?v=_1EX-DrikoA&list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs&index=3&t=0s)
 
 ## Changes
 

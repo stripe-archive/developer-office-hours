@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link href="https://stripe-samples.github.io/developer-office-hours/demo.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="main">
+      <div id="checkout">
+        <div id="payment-form">
+          <h1>Collect Bank Details</h1>
+          <fieldset>
+            <label>
+              <span>Name</span>
+              <input type="text" class="field" id="name-input" value="Jenny Rosen">
+            </label>
+            <label>
+              <span>Account Number</span>
+              <input type="number" class="field" id="account-input" value="000123456789">
+            </label>
+            <label>
+              <span>Routing Number</span>
+              <input type="number" class="field" id="routing-input" value="110000000">
+            </label>
+          </fieldset>
+          <button id="submit-button">Submit</button>
+          <div id="debug-message"></div>
+        </div>
+      </div>
+    </div>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script charset="utf-8">
+      var stripe = Stripe('pk_test_');
+      var button = document.getElementById('submit-button');
+      var nameInput = document.getElementById('name-input');
+      var accountInput = document.getElementById('account-input');
+      var routingInput = document.getElementById('routing-input');
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        debug('Tokenizing bank account details')
+        stripe.createToken('bank_account', {
+          account_holder_name: nameInput.value,
+          account_holder_type: 'individual',
+          currency: 'USD',
+          country: 'US',
+          account_number: accountInput.value,
+          routing_number: routingInput.value,
+        }).then(function(resp) {
+          debug('Tokenized bank account ' + resp.token.id);
+          createCustomer(resp.token.id);
+        });
+      });
+
+      function createCustomer(bankAccountToken) {
+        debug('Creating customer...')
+        fetch('/create-customer', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            bank_account: bankAccountToken
+          }),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          debug('Created customer!')
+          debug('Verify here: /verify?customer=' + data.id + '&bank=' + data.default_source)
+          debug(JSON.stringify(data, null, 2))
+          console.log('Success:', data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+      }
+
+      function debug(message) {
+        var debugMessage = document.getElementById('debug-message');
+        console.log('Debug: ', message);
+        debugMessage.innerText += '\n' + message;
+      }
+    </script>
+  </body>
+</html>
