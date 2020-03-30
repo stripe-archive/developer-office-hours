@@ -1,0 +1,25 @@
+{
+  "name": "donut-shop",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.27",
+    "@emotion/styled": "^10.0.27",
+    "@stripe/react-stripe-js": "^1.0.0-beta.5",
+    "@stripe/stripe-js": "^1.0.0-beta.5",
+    "axios": "^0.19.2",
+    "next": "latest",
+    "react": "^16.7.0",
+    "react-confetti": "^5.0.1",
+    "react-dom": "^16.7.0",
+    "stripe": "^8.15.0"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "dotenv": "^8.2.0"
+  }
+}
