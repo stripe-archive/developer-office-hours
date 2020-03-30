@@ -8,19 +8,7 @@ require 'vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::create(__DIR__);
 $dotenv->load();
 
-require './config.php';
-
 $app = new \Slim\App;
-
-// Instantiate the logger as a dependency
-$container = $app->getContainer();
-$container['logger'] = function ($c) {
-  $settings = $c->get('settings')['logger'];
-  $logger = new Monolog\Logger($settings['name']);
-  $logger->pushProcessor(new Monolog\Processor\UidProcessor());
-  $logger->pushHandler(new Monolog\Handler\StreamHandler(__DIR__ . '/logs/app.log', \Monolog\Logger::DEBUG));
-  return $logger;
-};
 
 $app->add(function ($request, $response, $next) {
     Stripe::setApiKey(getenv('STRIPE_SECRET_KEY'));
@@ -32,27 +20,16 @@ $app->get('/', function (Request $request, Response $response, array $args) {
 });
 
 $app->post('/webhook', function(Request $request, Response $response) {
-    $logger = $this->get('logger');
-    $event = $request->getParsedBody();
-    // Parse the message body (and check the signature if possible)
-    $webhookSecret = getenv('STRIPE_WEBHOOK_SECRET');
-    if ($webhookSecret) {
-      try {
-        $event = \Stripe\Webhook::constructEvent(
-          $request->getBody(),
-          $request->getHeaderLine('stripe-signature'),
-          $webhookSecret
-        );
-      } catch (\Exception $e) {
-        return $response->withJson([ 'error' => $e->getMessage() ])->withStatus(403);
-      }
-    } else {
-      $event = $request->getParsedBody();
+    $params = json_decode($request->getBody(), true);
+    $event = \Stripe\Event::constructFrom($params);
+    switch($event->type) {
+      case 'checkout.session.completed':
+        $session = $event->data->object;
+        ob_start();
+        var_dump('Checkout session completed!' . $session->id);
+        error_log(ob_get_clean(), 4);
+        break;
     }
-    $type = $event['type'];
-    $object = $event['data']['object'];
-
-    $logger->info('🔔  Webhook received! ' . $type);
 
     return $response->withJson([ 'status' => 'success' ])->withStatus(200);
 });
