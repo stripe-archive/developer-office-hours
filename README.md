@@ -7,7 +7,9 @@ Stripe Engineers answering questions and walking through code examples on variou
 
 Session | Hosts | Topic | Resources
 ---------|----------|---------|--------
-2020-02-26 | [Thomas Marek](https://www.linkedin.com/in/thomas-marek/) | **React Stripe.js**<br />Live demonstration of using [react-stripe-js](https://github.com/stripe/react-stripe-js) to collect payment details. | [🎦 YouTube](https://www.youtube.com/watch?v=w1oLdAPyuok)
+2020-04-02 | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) | **Pausing Subscriptions**<br />Live demonstration of [Subscription pausing](https://stripe.com/docs/billing/subscriptions/pausing). | [🎦 YouTube](https://youtu.be/177SsXpvy3I)
+2020-04-07 | [Suz Hinton](https://www.linkedin.com/in/susanmhinton/) | **Batch Processing**<br />Live demonstration of batch processing and dealing with API rate limits. | [🎦 YouTube]()
+2020-04-09 | [Matthew Ling](https://www.linkedin.com/in/matthew-ling-53427711/) | **Klarna Installments**<br />Live demonstration of collecting payments in installments with [Klarna](https://stripe.com/docs/sources/klarna). | [🎦 YouTube]()
 
 > ℹ To receive notifications for future office hours, please subscribe to our [🎬YouTube playlist](https://www.youtube.com/playlist?list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs)
 
@@ -26,6 +28,7 @@ Session | Hosts | Topic | Resources
  [2019-12-24](./2019-12-24-issuing) | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) | [**Issuing Cards**](./2019-12-24-issuing)<br />Live demonstration of issuing Credit Cards with [**Stripe Issuing**](https://stripe.com/issuing) | [🎦 YouTube](https://www.youtube.com/watch?v=knBWhYMqLds)
  [2020-01-28](./2020-01-28-variable-checkout) | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) | [**Variable Amount with Checkout**](./2020-01-28-variable-checkout)<br />Live demonstration for taking donations where amount is defined by the donor. | [🎦 YouTube](https://www.youtube.com/watch?v=X2SmLzQ5kfY)
  [2020-02-13](./2020-02-13-ach) | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) | [**Setup Bank Account for ACH**](./2020-02-13-ach)<br />Live demonstration for collecting and verifying Bank Account details for ACH. | [🎦 YouTube](https://www.youtube.com/watch?v=_1EX-DrikoA&list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs&index=3&t=0s)
+ [2020-03-31]() | [Matthew Ling](https://www.linkedin.com/in/matthew-ling-53427711/) | [**Klarna One Time**]()<br />Live demonstration for collecting and verifying Bank Account details for ACH. | [🎦 YouTube](https://www.youtube.com/watch?v=_1EX-DrikoA&list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs&index=3&t=0s)
 
 ## Changes
 
