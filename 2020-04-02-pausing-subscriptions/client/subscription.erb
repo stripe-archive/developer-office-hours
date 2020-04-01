@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Subscription</title>
+    <link href="https://stripe-samples.github.io/developer-office-hours/demo.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="main">
+      <div id="container">
+        <div id="panel">
+          <a href="/">All Subscriptions</a>
+          <h1><%= @subscription.id %></h1>
+
+          <div>
+            <div>
+              Status: <%= @subscription.status %>
+            </div>
+            <% if @subscription.pause_collection %>
+              <div>Pause Collection Behavior: <%= @subscription.pause_collection.behavior %></div>
+              <div>Pause Collection Resumes At: <%= @subscription.pause_collection.resumes_at %></div>
+            <% end %>
+          </div>
+
+          <hr>
+
+          <fieldset>
+            <label>
+              <span>Behavior</span>
+              <select name="" id="behavior">
+                <option value="mark_uncollectible">Mark Uncollectible (Offer services for free)</option>
+                <option value="keep_as_draft">Keep as draft (Temporarily offer free and collect later)</option>
+                <option value="void">Void (Unable to provide services)</option>
+              </select>
+            </label>
+            <label>
+              <span>Resumes At</span>
+              <input type="date" class="field" id="resumes-input">
+            </label>
+          </fieldset>
+          <button type="submit" id="pause">Pause</button>
+          <br>
+          <button type="submit" id="reactivate">Reactivate</button>
+        </div>
+      </div>
+    </div>
+    <script charset="utf-8">
+      var behavior = document.getElementById('behavior');
+      var resumesAt = document.getElementById('resumes-input');
+      var pauseBtn = document.getElementById('pause');
+      var reactivateBtn = document.getElementById('reactivate');
+
+      function getResumesAt() {
+        if(resumesAt.value) {
+          return resumesAt.valueAsDate.getTime() / 1000;
+        }
+      }
+
+      pauseBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        fetch('/pause', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            subscription: "<%= @subscription.id %>",
+            behavior: behavior.value,
+            resumes_at: getResumesAt()
+          }),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          location.reload();
+          console.log('Success:', data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+      });
+
+      reactivateBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        fetch('/reactivate', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            subscription: "<%= @subscription.id %>",
+          }),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          location.reload();
+          console.log('Success:', data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Stripe Payment Page Sample</title>
+    <link href="https://stripe-samples.github.io/developer-office-hours/demo.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="main">
+      <div id="container">
+        <div id="panel">
+          <h1>Subscriptions</h1>
+          <ul>
+            <% @subscriptions.each do |sub| %>
+              <li>
+                <a href="/subscriptions/<%= sub.id %>">
+                  <%= sub.id %>
+                  <%= 'pause' if sub.pause_collection %>
+                </a>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
