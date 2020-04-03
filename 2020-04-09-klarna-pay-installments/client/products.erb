@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stripe-samples.github.io/developer-office-hours/demo.css" type="text/css" />
+    <style type="text/css" media="all">
+      table { 
+        border-spacing: 20px;
+      }
+  </style>
+  </head>
+  <body>
+    <div id="main">
+      <div id="checkout">
+        <div id="payment-form">
+          <img src="https://stripe-samples.github.io/developer-office-hours/logo.svg" alt="logo" />
+          <h1>Choose a T-Shirt</h1>
+
+          <table>
+            <th><tr>
+              <td>Product</td>
+              <td>Price</td>
+              <td>&nbsp;</td>
+            </tr></th>
+            <% 3.times do |idx| %>
+              <tr style="text-align: left ">
+                <td><%= @products["sku_#{idx + 1}".to_sym][:description] %></td>
+                <td><%= @products["sku_#{idx + 1}".to_sym][:price] %></td>
+                <td><a href="http://localhost:4242/purchase?sku_id=<%= "sku_#{idx + 1}" %>">Purchase</a></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
