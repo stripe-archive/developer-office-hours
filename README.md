@@ -7,7 +7,6 @@ Stripe Engineers answering questions and walking through code examples on variou
 
 Session | Hosts | Topic | Resources
 ---------|----------|---------|--------
-2020-04-02 | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) | **Pausing Subscriptions**<br />Live demonstration of [Subscription pausing](https://stripe.com/docs/billing/subscriptions/pausing). | [🎦 YouTube](https://youtu.be/177SsXpvy3I)
 2020-04-07 | [Suz Hinton](https://www.linkedin.com/in/susanmhinton/) | **Batch Processing**<br />Live demonstration of batch processing and dealing with API rate limits. | [🎦 YouTube]()
 2020-04-09 | [Matthew Ling](https://www.linkedin.com/in/matthew-ling-53427711/) | **Klarna Installments**<br />Live demonstration of collecting payments in installments with [Klarna](https://stripe.com/docs/sources/klarna). | [🎦 YouTube]()
 
@@ -30,6 +29,7 @@ Session | Hosts | Topic | Resources
  [2020-02-13](./2020-02-13-ach) | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) | [**Setup Bank Account for ACH**](./2020-02-13-ach)<br />Live demonstration for collecting and verifying Bank Account details for ACH. | [🎦 YouTube](https://www.youtube.com/watch?v=_1EX-DrikoA&list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs&index=3&t=0s)
  [2020-02-26](https://github.com/tmarek-stripe/demo-react-stripe-js) | [Thomas Marek](https://www.linkedin.com/in/thomas-marek/) | [**React Stripe.js**](https://github.com/tmarek-stripe/demo-react-stripe-js)<br />Live demonstration for collecting one time payment details with React Stripe.js. | [🎦 YouTube](https://www.youtube.com/watch?v=w1oLdAPyuok&list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs&index=4&t=0s)
  [2020-04-01](./2020-04-01-klarna) | [Matthew Ling](https://www.linkedin.com/in/matthew-ling-53427711/) | [**Klarna One Time**](./2020-04-01-klarna)<br />Live demonstration for collecting one time payments with Klarna. | [🎦 YouTube](https://www.youtube.com/watch?v=FXKYq0vw71k)
+ [2020-04-02](./2020-04-02-pausing-subscriptions) | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) | **Pausing Subscriptions**<br />Live demonstration of [Subscription pausing](https://stripe.com/docs/billing/subscriptions/pausing). | [🎦 YouTube](https://www.youtube.com/watch?v=177SsXpvy3I)
 
 ## Changes
 
