@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stripe-samples.github.io/developer-office-hours/demo.css" type="text/css" />
+    <style type="text/css" media="all">
+      table { 
+        border-spacing: 20px;
+      }
+  </style>
+  </head>
+  <body>
+    <div id="main">
+      <div id="checkout">
+        <div id="payment-form">
+          <img src="https://stripe-samples.github.io/developer-office-hours/logo.svg" alt="logo" />
+          <h1>Choose a payment method</h1>
+
+          <% payment_method_categories.each do |category| %>
+            <% name = klarna["#{category}_name".to_sym] %>
+            <% url = klarna["#{category}_redirect_url".to_sym] %>
+            <fieldset>
+              <button onclick="location.href = '<%= url %>'"><%= name %></button>
+            </fieldset>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
