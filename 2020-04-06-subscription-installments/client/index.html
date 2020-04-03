@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Stripe Payment Page Sample</title>
+    <link href="https://stripe-samples.github.io/developer-office-hours/demo.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="main">
+      <div id="container">
+        <div id="panel">
+          <h1>Pay in installments - $3000</h1>
+          <img src="bike.png" style="width: 200px" alt="">
+
+          <br>
+          <hr>
+
+          <fieldset>
+            <label>
+              <span>Email</span>
+              <input type="email" class="field" id="email-input" value="jenny.rosen@example.com">
+            </label>
+            <label>
+              <span>Installments (months)</span>
+              <select class="field" id="installments-input">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </label>
+            <label>
+              <span>Card</span>
+              <div id="card" class="field"></div>
+            </label>
+          </fieldset>
+          <button type="submit" id="pay">Pay</button>
+
+          <div id="debug-message"></div>
+        </div>
+      </div>
+    </div>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="store.js"></script>
+  </body>
+</html>
