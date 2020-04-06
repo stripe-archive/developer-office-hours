@@ -42,7 +42,6 @@ func webhookHandler(c echo.Context) (err error) {
 	}
 
 	var event stripe.Event
-
 	webhookSecret := os.Getenv("STRIPE_WEBHOOK_SECRET")
 	if webhookSecret != "" {
 		event, err = webhook.ConstructEvent(payload, request.Header.Get("Stripe-Signature"), webhookSecret)
@@ -56,10 +55,16 @@ func webhookHandler(c echo.Context) (err error) {
 		}
 	}
 
-	objectType := event.Data.Object["object"].(string)
-	switch objectType {
-	case "customer.created":
-		// Handle logic when a customer is created
+	switch event.Type {
+	case "checkout.session.completed":
+		var session stripe.CheckoutSession
+		e := json.Unmarshal(event.Data.Raw, &session)
+		if e != nil {
+			fmt.Fprintf(os.Stderr, "Error parsing webhook JSON: %v\\n", e)
+			c.JSON(http.StatusBadRequest, e)
+			return
+		}
+		fmt.Println("Checkout Session: ", session.ID)
 	}
 
 	if err != nil {
