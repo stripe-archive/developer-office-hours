@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/foolin/goview"
 	"github.com/foolin/goview/supports/echoview"
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo"
@@ -23,15 +24,31 @@ func main() {
 	}
 
 	stripe.Key = os.Getenv("STRIPE_SECRET_KEY")
+
 	e := echo.New()
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
-	e.Renderer = echoview.Default()
+	e.Renderer = echoview.New(goview.Config{
+		Root:         os.Getenv("STATIC_DIR"),
+		DisableCache: true,
+	})
 
+	// Routes
 	e.Static("/", os.Getenv("STATIC_DIR"))
-	e.File("/", os.Getenv("STATIC_DIR")+"/index.html")
+	e.GET("/", indexHandler)
 	e.POST("/webhook", webhookHandler)
-	e.Logger.Fatal(e.Start(":4242"))
+
+	e.Logger.Fatal(e.Start("localhost:4242"))
+}
+
+func indexHandler(c echo.Context) (err error) {
+	return c.Render(
+		http.StatusOK,
+		"index.html",
+		map[string]interface{}{
+			"name": "Jenny Rosen",
+		},
+	)
 }
 
 func webhookHandler(c echo.Context) (err error) {
@@ -42,6 +59,7 @@ func webhookHandler(c echo.Context) (err error) {
 	}
 
 	var event stripe.Event
+
 	webhookSecret := os.Getenv("STRIPE_WEBHOOK_SECRET")
 	if webhookSecret != "" {
 		event, err = webhook.ConstructEvent(payload, request.Header.Get("Stripe-Signature"), webhookSecret)
@@ -64,12 +82,11 @@ func webhookHandler(c echo.Context) (err error) {
 			c.JSON(http.StatusBadRequest, e)
 			return
 		}
+
 		fmt.Println("Checkout Session: ", session.ID)
 	}
-
 	if err != nil {
 		return err
 	}
-
 	return c.JSON(http.StatusOK, event)
 }
