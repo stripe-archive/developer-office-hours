@@ -16,7 +16,7 @@ result=`stripe ...`
 # pull out any error code if Stripe responds with an error object
 error=`echo $result | jq -r '. | if .error then .error.code else "" end'`
 
-# error checking -> sppend error to a file
+# error checking -> append error to a file
 if [ -n "$error" ]
 then
   echo "$id $error" >> failures.txt
