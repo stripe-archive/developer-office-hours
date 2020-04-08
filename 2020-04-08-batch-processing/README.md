@@ -1,7 +1,7 @@
 # Office Hours 2020-04-08
 
 Walk through the basics of running batch processing with the Stripe API while observing API limits
-> [🎬 Watch on YouTube](https://www.youtube.com/channel/UCd1HAa7hlN5SCQjgCcGnsxw)
+> [🎬 Watch on YouTube](https://www.youtube.com/watch?v=gx1xxGv2Ljs&feature=youtu.be)
 
 ### Prerequisites
 * NodeJS 10+
