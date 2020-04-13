@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Stripe Payment Page Sample</title>
+    <link href="https://stripe-samples.github.io/developer-office-hours/demo.css" rel="stylesheet" type="text/css">
+    <link href="styles.css" rel="stylesheet" type="text/css">
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+  <body>
+    <div id="main">
+      <div id="container">
+        <div id="panel">
+          <h1>Subscriptions with Coupons demo</h1>
+
+          <div id='card-element'>
+            <%# Mount the 'card' Element here %>
+          </div>
+
+          Enter Coupon here:
+          <input id='coupon-input'>
+          <button id='coupon-button'>Apply Coupon</button>
+          <br>
+
+          <button id='subscribe-button'>Subscribe</button>
+          <br>
+          <h2 id='error-label' />
+
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Initialize Stripe Elements and mount the 'card' Element
+
+      var stripe = Stripe("pk_test_XBeVOiJfdrsz56X2j9qhMP59");
+      var elements = stripe.elements();
+      var cardElement = elements.create('card', {
+        hidePostalCode: true,
+      });
+
+      cardElement.mount('#card-element');
+
+      var appliedCoupon = null;
+
+      // add button handlers
+      var errorLabel = document.getElementById('error-label');
+      var couponInput = document.getElementById('coupon-input');
+      var couponButton = document.getElementById('coupon-button');
+
+      var subscribeButton = document.getElementById('subscribe-button');
+
+      subscribeButton.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        stripe.createPaymentMethod({
+          type: 'card',
+          card: cardElement,
+        })
+        .then(function(result) {
+          if(result.error) {
+            displayLabel(result.error.message);
+          }
+          else {
+            displayLabel(result.paymentMethod.id);
+            postPaymentMethodToBackend(result.paymentMethod.id);
+          }
+        })
+      });
+
+      function postPaymentMethodToBackend(paymentMethodId) {
+        fetch('/subscribe', {
+          method: 'POST',
+          body: JSON.stringify({
+            payment_method: paymentMethodId,
+            coupon_name: appliedCoupon ? appliedCoupon : "",
+          })
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.id) {
+            displayLabel("Subscribed successfully!");
+            window.location.href = `/subscription/${data.id}`;
+          }
+          else {
+            displayLabel(data);
+          }
+        })
+      }
+
+      couponButton.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        fetch('/coupon', {
+          method: 'POST',
+          body: JSON.stringify({
+            coupon: couponInput.value,
+          })
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          if(data.is_valid) {
+            displayLabel("Coupon applied!")
+            appliedCoupon = couponInput.value;
+          }
+          else {
+            displayLabel("Invalid coupon, try again");
+            appliedCoupon = null;
+          }
+        })
+      })
+
+      function displayLabel(text) {
+        console.log(text);
+        errorLabel.innerHTML = text;
+      }
+    </script>
+  </body>
+</html>
