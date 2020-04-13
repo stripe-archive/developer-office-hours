@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Subscription page</title>
+    <link href="https://stripe-samples.github.io/developer-office-hours/demo.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="main">
+      <div id="container">
+        <div id="panel">
+          <h1>Your subscription</h1>
+          <li> Sub: <%=  @subscription&.id %> </li>
+          <li> Coupon: <%= @subscription&.discount&.coupon&.name %> </li>
+          <li> Latest Invoice amount due: $<%= (@invoice&.amount_due/100.0).round(2) %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

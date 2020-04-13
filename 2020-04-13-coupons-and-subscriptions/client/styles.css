@@ -1,0 +1,16 @@
+#card-element {
+    border: solid;
+    border-radius: 1px;
+    margin-top: -1px;
+    margin-bottom: 10px;
+  }
+
+  input {
+    flex: 1;
+    border-style: solid;
+    outline: none;
+    color: #000000;
+    margin-top: -5px;
+    margin-bottom: 20px;
+  }
+  
