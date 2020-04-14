@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Stripe Payment Page Sample</title>
+    <link href="https://stripe-samples.github.io/developer-office-hours/demo.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="main">
+      <div id="container">
+        <div id="panel">
+          <h1>Subscriptions</h1>
+          <ul>
+          {% for sub in subscriptions %}
+            {% if not sub.schedule %}
+              <li>
+                <a href="/subscriptions/{{sub.id}}">
+                  {{sub.id}} -
+                  {{sub['items']['data'][0]['plan']['id']}}
+                </a>
+              </li>
+            {% endif %}
+          {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

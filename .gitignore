@@ -1,6 +1,7 @@
 .env
 **/vendor/*
 **/node_modules/*
+**/venv/*
 /2019-10-30-connect-onboarding/server/node/node_modules/*
 /2019-12-24-issuing/.bundle
 /2019-12-24-issuing/log/*

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Subscription</title>
+    <link href="https://stripe-samples.github.io/developer-office-hours/demo.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="main">
+      <div id="container">
+        <div id="panel">
+          <h1>{{ subscription.id }}</h1>
+
+          <fieldset>
+            <label>
+              <span>Temp Plan</span>
+              <select class="field" id="plan">
+                <option value="plan_H65JBIV1W8TlzZ">plan_H65JBIV1W8TlzZ - Standard Budget</option>
+              </select>
+            </label>
+            <label>
+              <span>Cycles / Iterations</span>
+              <input type="number" class="field" id="iterations" value="3" step="1">
+            </label>
+          </fieldset>
+          <button type="submit" id="update">Update</button>
+        </div>
+      </div>
+    </div>
+    <script charset="utf-8">
+      var plan = document.getElementById('plan');
+      var iterations = document.getElementById('iterations');
+      var updateBtn = document.getElementById('update');
+      updateBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        fetch('/subscriptions/{{subscription.id}}', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            iterations: parseInt(iterations.value, 10),
+            plan: plan.value,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log('Success:', data);
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      });
+    </script>
+  </body>
+</html>
