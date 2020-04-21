@@ -155,9 +155,10 @@ fieldset .redirect label span {
   text-align: center;
 }
 
-#card-message, #debug-message {
+#card-message, #debug-message, .json {
   text-align: left;
   white-space: pre-wrap;
+  background-color: white;
 }
 
 #admin {

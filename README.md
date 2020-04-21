@@ -30,6 +30,7 @@ Session | Hosts | Topic | Resources
  [2020-04-01](./2020-04-01-klarna) | [Matthew Ling](https://www.linkedin.com/in/matthew-ling-53427711/) | [**Klarna One Time**](./2020-04-01-klarna)<br />Live demonstration for collecting one time payments with Klarna. | [🎦 YouTube](https://www.youtube.com/watch?v=FXKYq0vw71k)
  [2020-04-02](./2020-04-02-pausing-subscriptions) | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) | **Pausing Subscriptions**<br />Live demonstration of [Subscription pausing](https://stripe.com/docs/billing/subscriptions/pausing). | [🎦 YouTube](https://www.youtube.com/watch?v=177SsXpvy3I)
  [2020-04-08](./2020-04-08-batch-processing) | [Suz Hinton](https://www.linkedin.com/in/susanmhinton/) | **Batch Processing**<br />Live demonstration of batch processing and dealing with API rate limits. | [🎦 YouTube](https://www.youtube.com/watch?v=gx1xxGv2Ljs&feature=youtu.be)
+ [2020-04-15](./2020-04-15-klarna-pay-installments) | [Matthew Ling](https://www.linkedin.com/in/matthew-ling-53427711/) | **Klarna Installments**<br />Live demonstration of collecting payments in installments with [Klarna](https://stripe.com/docs/sources/klarna). | [🎦 YouTube](https://www.youtube.com/watch?v=tIEAs93ZW2Y)
 
 ## Changes
 
