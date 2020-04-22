@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Stripe Payment Page Sample</title>
+    <link href="https://stripe-samples.github.io/developer-office-hours/demo.css" rel="stylesheet" type="text/css">
+    <style>
+      #payment-table {
+        max-width: 720px;
+        width:100%;
+        margin: 0 auto;
+        border: 1px solid #e8e8fb;
+      }
+
+      table td, th {
+        padding:5px;
+      }
+
+      td, th {
+        text-align:left;
+      }
+
+      .refund-btn {
+        width: 80px;
+        height:30px;
+      }
+
+      .refund-amt {
+        border: 1px solid #e8e8fb;
+        width:75px;
+      }
+
+      #msg {
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <div id="container">
+        <div id="panel">
+          <h1>Office Hours</h1>
+        </div>
+      </div>
+      <div id="msg" role="alert">&nbsp;</div>
+      <div id="payment-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Description</th>
+              <th>Total Refunded</th>
+              <th>&nbsp;</th>
+              <th>Make a Refund</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+  </body>
+  <script>
+      /* helper function to display dates nicely */
+    function formatDate(epochTime) {
+      //return new Date(epochTime * 1000).toDateString();
+      return new Date(epochTime * 1000).toISOString().split('T')[0];
+
+    }
+
+    /* helper function to format an amt to USD */
+    function formatAmount(amt)
+    {
+      return '$' + (amt / 100.0);
+    }
+
+    /* show a msg */
+    var displayMsg = function(msg) {
+      var msgField = document.querySelector("#msg");
+      msgField.textContent = msg;
+      setTimeout(function() {
+        msgField.textContent = "";
+      }, 10000);
+    }
+
+    /* Helper function to display a row in the table for a given payment. */
+    function generateHtmlForPayment(payment) {
+      var charge = payment.charges.data[0];
+      var refundable_amount = charge.amount - charge.amount_refunded;
+      refunds = charge.refunds.data;
+
+      var refund_failed = (refunds.length > 0 && refunds[0].status == 'failed') ? true : false;
+
+      result = `<tr id="${payment.id}" >
+        <td>${formatDate(payment.created)}</td>
+        <td>${formatAmount(payment.amount)}</td>
+        <td>${payment.description}</td>
+        <td>${formatAmount(charge.amount_refunded)}</td>
+        <td></td>`;
+
+      if ((refundable_amount > 0) && (!refund_failed)) {
+        result +=`<td> <input type="text" class="refund-amt" id="refund_${payment.id}"placeholder="${formatAmount(refundable_amount)}" /></td>`;
+
+        result +=`<td><button class="refund-btn" data-payment="${payment.id}" onclick="refundPayment(this)"> Refund</button></td></tr>`;
+      }
+      else if (refund_failed){
+        result += `<td>----</td><td>Unable to refund</td></tr>`
+      }
+      else
+      {
+        result += `<td>----</td><td>Fully refunded</td></tr>`
+      }
+      return result;
+    }
+
+    /* kicks everything off
+     * request payments for a given customer from the server, and then display 
+     * those payments in a table. 
+     */
+    function init() {
+      customer_id = window.location.pathname.split("/").pop();
+      url = `/customer/${customer_id}/payments`;
+      return fetch(url, {
+        method: 'get',
+        headers: { 'Content-Type': 'application/json'}
+      })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(json) {
+        payments = json.payments;
+        var tableBody = document.getElementById('payment-table').getElementsByTagName('tbody')[0];
+
+        payments.forEach((payment) => {
+          var newRow = tableBody.insertRow(tableBody.rows.length);
+          newRow.innerHTML = generateHtmlForPayment(payment);
+        });
+      });
+
+    }
+
+    function refundPayment(button) {
+      var paymentRow = button.parentNode.parentNode;
+      payment_id = button.dataset.payment;
+      var params = {}
+      params.payment_id = payment_id;
+
+      var input = document.getElementById('refund_' + payment_id);
+      if (input.value) {
+        params.amount = input.value * 100;
+      }
+
+      return fetch("/refund-payment", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json"
+        }, 
+        body: JSON.stringify(params)
+      })
+      .then(function(result){
+       return result.json();
+      })
+      .then(function(json) {
+        if (json.error) {
+            displayMsg("Error: " + json.error.message);
+          }
+          else {
+            refund = json.refund;
+            displayMsg("Payment refunded! " + refund.id);
+            paymentRow.innerHTML = generateHtmlForPayment(refund.payment_intent);
+          }
+      });
+    }
+
+
+    /* Let's get started! */
+    init(); 
+  </script>
+</html>

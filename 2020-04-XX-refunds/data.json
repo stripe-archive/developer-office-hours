@@ -1,0 +1,179 @@
+{
+  "_meta": {
+    "template_version": 0
+  },
+  "fixtures": [
+    {
+      "name": "my_customer",
+      "path": "/v1/customers",
+      "method": "post",
+      "params": {
+        "name": "Cristi Sambrok",
+        "email": "csambrok0@psu.edu",
+        "address": {
+          "line1": "1 Planet Express St",
+          "city": "New New York"
+        }
+      }
+    },
+    {
+      "name": "regular_card_pm",
+      "path": "/v1/payment_methods/pm_card_bypassPending/attach",
+      "method": "post",
+      "params": {
+        "customer": "${my_customer:id}"
+      }
+    },
+    {
+      "name": "refund_will_fail_pm",
+      "path": "/v1/payment_methods/pm_card_refundFail/attach",
+      "method": "post",
+      "params": {
+        "customer": "${my_customer:id}"
+      }
+    },
+    {
+      "path": "/v1/payment_intents",
+      "method": "post",
+      "params": {
+        "customer": "${my_customer:id}",
+        "payment_method": "${refund_will_fail_pm:id}",
+        "confirm":true,
+        "amount": 13500,
+        "currency": "usd",
+        "metadata[lessons]": 3,
+        "description": "refund should fail"
+      }
+    },
+    {
+      "path": "/v1/payment_intents",
+      "method": "post",
+      "params": {
+        "customer": "${my_customer:id}",
+        "payment_method": "${refund_will_fail_pm:id}",
+        "confirm":true,
+        "amount": 9000,
+        "currency": "usd",
+        "metadata[lessons]": 2,
+        "description": "refund should fail"
+      }
+    },
+    {
+      "path": "/v1/payment_intents",
+      "method": "post",
+      "params": {
+        "customer": "${my_customer:id}",
+        "payment_method": "${refund_will_fail_pm:id}",
+        "confirm":true,
+        "amount": 4500,
+        "currency": "usd",
+        "metadata[lessons]": 1,
+        "description": "refund should fail"
+      }
+    },
+    {
+      "path": "/v1/payment_intents",
+      "method": "post",
+      "params": {
+        "customer": "${my_customer:id}",
+        "payment_method": "${regular_card_pm:id}",
+        "confirm":true,
+        "amount": 9000,
+        "currency": "usd",
+        "metadata[lessons]": 2,
+        "description": "2 sessions on April 15th"
+      }
+    },
+    {
+      "path": "/v1/payment_intents",
+      "method": "post",
+      "params": {
+        "customer": "${my_customer:id}",
+        "payment_method": "${regular_card_pm:id}",
+        "confirm":true,
+        "amount": 4500,
+        "currency": "usd",
+        "metadata[lessons]": 1,
+        "description": "1 sessions on April 17"
+      }
+    },
+    {
+      "path": "/v1/payment_intents",
+      "method": "post",
+      "params": {
+        "customer": "${my_customer:id}",
+        "payment_method": "${regular_card_pm:id}",
+        "confirm":true,
+        "amount": 13500,
+        "currency": "usd",
+        "metadata[lessons]": 3,
+        "description": "3 sessions on April 20"
+      }
+    },
+    {
+      "path": "/v1/payment_intents",
+      "method": "post",
+      "params": {
+        "customer": "${my_customer:id}",
+        "payment_method": "${regular_card_pm:id}",
+        "confirm":true,
+        "amount": 9000,
+        "currency": "usd",
+        "metadata[lessons]": 2,
+        "description": "2 sessions on April 21"
+      }
+    },
+    {
+      "path": "/v1/payment_intents",
+      "method": "post",
+      "params": {
+        "customer": "${my_customer:id}",
+        "payment_method": "${regular_card_pm:id}",
+        "confirm":true,
+        "amount": 13500,
+        "currency": "usd",
+        "metadata[lessons]": 3,
+        "description": "3 sessions on April 24"
+      }
+    },
+    {
+      "path": "/v1/payment_intents",
+      "method": "post",
+      "params": {
+        "customer": "${my_customer:id}",
+        "payment_method": "${regular_card_pm:id}",
+        "confirm":true,
+        "amount": 4500,
+        "currency": "usd",
+        "metadata[lessons]": 1,
+        "description": "1 session on April 27"
+      }
+    },
+    {
+      "path": "/v1/payment_intents",
+      "method": "post",
+      "params": {
+        "customer": "${my_customer:id}",
+        "payment_method": "${regular_card_pm:id}",
+        "confirm":true,
+        "amount": 9000,
+        "currency": "usd",
+        "metadata[lessons]": 2,
+        "description": "2 sessions on April 29th"
+      }
+    },
+    {
+      "path": "/v1/payment_intents",
+      "method": "post",
+      "params": {
+        "customer": "${my_customer:id}",
+        "payment_method": "${regular_card_pm:id}",
+        "confirm":true,
+        "amount": 9000,
+        "currency": "usd",
+        "metadata[lessons]": 2,
+        "description": "2 sessions on May 1"
+      }
+    }
+  ]
+}
