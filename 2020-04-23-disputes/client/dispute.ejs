@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="https://stripe-samples.github.io/developer-office-hours/demo.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="main">
+      <div id="container">
+        <div id="panel">
+          <h1><%= dispute.id %></h1>
+          <fieldset>
+            <label>
+              <span>Standard Response</span>
+              <select class="field" id="standard">
+                <option value="">(none)</option>
+                <option value="COVID">COVID-19</option>
+              </select>
+            </label>
+            <label>
+              <span>Additional Information</span>
+              <input type="text" class="field" id="uncategorized_text">
+            </label>
+          </fieldset>
+          <button type="submit" id="update">Submit</button>
+        </div>
+      </div>
+    </div>
+    <script charset="utf-8">
+      var update = document.getElementById('update');
+      var standard = document.getElementById('standard');
+      var uncategorized_text = document.getElementById('uncategorized_text');
+      update.addEventListener('click', function(e) {
+        e.preventDefault();
+        fetch('/disputes/<%= dispute.id %>', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            uncategorized_text: uncategorized_text.value,
+            standard: standard.value,
+          }),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Success:', data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+      });
+    </script>
+  </body>
+</html>

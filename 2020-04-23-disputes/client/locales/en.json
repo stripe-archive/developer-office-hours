@@ -1,0 +1,9 @@
+{
+  "title": "Stripe Checkout Sample",
+  "headline": "Single photo",
+  "subline": "Purchase a Pasha original photo",
+  "sr-legal-text": "By purchasing you agree to <a href='/terms'>terms and conditions</a>",
+  "button": {
+    "submit": "Buy for {{total}}"
+  }
+}
