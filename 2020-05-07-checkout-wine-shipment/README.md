@@ -32,3 +32,7 @@ npm start
 ## More resources
 * [The first Checkout episode of Office Hours](https://github.com/stripe-samples/developer-office-hours/blob/master/2019-11-21-checkout)
 * [The Node.js Express Starter episode](https://www.youtube.com/watch?v=rPR2aJ6XnAc)
+* Checkout Docs
+  * [Accepting a one-time payment](https://stripe.com/docs/payments/checkout/one-time)
+  * [Customizing your integration, and shipping address collection](https://stripe.com/docs/payments/checkout/customization)
+  * [Fulfillment options](https://stripe.com/docs/payments/checkout/fulfillment)
