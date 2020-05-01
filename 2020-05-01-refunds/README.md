@@ -7,7 +7,6 @@ Stripe Engineers answering questions and walking through code examples on variou
 
 Session | Hosts | Topic | Resources
 ---------|----------|---------|--------
-2020-04-10 | [Matthew Ling](https://www.linkedin.com/in/matthew-ling-53427711/) | **Klarna Installments**<br />Live demonstration of collecting payments in installments with [Klarna](https://stripe.com/docs/sources/klarna). | [🎦 YouTube]()
 
 > ℹ To receive notifications for future office hours, please subscribe to our [🎬YouTube playlist](https://www.youtube.com/playlist?list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs)
 
