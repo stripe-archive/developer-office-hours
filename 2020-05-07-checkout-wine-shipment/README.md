@@ -36,3 +36,4 @@ npm start
   * [Accepting a one-time payment](https://stripe.com/docs/payments/checkout/one-time)
   * [Customizing your integration, and shipping address collection](https://stripe.com/docs/payments/checkout/customization)
   * [Fulfillment options](https://stripe.com/docs/payments/checkout/fulfillment)
+* [Guidelines for certain restricted products on Stripe, including alcohol](https://stripe.com/restricted-businesses)
