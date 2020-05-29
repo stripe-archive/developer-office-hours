@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Stripe Payment Page Sample</title>
+    <link href="https://stripe-samples.github.io/developer-office-hours/demo.css" rel="stylesheet" type="text/css">
+    <link href="/css/normalize.css" rel="stylesheet" type="text/css">
+    <link href="/css/styles.css" rel="stylesheet" type="text/css">
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+  <body>
+    <div id="main">
+      <div class="modal-wrapper" id="age-gate">
+        <div class="modal-content">
+          <h2>Welcome to When Where Wine</h2>
+          <p>
+            You must be at least 21 years old to browse the site.
+          </p>
+          <a href="#" class="submit-button modal-close">I’m 21</a>
+        </div>
+      </div>
+      <div id="container">
+        <div id="panel">
+          <h1>When Where Wine</h1>
+          <form id="order-form">
+            <% Object.entries(products).forEach(([productId, product]) => { %>
+              <div class="product">
+                <div class="product__image-wrapper">
+                  <img class="product__image" src="<%= product.images[0] %>" alt="<%= product.name %>">
+                </div>
+                <div class="product__details">
+                  <div class="product__name"><%= product.name %></div>
+                  <div class="product__description"><%= product.description %></div>
+                  <div class="product__price">$<%= (product.amount / 100).toFixed(2).replace('.00', '') %> each</div>
+                  <div class="add-to-cart">
+                    In cart: 
+                    <a class="increment-button -negative" data-product-id="<%= productId %>" data-product-amount="<%= product.amount %>" href="#">-</a>
+                    <span class="quantity">0</span>
+                    <a class="increment-button -positive" data-product-id="<%= productId %>" data-product-amount="<%= product.amount %>" href="#">+</a>
+                  </div>
+                </div>
+              </div>
+            <% }) %>
+            <input class="submit-button" type="submit" value="Go to checkout">
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const stripe = Stripe('pk_test_254YMVH1T73Zf6tG4quL78KX00VCYOdZPx');
+
+      // Keys: product ids. Values: quantity.
+      const productSelections = {};
+
+      const updateQuantity = (evt) => {
+        evt.preventDefault();
+        const button = evt.target;
+        const productId = button.dataset.productId;
+        const quantityChange = button.classList.contains("-negative") ? -1 : 1;
+        const oldQuantity = productSelections[productId] || 0;
+        const newQuantity = Math.max(0, oldQuantity + quantityChange);
+        productSelections[productId] = newQuantity;
+
+        // Print new quantity
+        button.parentNode.getElementsByClassName('quantity')[0].innerText = newQuantity === 0 
+          ? 0 
+          : `${newQuantity} ($${(parseInt(button.dataset.productAmount) * newQuantity / 100).toFixed(2).replace('.00', '')})`;
+      };
+
+      Array.from(document.getElementsByClassName("increment-button")).forEach((button) => {
+        button.addEventListener('click', updateQuantity);
+      });
+
+      // Detect submit
+      document.getElementById("order-form").addEventListener("submit", (evt) => {
+        evt.preventDefault();
+
+        return fetch("/create-checkout-session", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            productSelections: productSelections,
+          }),
+        }).then(function (result) {
+          return result.json();
+        }).then(function (data) {
+          stripe.redirectToCheckout({ sessionId: data.sessionId }).then(handleResult);
+        });
+      });
+
+      // Handle any errors returns from Checkout
+      const handleResult = function (result) {
+        if (result.error) {
+          var displayError = document.getElementById('error-message');
+          displayError.textContent = result.error.message;
+        }
+      };
+
+      // Handle modal close
+      const hideModal = (evt) => {
+        evt.preventDefault();
+        const modal = evt.target.closest('.modal-wrapper');
+        if (modal) {
+          modal.classList.add('hide');
+        }
+      };
+      Array.from(document.getElementsByClassName("modal-close")).forEach((button) => {
+        button.addEventListener("click", hideModal);
+      });
+    </script>
+  </body>
+</html>

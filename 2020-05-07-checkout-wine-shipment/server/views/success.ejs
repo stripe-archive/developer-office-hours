@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Stripe Payment Page Sample</title>
+    <link href="https://stripe-samples.github.io/developer-office-hours/demo.css" rel="stylesheet" type="text/css">
+    <link href="/css/normalize.css" rel="stylesheet" type="text/css">
+    <link href="/css/styles.css" rel="stylesheet" type="text/css">
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+  <body>
+    <div id="main">
+      <div id="container">
+        <div id="panel">
+          <h1>When Where Wine</h1>
+          <div>
+            Thank you for your order! Here's the order data:
+            <pre></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var urlParams = new URLSearchParams(window.location.search);
+      var sessionId = urlParams.get('session_id');
+      if (sessionId) {
+        fetch('/checkout-session?sessionId=' + sessionId)
+          .then(function (result) {
+            return result.json();
+          })
+          .then(function (session) {
+            var sessionJSON = JSON.stringify(session, null, 2);
+            document.querySelector('pre').textContent = sessionJSON;
+          })
+          .catch(function (err) {
+            console.log('Error when fetching Checkout session', err);
+          });
+      }
+    </script>
+  </body>
+</html>
