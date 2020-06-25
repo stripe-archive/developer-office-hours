@@ -1,0 +1,24 @@
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h1 class="display-4">Pricing</h1>
+  <p class="lead">Stay in the circle. Private paid podcast episodes.</p>
+</div>
+
+<div class="card-deck mb-3 text-center">
+  <% @prices.each do |price| %>
+    <div class="card mb-4 box-shadow">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal"><%= price.product.name %></h4>
+      </div>
+      <div class="card-body">
+        <h1 class="card-title pricing-card-title">$<%= price.unit_amount/100 %> <small class="text-muted">/ mo</small></h1>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li><%= price.unit_amount/5 %> episodes included</li>
+          <li>2 GB of storage</li>
+          <li>Email support</li>
+          <li>Help center access</li>
+        </ul>
+        <a href="/user/new?plan=<%= price.lookup_key %>" class="btn btn-lg btn-block btn-outline-primary">Get started</a>
+      </div>
+    </div>
+  <% end %>
+</div>

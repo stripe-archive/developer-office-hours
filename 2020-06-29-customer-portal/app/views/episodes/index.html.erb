@@ -1,0 +1,29 @@
+<style>
+.episode {
+  padding: 10px;
+}
+.episode a {
+  font-size: 1.2em;
+}
+</style>
+
+<hr>
+
+<h2>Episodes</h2>
+
+
+<% @episodes.each do |ep| %>
+  <div class="episode">
+    <%= link_to ep.title, ep.link %>
+    <br />
+    <span class="text-muted"><%= ep.pubDate %></span>
+    <br />
+    <span><%= ep.description.html_safe %></span>
+    <br />
+    <audio controls="true" preload="none" src="<%= ep.enclosure.url %>"></audio>
+  </div>
+  <hr>
+<% end %>
+<% if @episodes.length == 0 %>
+  <i>No episodes available.</i>
+<% end %>
