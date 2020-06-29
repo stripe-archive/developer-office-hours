@@ -7,7 +7,6 @@ Stripe Engineers answering questions and walking through code examples on variou
 
 Session | Hosts | Topic | Resources
 ---------|----------|---------|--------
-2020-04-24 | [Dawn Lambeth](https://www.linkedin.com/in/dawnlambeth/) | **Refunds**<br />Live demonstration showing how to refund payments. | [🎦 YouTube]()
 
 > ℹ To receive notifications for future office hours, please subscribe to our [🎬YouTube playlist](https://www.youtube.com/playlist?list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs)
 
@@ -34,6 +33,8 @@ Session | Hosts | Topic | Resources
  [2020-04-15](./2020-04-15-klarna-pay-installments) | [Matthew Ling](https://www.linkedin.com/in/matthew-ling-53427711/) | **Klarna Installments**<br />Live demonstration of collecting payments in installments with [Klarna](https://stripe.com/docs/sources/klarna). | [🎦 YouTube](https://www.youtube.com/watch?v=tIEAs93ZW2Y)
  [2020-04-17](./2020-04-17-lumpy-subscription-payments) | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) | **Lumpy Subscription Payments**<br />Live demonstration of using [Subscription Schedules](https://stripe.com/docs/billing/subscriptions/subscription-schedules) to create lumpy payments for subscriptions. | [🎦 YouTube](https://www.youtube.com/watch?v=2gws-r392I8&feature=youtu.be)
  [2020-04-23](./2020-04-23-disputes) | [CJ Avilla](https://www.linkedin.com/in/cjavilla/) | **Responding to Disputes**<br />Live demonstration of automating the [dispute](https://stripe.com/docs/disputes/responding) response process. | [🎦 YouTube](https://youtu.be/FrX8UerYmVg)
+ 2020-04-24 | [Dawn Lambeth](https://www.linkedin.com/in/dawnlambeth/) | **Refunds**<br />Live demonstration showing how to refund payments. | [🎦 YouTube]()
+ [2020-06-29](./2020-06-29-customer-portal) | [Theodora Chu](https://www.linkedin.com/in/theodorachu/) and [CJ Avilla](https://www.linkedin.com/in/cjavilla/) | **Customer Portal**<br />Live demonstration of integrating the [Customer Portal](https://stripe.com/docs/billing/subscriptions/integrating-customer-portal). | [🎦 YouTube](https://www.youtube.com/watch?v=u8H6awDJVpM)
 
 ## Changes
 
