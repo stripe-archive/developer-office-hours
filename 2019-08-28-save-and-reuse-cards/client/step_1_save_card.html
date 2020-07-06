@@ -41,7 +41,7 @@
       });
 
       //Collect payment method details on the client
-      var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+      var stripe = Stripe('pk_test_vAZ3gh1LcuM7fW4rKNvqafgB00DR9RKOjN');
 
       var elements = stripe.elements();
       var cardElement = elements.create('card');
@@ -56,11 +56,27 @@
       cardButton.addEventListener('click', function(ev) {
         ev.preventDefault();
         debug('handling card setup...');
-        stripe.handleCardSetup(
-          setupIntent.client_secret, cardElement, {
-            payment_method_data: {
-              billing_details: {name: cardholderName.value}
-            }
+        // Note: stripe.handleCardSetup was deprecated. Instead, use confirmCardSetup
+        // https://stripe.com/docs/js/setup_intents/confirm_card_setup
+        //
+        // Old code from the video for reference:
+        // stripe.handleCardSetup(
+        //   setupIntent.client_secret, cardElement, {
+        //     payment_method_data: {
+        //       billing_details: {name: cardholderName.value}
+        //     }
+        //   }
+        // ).then(function(result) {
+
+        // new code that uses confirmCardSetup:
+        stripe.confirmCardSetup(
+          setupIntent.client_secret, {
+            payment_method: {
+              card: cardElement,
+              billing_details: {
+                name: cardholderName.value,
+              },
+            },
           }
         ).then(function(result) {
           console.log(result);
