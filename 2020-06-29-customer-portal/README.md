@@ -23,7 +23,7 @@ local machine for development and testing purposes.
 
 ```sh
 git clone git@github.com:stripe-samples/developer-office-hours.git
-cd developer-office-hours/2020-06-customer-portal
+cd developer-office-hours/2020-06-29-customer-portal
 bundle install
 ```
 
