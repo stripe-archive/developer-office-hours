@@ -49,4 +49,4 @@ Get your questions answered and find international support for Stripe.
 👉 [support.stripe.com](https://support.stripe.com)
 
 ### Technical questions on IRC
-Have any technical questions? Our developers hang out in #stripe on freenode.
+Have any technical questions? Our developers hang out in [#stripe on freenode](https://webchat.freenode.net/?channel=#stripe).
