@@ -1,6 +1,6 @@
 # Checkout Wine Shipment - Office Hours 2020-05-07
 
-> [🎬 Watch on YouTube](https://www.youtube.com/stripedevelopers)
+> [🎬 Watch on YouTube](https://www.youtube.com/watch?v=-uqy3wquhCM)
 
 ## Requirements
 * Node v10+ and npm v6+
