@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Collect SPEA information</title>
+    <link rel="stylesheet" href="styles.css" title="" type="text/css">
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+  <body id="data" 
+        data-pk="<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>"
+        data-client_secret="<%= client_secret_id %>" 
+        data-name="<%= name %>"
+        data-email="<%= email %>"
+    <div id="main">
+      <div id="container">
+        <div id="panel">
+          <h1>SEPA Account</h1>
+          <form id="iban-form" action="" method="POST">
+            <input type="hidden" name="token" />
+            <div class="group">
+              <div id="iban"></div>
+            </div>
+            <button id="submit-button" disabled="true" class="disabled" type="submit">
+              <div class="working" id="working">Working ...</div>
+              <span class="button-text" id="button-text">Purchase for &euro; <%= '%.2f' % (amount / 100.0) %>
+            </button>
+            <div class="outcome">
+              <div class="error" id="error"></div>
+              <div class="success" id="success"></div>
+            </div>
+            <!-- Display mandate acceptance text. -->
+            <div id="mandate-acceptance">
+              By providing your IBAN and confirming this payment, you are authorizing
+              Rocketship Inc. and Stripe, our payment service provider, to send
+              instructions to your bank to debit your account in accordance with those
+              instructions. You are entitled to a refund from your bank under the terms
+              and conditions of your agreement with your bank. A refund must be claimed
+              within eight weeks starting from the date on which your account was debited.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="sepa.js"></script>
+  </body>
+</html>

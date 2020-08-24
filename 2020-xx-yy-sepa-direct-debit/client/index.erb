@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Create a Customer</title>
+    <link rel="stylesheet" href="styles.css" title="" type="text/css">
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+  <body>
+    <div id="main">
+      <div id="container">
+        <div id="panel">
+          <h1>Create a Customer</h1>
+          <form action="sepa" method="POST">
+            <div class="group">
+              <label>
+                <span>Name</span>
+                <input type="text" class="field" name="name" id="name" placeholder="Max Mustermann" />
+              </label>
+               <label>
+                <span>Email</span>
+                <input id="email" name="email" class="field" placeholder="max@mustermann.de" />
+              </label>
+            </div>
+            <button type="submit">Create customer</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
