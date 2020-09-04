@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Stripe Payment Page Sample</title>
+    <link href="https://stripe-samples.github.io/developer-office-hours/demo.css" rel="stylesheet" type="text/css">
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+  <body>
+    <div id="main">
+      <div id="container">
+        <div id="panel">
+          <h1>Office Hours</h1>
+          <input type="number" step="1" id="quantity" value="3">
+          <button type="submit" id="btn">Pay</button>
+        </div>
+      </div>
+    </div>
+    <script charset="utf-8">
+      var stripe = Stripe('pk_test_vAZ3gh1LcuM7fW4rKNvqafgB00DR9RKOjN');
+      var button = document.getElementById('btn');
+      var quantity = document.getElementById('quantity');
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        fetch('/create-checkout-session', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            quantity: quantity.value
+          }),
+        })
+        .then((response) => response.json())
+        .then((session) => {
+          stripe.redirectToCheckout({ sessionId: session.id });
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+      });
+    </script>
+  </body>
+</html>

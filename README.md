@@ -7,6 +7,9 @@ Stripe Engineers answering questions and walking through code examples on variou
 
 Session | Hosts | Topic | Resources
 ---------|----------|---------|--------
+ [2020-09-10](./2020-09-10-checkout-taxes-coupons) | [Mari Puncel](https://www.linkedin.com/in/mari-puncel-21731322/) and [CJ Avilla](https://twitter.com/cjav_dev) | [**Checkout**](./2020-09-10-checkout-taxes-coupons)<br />Live demonstration of integrating [Stripe Checkout](https://stripe.com/docs/checkout).
+ [2020-09-17](./2020-09-17-checkout-bacs-payment) | [Matthew Ling](https://www.linkedin.com/in/matthew-ling-53427711/) | [**Checkout**](./2020-09-17-checkout-sepa-payment)<br />Live demonstration of integrating [Stripe Checkout](https://stripe.com/docs/checkout) to accept payment with Bacs.
+ [2020-09-24](./2020-09-24-checkout-sepa-payment) | [Matthew Ling](https://www.linkedin.com/in/matthew-ling-53427711/) | [**Checkout**](./2020-09-24-checkout-bacs-payment)<br />Live demonstration of integrating [Stripe Checkout](https://stripe.com/docs/checkout) to accept payment with SEPA.
 
 > ℹ To receive notifications for future office hours, please subscribe to our [🎬YouTube playlist](https://www.youtube.com/playlist?list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs)
 
