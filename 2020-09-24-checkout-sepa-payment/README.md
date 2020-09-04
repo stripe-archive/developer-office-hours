@@ -1,4 +1,4 @@
-# Bacs Direct Debit with Checkout - Office Hours 2020-xx-yy
+# SEPA Direct Debit with Checkout - Office Hours 2020-09-24
 
 > [🎬 Watch on YouTube](Link upcoming)
 
@@ -7,7 +7,7 @@
 * [Stripe CLI](https://github.com/stripe/stripe-cli/)
 * [Create a Stripe account](https://dashboard.stripe.com/register)
 * [API keys for your account](https://stripe.com/docs/keys)
-* [Create a Price](https://stripe.com/docs/payments/checkout/accept-a-payment#create-products-prices-upfront)
+* [Create a EUR Price](https://stripe.com/docs/payments/checkout/accept-a-payment#create-products-prices-upfront)
 
 ## How to run
 
