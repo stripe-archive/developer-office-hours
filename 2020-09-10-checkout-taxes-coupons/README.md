@@ -40,7 +40,6 @@ npm server
 
 4. Browse to `http://localhost:4242`
 
-
 --- 
 
 ## Full Guide
@@ -79,48 +78,85 @@ It’s at this session creation time that we can configure what the customer is 
 
 ---
 
-This is an example of redirecting to Checkout on the frontend. We’re using Stripe.js here. 
-First we initialize an instance of the Stripe object using our Stripe publishable key, then we call redirectToCheckout and pass in the ID of the session we got back from the API earlier. 
+This is an example of redirecting to Checkout on the frontend. We’re using Stripe.js here. First we initialize an instance of the Stripe object using our Stripe publishable key, then we call `redirectToCheckout` and pass in the ID of the session we got back from the API earlier. 
+
+```js
+var stripe = Stripe('pk_test_');
+stripe.redirectToCheckout({
+  sessionId: '{{ sesison.id }}' // this is the ID returned earlier from the API.
+}).then(function(result) {
+  // If `redirectToCheckout` fails due to a browser or network
+  // error, display the localized error message to your customer
+  // using `result.error.message`.
+});
+```
+
 For most cases, this is the only code required on the frontend and is purely for redirecting to that Checkout Session we created on the server.
 
 Let’s implement accepting a basic one time payment. Then add a proof of concept showing how you might implement fulfillment using webhook events. Finally we’ll refactor our implementation to start a subscription to collect recurring payments.
 
------
+I have already installed and linked the [Stripe CLI](https://stripe.com/docs/stripe-cli) with my Stripe account, if you’re new to the Stripe CLI we have an [episode](https://www.youtube.com/watch?v=Psq5N5C-FGo) dedicated to getting up and running.
 
-I have already installed and linked the Stripe CLI with my Stripe account, if you’re new to the Stripe CLI we have an episode dedicated to getting up and running and we’ll add a link in the description.
+From the terminal, we run `stripe samples create developer-office-hours`.
 
-From the terminal, we run
+If you’re curious about how to setup basic routes, or how these Stripe Samples work with environment variables, checkout those [episodes](https://www.youtube.com/watch?v=rPR2aJ6XnAc) in the [Foundations playlist](https://www.youtube.com/playlist?list=PLy1nL-pvL2M4N3kfPoZ0igtbMj3K3Jdr_) of the [Stripe Developers YouTube channel](https://www.youtube.com/channel/UCd1HAa7hlN5SCQjgCcGnsxw).
 
-Stripe samples create developer-office-hours
-
-If you’re curious about how to setup basic routes, or how these Stripe Samples work with environment variables, checkout those episodes in the Foundations playlist of the Stripe Developers YouTube channel.
-
------------------- different per language from here on
 
 Let’s jump into that server directory, npm install some dependencies and fire up the server.
 
-// open localhost:4242 in the browser
+```sh
+cd server
+npm install
+npm start
+```
 
-This is the boiler plate for developer office hours. From here, there are a couple different approaches you might take. You can either create the Checkout session on page load or you can create the checkout session just in time. If you know ahead of time exactly what the customer intends to purchase, you could create the Checkout Session as part of the request to fetch this page.
+When opening http://localhost:4242 in the browser, you should see the boiler plate for Stripe Developer Office Hours. From here, there are a couple different approaches you might take. You can either create the Checkout Session on page load or you can create the Checkout Session "just in time." If you know ahead of time exactly what the customer intends to purchase, you could create the Checkout Session as part of the request to fetch this payment page, then server side render the ID of the Checkout Session directly into your inline JavaScript.
 
 If the customer will provide any input that will change their checkout experience, you’ll want to create the Checkout Session just before redirecting. 
 
-For the example today, we’ll add an input so the customer can enter a quantity for the number of items they would like to purchase. Then, when the form is submitted, we’ll send an AJAX request to our server which will create the checkout session and return it’s ID so we can redirect on the client.
+For the example today, we’ll add an input so the customer can enter a quantity for the number of items (or seats in the case of Subscriptions) they would like to purchase. Then, when the form is submitted, we’ll send an AJAX request to our server which will create the checkout session and return it’s ID so we can redirect on the client.
 
 Let’s add a route to the server that will accept a POST request to create a Checkout Sessions.
 
-I’m going to stop the server, open server.js and add a route here for create-checkout-session
+I’m going to stop the server, open server.js and add a route here for `/create-checkout-session`.
 
-// epost
+We start with just this empty route.
 
-Here we’ll make an API request to Stripe to configure a new Checkout Session. Note that each time a customer goes through Checkout, we need to create a new session. It’s not possible to “reuse” these and it’s fine if you create some that are never used. 
+```js
+app.post('/create-checkout-session', async (req, res) => {
+ 
+  res.json({ });
+});
+```
+
+Here we’ll make an API request to Stripe to configure a new Checkout Session. Note that each time a customer goes through Checkout, we need to create a new session. It’s not possible to “reuse” these and it’s fine if you create some Checkout Sessions that are never used. 
+
+
+```js
+app.post('/create-checkout-session', async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+```
 
 Let’s start with some of the top level parameters.
 
-Success_url - where customers will be redirected back to after completing their purchase
-Cancel_url - where the customer will be redirected back to if they bail out of the payment flow from the Checkout page.
-Payment_method_types - the list of payment method types, refer to the API ref for the full list, this is always growing. Mari and the checkout team are always adding new payment method types.
-Mode - this is one of payment for one time payment, subscription for recurring payments, or setup for just collecting payment method details, but not actually charging
+```js
+app.post('/create-checkout-session', async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    success_url: 'http://localhost:4242/success?id={CHECKOUT_SESSION_ID}',
+    cancel_url: 'http://localhost:4242/cancel',
+    payment_method_types: ['card'],
+    mode: 'subscription',
+```
+
+`success_url` is where customers will be redirected back to after completing their purchase.
+
+`cancel_url` is where the customer will be redirected back to if they bail out of the payment flow from the Checkout page.
+
+`payment_method_types` is the list of payment method types, refer to the API ref for the full list, this is always growing. Mari and the Checkout team are always adding new payment method types.
+
+`mode` is one of `payment` for one time payment, `subscription` for recurring payments, or `setup` for just collecting payment method details, but not actually charging.
+
+
 
 Next we need to add a list of one or more line items. This is a little newer. You may have noticed that display items was removed in the recent 2020-08-27 API version and that sku’s are also deprecated. Going forward, you’ll want to use line items with the new Price object.
 
