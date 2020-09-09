@@ -145,7 +145,7 @@ app.post('/create-checkout-session', async (req, res) => {
     success_url: 'http://localhost:4242/success?id={CHECKOUT_SESSION_ID}',
     cancel_url: 'http://localhost:4242/cancel',
     payment_method_types: ['card'],
-    mode: 'subscription',
+    mode: 'payment',
 ```
 
 `success_url` is where customers will be redirected back to after completing their purchase.
@@ -240,7 +240,7 @@ app.post('/create-checkout-session', async (req, res) => {
     success_url: 'http://localhost:4242/success?id={CHECKOUT_SESSION_ID}',
     cancel_url: 'http://localhost:4242/cancel',
     payment_method_types: ['card'],
-    mode: 'subscription',
+    mode: 'payment',
     line_items: [{
       price: 'price_1HPa4BKoPpUdiYpL2KJs6hfg',
       quantity: req.body.quantity || 1,
@@ -256,7 +256,7 @@ app.post('/create-checkout-session', async (req, res) => {
     success_url: 'http://localhost:4242/success?id={CHECKOUT_SESSION_ID}',
     cancel_url: 'http://localhost:4242/cancel',
     payment_method_types: ['card'],
-    mode: 'subscription',
+    mode: 'payment',
     line_items: [{
       price: 'price_1HPa4BKoPpUdiYpL2KJs6hfg',
       quantity: req.body.quantity || 1,
@@ -462,61 +462,309 @@ app.get('/checkout-session', async (req, res) => {
 
 Try refreshing the page now and note the new `line_items` property!
 
+At this point, you have a very basic proof of concept for accepting one time payments. Let's upgrade to accept some recurring payments.
+
+The first thing we need to do is to create a new Price. Recall that Prices can either be one time or recurring. We'll first create a new Product that represents our recurring service. Again, you could do this with either the Dashboard or the CLI.
+
+```sh
+stripe products create --name demo-plan
+```
+
+Which logs:
+
+```json
+{
+  "id": "prod_HzZwd49TuS5j1s",
+  "object": "product",
+  "active": true,
+  "attributes": [
+
+  ],
+  "created": 1599686699,
+  "description": null,
+  "images": [
+
+  ],
+  "livemode": false,
+  "metadata": {
+  },
+  "name": "demo-plan",
+  "statement_descriptor": null,
+  "type": "service",
+  "unit_label": null,
+  "updated": 1599686699
+}
+```
+
+Now that we have a new Product (`prod_HzZwd49TuS5j1s`), we create the related recurring Price. Note the new argument is `recurring[interval]`
+
+```sh
+stripe prices create --unit-amount 3999 --currency USD --product prod_HzZwd49TuS5j1s -d "recurring[interval]=month"
+```
+
+Which logs
+
+```json
+{
+  "id": "price_1HPaoKKoPpUdiYpLgVdf3SMC",
+  "object": "price",
+  "active": true,
+  "billing_scheme": "per_unit",
+  "created": 1599686796,
+  "currency": "usd",
+  "livemode": false,
+  "lookup_key": null,
+  "metadata": {
+  },
+  "nickname": null,
+  "product": "prod_HzZwd49TuS5j1s",
+  "recurring": {
+    "aggregate_usage": null,
+    "interval": "month",
+    "interval_count": 1,
+    "trial_period_days": null,
+    "usage_type": "licensed"
+  },
+  "tiers_mode": null,
+  "transform_quantity": null,
+  "type": "recurring",
+  "unit_amount": 3999,
+  "unit_amount_decimal": "3999"
+}
+```
+
+The Checkout Session create call needs to be updated now to use this new Price (`price_1HPaoKKoPpUdiYpLgVdf3SMC`) and switch the `mode` to `subscription`. 
+
+```js
+app.post('/create-checkout-session', async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    success_url: 'http://localhost:4242/success?id={CHECKOUT_SESSION_ID}',
+    cancel_url: 'http://localhost:4242/cancel',
+    payment_method_types: ['card'],
+    mode: 'subscription',
+    line_items: [{
+      price: 'price_1HPaoKKoPpUdiYpLgVdf3SMC',
+      quantity: req.body.quantity || 1,
+    }],
+  });
+  res.json({
+    id: session.id,
+  });
+});
+```
+
+Note that the quantity here represents the number of "seats" for the Subscription. Walking back through the payment flow in the browser, you'll notice the changes to the Checkout page now reflect the fact that this price is recurring. Now the customer will be charged this amount on a monthly basis.
 
 
 
 Tax Rates
 
-As Mari mentioned in the overview, one of the most requested features is support for Taxes. To enable taxes in Checkout, we first need to create a tax rate object.
+As Mari mentions in the overview, one of the most requested features is support for Taxes. To enable taxes in Checkout, we first need to create a [TaxRate](https://stripe.com/docs/api/tax_rates) object.
 
 When applying tax rates, Stripe calculates the total tax amount per tax rate, summarizing it in a table of the collected tax rates and amounts, and ultimately, into exported tax summary reports.
 
 Let’s create a tax rate with the Stripe CLI
 
-We say
+```sh
+stripe tax_rates create --display-name "Sales Tax" --jurisdiction "CA - SF" --percentage 8.5  --inclusive false
+```
 
-stripe tax_rates create 
+Which logs
 
---display-name "Sales Tax" 
+```json
+{
+  "id": "txr_1HPatkKoPpUdiYpL8uUhRaMo",
+  "object": "tax_rate",
+  "active": true,
+  "created": 1599687132,
+  "description": null,
+  "display_name": "Sales Tax",
+  "inclusive": false,
+  "jurisdiction": "CA - SF",
+  "livemode": false,
+  "metadata": {
+  },
+  "percentage": 8.5
+}
+```
 
---jurisdiction "CA - SF" 
+Setting `inclusive` to false means the tax amount not alraedy included in the overall amount.
 
---percentage 8.5 
+Now we can take this TaxRate ID (`txr_1HPatkKoPpUdiYpL8uUhRaMo`) and pass that in the `tax_rates` field for the `line_item` when configuring the Checkout Session.
 
---inclusive false (meaning it’s not included in the overall amount)
+```js
+app.post('/create-checkout-session', async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    success_url: 'http://localhost:4242/success?id={CHECKOUT_SESSION_ID}',
+    cancel_url: 'http://localhost:4242/cancel',
+    payment_method_types: ['card'],
+    mode: 'subscription',
+    line_items: [{
+      price: 'price_1HPaoKKoPpUdiYpLgVdf3SMC',
+      quantity: req.body.quantity || 1,
+      tax_rates: ['txr_1HPatkKoPpUdiYpL8uUhRaMo'],
+    }],
+  });
+  res.json({
+    id: session.id,
+  });
+});
+```
 
-Now we can take this tax rate ID and pass that in the tax_rates field for the line_item when configuring the session. 
+This will apply the 8.5% tax rate to recurring payments.
 
 The next feature we’ll look at is called dynamic tax rates. It’s in beta at the time of this recording. I’m very excited to share it with you and if you’d like early access, please reach out if you’d like to participate in the beta.
 
-With fixed tax rates Checkout will use whatever tax rate we pass in as the fixed tax rate to apply to the session. With dynamic tax rates, the tax rate is selected based on the address entered by the customer.
+With fixed tax rates Checkout will use whatever tax rate we pass in as the fixed tax rate to apply to the Session. With dynamic tax rates, the tax rate is selected based on the address entered by the customer.
 
-In order for dynamic tax rates to work, they require two extra parameters when creating the tax rate: country and state. Note that these params are also in beta.
-Let’s create two new tax rates, one each for San Francisco and New York City.
+In order for dynamic tax rates to work, they require two extra parameters when creating the tax rate: `country` and `state`. Note that these params are also in beta. Let’s create two new tax rates, one each for San Francisco and New York City.
 
-For dynamic tax rates, we’ll pass these in the new dynamic_tax_rates field.
+```sh
+stripe tax_rates create --display-name "Sales Tax" --jurisdiction "CA - SF" --percentage 8.5  --inclusive false -d "country=US" -d "state=CA"
+```
 
-Stay tuned to @stripedev on twitter for an announcement for when dynamic tax rates are generally available.
+Which logs
 
+```json
+{
+  "id": "txr_1HPb0eCZ6qsJgndJjdNNq76X",
+  "object": "tax_rate",
+  "active": true,
+  "country": "US",
+  "created": 1599687560,
+  "description": null,
+  "display_name": "Sales Tax",
+  "inclusive": false,
+  "jurisdiction": "CA - SF",
+  "livemode": false,
+  "metadata": {
+  },
+  "percentage": 8.5,
+  "state": "CA"
+}
+```
 
-Coupons
+And for NYC
+
+```sh
+stripe tax_rates create --display-name "Sales Tax" --jurisdiction "NY - NYC" --percentage 8.875  --inclusive false -d "country=US" -d "state=NY"
+```
+
+Which logs
+
+```json
+{
+  "id": "txr_1HPb1MCZ6qsJgndJ0pMZIa8g",
+  "object": "tax_rate",
+  "active": true,
+  "country": "US",
+  "created": 1599687604,
+  "description": null,
+  "display_name": "Sales Tax",
+  "inclusive": false,
+  "jurisdiction": "NY - NYC",
+  "livemode": false,
+  "metadata": {
+  },
+  "percentage": 8.875,
+  "state": "NY"
+}
+```
+
+For dynamic tax rates, we’ll pass these in the new `dynamic_tax_rates` field.
+
+```js
+app.post('/create-checkout-session', async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    success_url: 'http://localhost:4242/success?id={CHECKOUT_SESSION_ID}',
+    cancel_url: 'http://localhost:4242/cancel',
+    payment_method_types: ['card'],
+    mode: 'subscription',
+    line_items: [{
+      price: 'price_1HPaoKKoPpUdiYpLgVdf3SMC',
+      quantity: req.body.quantity || 1,
+      dynamic_tax_rates: [
+        'txr_1HPb0eCZ6qsJgndJjdNNq76X', // CA
+        'txr_1HPb1MCZ6qsJgndJ0pMZIa8g', // NY
+      ],
+    }],
+  });
+  res.json({
+    id: session.id,
+  });
+});
+```
+
+Restart the server and run through the payment flow to see the new dynamic tax rates are derived based on the address of the customer.
+
+Stay tuned to [@StripeDev](https://twitter.com/stripedev) on Twitter for an announcement when dynamic tax rates are generally available.
 
 Let’s talk discounts.
 
-Coupons are merchant-facing objects you can use to control discounts on subscriptions or invoices. 
+[Coupons](https://stripe.com/docs/api/coupons) are merchant-facing objects you can use to control discounts on subscriptions or invoices. 
 
-Promotion codes are customer-facing codes that are created on top of coupons and can be shared directly with your customers.
+[PromotionCodes](https://stripe.com/docs/api/promotion_codes) are customer-facing codes that are created on top of coupons and can be shared directly with your customers.
 
-First we create a coupon to define how much to discount as a percent off or a flat amount off of the original price. They can be applied per-customer or per-subscription. 
+First we [create a coupon](https://stripe.com/docs/api/coupons/create) to define how much to discount as a percent off or a flat amount off of the original price. They can be applied per-customer or per-subscription. 
 
 We can create a coupon from the CLI with the following:
 
-Stripe coupons create 
+`stripe coupons create --percent-off 20 --duration once`
 
-It’s possible to apply a coupon directly to a Subscription with the coupon field in the subscription_data hash. You might do this if you know the coupon to apply for a specific Checkout Session ahead of time. 
+Which logs
 
-If you want to allow customers to enter their own codes, we need to create a promotion code from a coupon and enable the Checkout session to accept promotion codes.
+```json
+{
+  "id": "LXu8C4Uk",
+  "object": "coupon",
+  "amount_off": null,
+  "created": 1599687820,
+  "currency": null,
+  "duration": "once",
+  "duration_in_months": null,
+  "livemode": false,
+  "max_redemptions": null,
+  "metadata": {
+  },
+  "name": null,
+  "percent_off": 20.0,
+  "redeem_by": null,
+  "times_redeemed": 0,
+  "valid": true
+}
+```
 
+It’s possible to apply a coupon directly to a Subscription with the `coupon` parameter in the [`subscription_data`](https://stripe.com/docs/api/checkout/sessions/create#create_checkout_session-subscription_data-coupon) hash. You might do this if you know the coupon to apply for a specific Checkout Session ahead of time. 
 
+If you want to allow customers to enter their own codes, we need to [create a PromotionCode](https://stripe.com/docs/api/promotion_codes/create) from a coupon. From the CLI, we can create a new PromotionCode from the Coupon we just created like so.
+
+```sh
+stripe promotion_codes create --coupon LXu8C4Uk --code FRIENDS20 --api-key sk_test_xxx
+```
+
+To enable customers to enter their own PromotionCodes at Checkout, we need to pass the `allow_promotion_codes` parameter with the value `true` in our Checkout Session configuration. 
+
+```js
+app.post('/create-checkout-session', async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    success_url: 'http://localhost:4242/success?id={CHECKOUT_SESSION_ID}',
+    cancel_url: 'http://localhost:4242/cancel',
+    payment_method_types: ['card'],
+    mode: 'subscription',
+    line_items: [{
+      price: 'price_1HPaoKKoPpUdiYpLgVdf3SMC',
+      quantity: req.body.quantity || 1,
+    }],
+    
+    // enables customers to enter promotion code IDs at Checkout.
+    allow_promotion_codes: true,
+  });
+  res.json({
+    id: session.id,
+  });
+});
+```
+
+Now we can use the code `FRIENDS20` at Checkout to get the 20% off discount. Restart your server and try that out.
 
 If you’re catching this later and would like to engage with us live, follow us on Twitter [@StripeDev](https://twitter.com/stripedev) for updates and announcements about upcoming Stripe Developer Office Hours.
