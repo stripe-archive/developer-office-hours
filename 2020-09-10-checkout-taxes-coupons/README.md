@@ -156,69 +156,314 @@ app.post('/create-checkout-session', async (req, res) => {
 
 `mode` is one of `payment` for one time payment, `subscription` for recurring payments, or `setup` for just collecting payment method details, but not actually charging.
 
+Next we need to add a list of one or more `line_items`. This parameter is a little newer. You may have noticed that display items was removed in the recent `2020-08-27` API version and that Sku’s are also deprecated. Going forward, you’ll want to use `line_items` with the new [`Price`](https://stripe.com/docs/api/prices) object.
 
+For most cases, you’ll want to load your inventory into Stripe as [Products](https://stripe.com/docs/api/products) and the Prices for each of those Products. 
 
-Next we need to add a list of one or more line items. This is a little newer. You may have noticed that display items was removed in the recent 2020-08-27 API version and that sku’s are also deprecated. Going forward, you’ll want to use line items with the new Price object.
+Products describe the specific goods or services you offer to your customers. Prices can be either one time or recurring. And a Price represents how much a Product costs, in a given currency, and for an (optional) billing interval.
 
-For most cases, you’ll want to load your inventory into Stripe as Products and the prices for each of those products. 
+It’s worth mentioning that if your customers pay a variable price, for instance if you’re building a donation platform, where the unit amount collected is defined by the customer, you might want to take a look at the `price_data` parameter where the Price is defined on the fly. A best practice for reporting and inventory tracking is to actually create Products and Prices in your Stripe account. You can do this either with the API or directly in your [Stripe Dashboard](https://dashboard.stripe.com/products).
 
-Products describe the specific goods or services you offer to your customers.
-
-Prices can be either one time or recurring. And a price represents how much a product cost, in a given currency, and for an (optional) billing interval. 
-
-It’s worth mentioning that if you’re customers pay a variable price, for instance if you’re building a donation platform, where the unit amount collected is defined by the customer, you might want to take a look at the price_data parameter where the price is defined on the fly. A best practice for reporting and inventory tracking is to actually create products and prices in your Stripe account. 
-
-For this segment of the demo, we’ll need a product and a one time price, so let’s create that with the Stripe CLI.
+For this segment of the demo, we’ll need a Product and a one time Price, so let’s create that with the Stripe CLI.
 
 First we create a product with 
 
-Stripe products create --name demo
+```sh
+stripe products create --name demo
+```
 
-Copy that product ID into server.js
+Which will log
 
-stripe prices create --unit-amount 999 --currency USD --product prod_HwwXgpxK10TlMV
+```json
+{
+  "id": "prod_HzZBX2ah9uNJl5",
+  "object": "product",
+  "active": true,
+  "attributes": [
 
-I’m also going to export that so we have it around in our terminal later.
-export PROD=prod_HwwXgpxK10TlMV
+  ],
+  "created": 1599683860,
+  "description": null,
+  "images": [
 
-Now that we have a price ID we can finish configuring the Checkout Session.
+  ],
+  "livemode": false,
+  "metadata": {
+  },
+  "name": "demo",
+  "statement_descriptor": null,
+  "type": "service",
+  "unit_label": null,
+  "updated": 1599683860
+}
+```
 
-We set the price to the ID of the price we just created, set the quantity based on the request or 0, and finally, render back a simple json object with just the ID of the Checkout Session.
+Copy that product ID (`prod_HzZBX2ah9uNJl5`) for the next step where we create a Price for that Product.
 
-Now that the route is working as expected on the server, we can go to the client to add a button to trigger this endpoint and ultimately redirect.
+```sh
+stripe prices create --unit-amount 999 --currency USD --product prod_HzZBX2ah9uNJl5
+```
 
+Which will log
 
+```json
+{
+  "id": "price_1HPa4BKoPpUdiYpL2KJs6hfg",
+  "object": "price",
+  "active": true,
+  "billing_scheme": "per_unit",
+  "created": 1599683935,
+  "currency": "usd",
+  "livemode": false,
+  "lookup_key": null,
+  "metadata": {
+  },
+  "nickname": null,
+  "product": "prod_HzZBX2ah9uNJl5",
+  "recurring": null,
+  "tiers_mode": null,
+  "transform_quantity": null,
+  "type": "one_time",
+  "unit_amount": 999,
+  "unit_amount_decimal": "999"
+}
 
+```
 
+Now that we have a Price ID (`price_1HPa4BKoPpUdiYpL2KJs6hfg`) we can finish configuring the API call in server.js to create a Checkout Session.
 
+We set the `price` to the ID of the Price we just created, set the quantity based on the request or 1.
 
-
-app.get("/success", (req, res) => {
-  const path = resolve(process.env.STATIC_DIR + "/success.html");
-  res.sendFile(path);
-});
-
-app.get('/checkout-session', async (req, res) => {
-  console.log(req.query);
-  const session = await stripe.checkout.sessions.retrieve(req.query.id);
-  res.json(session);
-});
-
+```js
 app.post('/create-checkout-session', async (req, res) => {
   const session = await stripe.checkout.sessions.create({
     success_url: 'http://localhost:4242/success?id={CHECKOUT_SESSION_ID}',
-    cancel_url: 'http://localhost:4242/cancel/',
+    cancel_url: 'http://localhost:4242/cancel',
     payment_method_types: ['card'],
-    mode: 'payment',
+    mode: 'subscription',
     line_items: [{
-      price: 'price_1HN2fMCZ6qsJgndJZdagcfJw',
+      price: 'price_1HPa4BKoPpUdiYpL2KJs6hfg',
       quantity: req.body.quantity || 1,
-    }]
+    }],
+  });
+```
+
+Finally, render back a simple json object with just the ID of the Checkout Session.
+
+```js
+app.post('/create-checkout-session', async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    success_url: 'http://localhost:4242/success?id={CHECKOUT_SESSION_ID}',
+    cancel_url: 'http://localhost:4242/cancel',
+    payment_method_types: ['card'],
+    mode: 'subscription',
+    line_items: [{
+      price: 'price_1HPa4BKoPpUdiYpL2KJs6hfg',
+      quantity: req.body.quantity || 1,
+    }],
   });
   res.json({
     id: session.id,
   });
 });
+```
+
+Now that the route is working as expected on the server, we can go to the frontend to add a button to trigger this endpoint and ultimately redirect.
+
+We'll be using HTML and vanilla JavaScript on the client. 
+
+Add a button tag and a quantity input to the body of the HTML. We're pre-populating the value to 3 here so that we don't need to enter a value when testing. We'd remove that value after we're done with testing locally.
+
+```html
+<input id="quantity" type="number" step="1" value="3">
+<button id="btn">Pay</button>
+```
+
+Install Stripe.js before our inline JavaScript will run.
+
+```html
+<script src="https://js.stripe.com/v3/"></script>
+```
+
+In our inline `script` tag, we'll grab reference to the `input` and `button` then add a click handler. 
+
+```html
+<script charset="utf-8">
+  var button = document.getElementById('btn');
+  var quantity = document.getElementById('quantity');
+  button.addEventListener('click', function(e) {
+    e.preventDefault();
+  
+  });
+</script>
+```
+
+Inside the click handler is where we'll make the AJAX call to the server to create the Checkout Session. This allows us to pass in any other user input that we might use to configure the Checkout Session. For instance, we might collect the currency or some other product options and pass those to the server here so that we can customize the Checkout Session further.
+
+
+```html
+<script charset="utf-8">
+  var stripe = Stripe('pk_test_vAZ3gh1LcuM7fW4rKNvqafgB00DR9RKOjN');
+  var button = document.getElementById('btn');
+  button.addEventListener('click', function(e) {
+    e.preventDefault();
+    fetch('/create-checkout-session', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        quantity: quantity.value
+      }),
+    })
+    .then((response) => response.json())
+    .then((session) => {
+  
+  
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  });
+</script>
+```
+
+Finally, we redirect to Checkout using the ID of the `session` response from our server.
+
+```html
+<script charset="utf-8">
+  var stripe = Stripe('pk_test_');
+  var button = document.getElementById('btn');
+  button.addEventListener('click', function(e) {
+    e.preventDefault();
+    fetch('/create-checkout-session', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        quantity: quantity.value
+      }),
+    })
+    .then((response) => response.json())
+    .then((session) => {
+      stripe.redirectToCheckout({ sessionId: session.id }); // this causes a redirect to the Stripe hosted Checkout page.
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  });
+</script>
+```
+
+If the server and client are working as expected you should be able to restart the server with `npm start`, open http://localhost:4242, and walk through the payment flow.
+
+Try entering the standard test card `4242424242424242`. Then try with one of the SCA test cards like `4000002500003155` to see that experience.
+
+Note that when you're redirected back to localhost, you'll land on a page that doesn't exist yet. Let's build that out next!
+
+We need to serve this page, so we setup a super simple route on the server.
+
+```js
+app.get("/success", (req, res) => {
+  const path = resolve(process.env.STATIC_DIR + "/success.html");
+  res.sendFile(path);
+});
+```
+
+We add a new file `client/success.html` with some simple HTML to show the success page and thank the customer. The body is just a header and pre tag.
+
+```html
+<h1>Thank you</h1>
+<pre class="json" id="session-data"></pre>
+```
+
+When we configured the Checkout Session, we used the `{CHECKOUT_SESSION_URL}`. Remember this parameter from earlier? 
+
+```js
+    success_url: 'http://localhost:4242/success?id={CHECKOUT_SESSION_ID}',
+```
+
+That `{CHECKOUT_SESSION_ID}` template variable will be replaced by the ID of the Checkout Session before redirecting back to your success URL. We can use that ID on the success page to retrieve the Checkout Session and display that to the customer.
+
+With this inline `script` tag, we'll first extract the ID from the query string params.
+
+```html
+<script charset="utf-8">
+  var params = new URLSearchParams(window.location.search);
+  var id = params.get('id');
+</script>
+```
+
+Given `id` contains the string ID of the Checkout Session, we can pass that to the server with another AJAX call.
+
+```html
+<script charset="utf-8">
+  var params = new URLSearchParams(window.location.search);
+  var id = params.get('id');
+
+  fetch('/checkout-session?id=' + id)
+    .then((response) => response.json())
+    .then((session) => {
+
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+</script>
+```
+
+When the request to the server resolves, we'll just dump the JSON into that `pre` tag so you can see what's available to display and you can build your own success page. 
+
+```html
+<script charset="utf-8">
+  var params = new URLSearchParams(window.location.search);
+  var id = params.get('id');
+
+  fetch('/checkout-session?id=' + id)
+    .then((response) => response.json())
+    .then((session) => {
+      var sessionData = document.getElementById('session-data'); // grab ref to the pre tag!
+      sessionData.innerText = JSON.stringify(session, null, 2);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+</script>
+```
+
+This success page is now making a request to our server to `/checkout-session` but we haven't implemented that yet. Let's call this fantasy driven development and go fulfill that dream next.
+
+On the server, let's add this simple route to start.
+
+```js
+app.get('/checkout-session', async (req, res) => {
+  const session = await stripe.checkout.sessions.retrieve(req.query.id);
+  res.json(session);
+});
+```
+
+This route will make an API call to [retrieve the Checkout Session](https://stripe.com/docs/api/checkout/sessions/retrieve) from Stripe.
+
+Simply refreshing the success URL from a previous complete payment flow should now show the basic Checkout Session data in the pre tag.
+
+Note that by default, the `line_items` for the Checkout Session are not included in the retrieve response. In order to display information about the `line_items`, you'll want to use the [expand](https://stripe.com/docs/expand) feature. 
+
+By tweaking the retrieve call to include expand, the response will now have a new `line_items` property with the content of the `line_items` purchased.
+
+```js
+app.get('/checkout-session', async (req, res) => {
+  const session = await stripe.checkout.sessions.retrieve(req.query.id, {
+    expand: ['line_items'],
+  });
+  res.json(session);
+});
+```
+
+Try refreshing the page now and note the new `line_items` property!
+
+
+
 
 Tax Rates
 
