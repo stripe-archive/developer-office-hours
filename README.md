@@ -7,7 +7,6 @@ Stripe Engineers answering questions and walking through code examples on variou
 
 Session | Hosts | Topic | Resources
 ---------|----------|---------|--------
- [2020-09-10](./2020-09-10-checkout-taxes-coupons) | [Mari Puncel](https://www.linkedin.com/in/mari-puncel-21731322/) and [CJ Avilla](https://twitter.com/cjav_dev) | [**Checkout**](./2020-09-10-checkout-taxes-coupons)<br />Live demonstration of integrating [Stripe Checkout](https://stripe.com/docs/checkout).
  [2020-09-17](./2020-09-17-checkout-bacs-payment) | [Matthew Ling](https://www.linkedin.com/in/matthew-ling-53427711/) | [**Checkout**](./2020-09-17-checkout-sepa-payment)<br />Live demonstration of integrating [Stripe Checkout](https://stripe.com/docs/checkout) to accept payment with Bacs.
  [2020-09-24](./2020-09-24-checkout-sepa-payment) | [Matthew Ling](https://www.linkedin.com/in/matthew-ling-53427711/) | [**Checkout**](./2020-09-24-checkout-bacs-payment)<br />Live demonstration of integrating [Stripe Checkout](https://stripe.com/docs/checkout) to accept payment with SEPA.
 
@@ -39,6 +38,7 @@ Session | Hosts | Topic | Resources
  [2020-05-01](./2020-05-01-refunds) | [Dawn Lambeth](https://twitter.com/dawnlambeth) | [**Refunds**](./2020-05-01-refunds)<br />Live demonstration showing how to refund payments. | [🎦 YouTube](https://youtu.be/D6fd4coADsQ)
  [2020-06-22](./2020-06-22-sepa-direct-debit) | [Matthew Ling](https://www.linkedin.com/in/matthew-ling-53427711/) | [**SEPA Direct Debit**](./2020-06-22-sepa-direct-debit)<br />Live demonstration showing how to setup SEPA direct debit. | [🎦 YouTube](https://www.youtube.com/watch?v=tUQoKit6XTM&lc=UgzmPFxM7-bl6kDoSgN4AaABAg)
  [2020-06-29](./2020-06-29-customer-portal) | [Theodora Chu](https://twitter.com/chu_onthis) and [CJ Avilla](https://twitter.com/cjav_dev) | [**Customer Portal**](./2020-06-29-customer-portal)<br />Live demonstration of integrating the [Customer Portal](https://stripe.com/docs/billing/subscriptions/integrating-customer-portal). | [🎦 YouTube](https://www.youtube.com/watch?v=u8H6awDJVpM)
+ [2020-09-10](./2020-09-10-checkout-taxes-coupons) | [Mari Puncel](https://www.linkedin.com/in/mari-puncel-21731322/) and [CJ Avilla](https://twitter.com/cjav_dev) | [**Checkout**](./2020-09-10-checkout-taxes-coupons)<br />Live demonstration of integrating [Stripe Checkout](https://stripe.com/docs/checkout). | [🎦 YouTube](https://www.youtube.com/watch?v=UjcSWxPNo18)
 
 ## Changes
 
