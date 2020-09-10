@@ -42,9 +42,9 @@ app.post('/create-checkout-session', async (req, res) => {
     mode: 'subscription',
     allow_promotion_codes: true,
     line_items: [{
-      price: 'price_1HKBC8CZ6qsJgndJJX88EC5l',
+      price: 'price_1HKBC8CZ6qsJgndJJX88EC5l', // set this to a recurring price ID
       quantity: req.body.quantity,
-      dynamic_tax_rates: ['txr_1HNQ1ICZ6qsJgndJHrR7sP23', 'txr_1HNQ1gCZ6qsJgndJzETNpfvW'],
+      // beta: dynamic_tax_rates: ['txr_1HNQ1ICZ6qsJgndJHrR7sP23', 'txr_1HNQ1gCZ6qsJgndJzETNpfvW'],
     }],
   });
   res.json({
