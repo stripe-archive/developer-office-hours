@@ -1,6 +1,6 @@
 # Developer office hours - Stripe Checkout
 
-[Checkout](https://stripe.com/checkout) creates a secure, Stripe-hosted payment page that lets you collect payments quickly. It works across devices and is designed to increase your conversion. The following guide covers our office hours session on August 10, 2020.
+[Checkout](https://stripe.com/checkout) creates a secure, Stripe-hosted payment page that lets you collect payments quickly. It works across devices and is designed to increase your conversion. The following guide covers our office hours session on September 10, 2020.
 
 > Learn how to integrate [Stripe Checkout](https://stripe.com/docs/checkout):
 >
@@ -83,8 +83,8 @@ Remember at this session creation time is when we configure what the customer is
 <script>
   var stripe = Stripe("pk_test_789xyz");
   stripe.redirectToCheckout({
-      sessionId: sesison.id
-    });
+    sessionId: sesison.id
+  });
 </script>
 ```
 
@@ -121,20 +121,21 @@ npm start
 
 You will know this step was successful when the CLI says `Node server listening on port 4242!`
 
-**LocalHost starter page**
+**Localhost starter page**
 
 Open http://localhost:4242 in the browser to find the "boiler plate" start template for Developer Office Hours. For next steps, there are a two paths you can choose to take:
 
-- 🅰️ **Preloaded:** Create the Checkout Session on as the web page page loads OR
+- 🅰️ **Preloaded:** Create the Checkout Session on as the web page page loads
   - 👉 If you know ahead of time exactly what the customer intends to purchase, you can create the Checkout Session as part of the request in order to fetch this payment page. Following this step, the server side renders the ID of the Checkout Session directly into your inline JavaScript.
-- 🅱️ **Async:** Create the Checkout Session "just in time, which executes the Checkout logic in the moment a customer takes action.
+
+- 🅱️ **Async:** Create the Checkout Session "just in time", which creates the Checkout Session the moment a customer takes action.
   - 👉 If the customer will provide any input that will change their checkout experience, you’ll want to create the Checkout Session just before redirecting.
 
 **Editing the starter office hours page**
 
-For the example today, we’ll add an input so the customer can enter a quantity for the number of items (or seats in the case of Subscriptions) they would like to purchase. Once the form is submitted, we’ll send an AJAX request to our server to create the checkout session and return it's ID in order for us to redirect on the client.
+For the example today, we’ll add an input so the customer can enter a quantity for the number of items (or seats in the case of Subscriptions) they would like to purchase. Once the form is submitted, we’ll send an AJAX request to our server to create the Checkout Session and return it's ID in order for us to redirect on the client.
 
-Let’s add a route to the server that will accept a POST request to create a Checkout Sessions.
+Let’s add a route to the server that will accept a POST request to create a Checkout Session.
 
 I’m going to stop the server, open `server.js`, and then add a route for `/create-checkout-session`. For now, we'll start with just this empty route:
 
@@ -168,7 +169,7 @@ A few items to observe in the code snippet above:
 
 - `success_url` is where customers will be redirected back to after completing their purchase.
 - `cancel_url` is where the customer will be redirected back to if they bail out of the payment flow from the Checkout page.
-- `payment_method_types` is the list of payment method types and is listed in full on our [API reference docs](https://stripe.com/docs/api/payment_methods).
+- `payment_method_types` is the list of payment method types and the list of Checkout supported methods are in full on our [API reference docs](https://stripe.com/docs/api/checkout/sessions/create#create_checkout_session-payment_method_types).
 - `mode` can be one of the following:
   - `payment` for one time payments
   - `subscription` for recurring payments
@@ -180,7 +181,8 @@ Next we need to add a list of one or more `line_items`. This parameter is new an
 Moving forward, you’ll want to use `line_items` with the new [`Price`](https://stripe.com/docs/api/prices) object when setting up payments.
 
 **Creating products in the dashboard or API**
-For most cases, you’ll want to load your inventory into Stripe as [Products](https://stripe.com/docs/api/products) and crete corresponding Prices for each of those Products.
+
+For most cases, you’ll want to load your inventory into Stripe as [Products](https://stripe.com/docs/api/products) and create corresponding Prices for each of those Products.
 
 **Understanding the correlation between Products & Prices**
 
@@ -188,9 +190,7 @@ For most cases, you’ll want to load your inventory into Stripe as [Products](h
 - Prices can be either one time or recurring.
   - Price represents how much a Product costs, in a given currency, and for an (optional) billing interval.
 
-It’s worth mentioning that if your customers pay a variable price, for instance if you’re building a donation platform, where the unit amount collected is defined by the customer.
-
-You might want to take a look at the `price_data` parameter where the Price is defined in real time.
+It’s worth mentioning that if your customers pay a variable price, for instance if you’re building a donation platform, where the unit amount collected is defined by the customer then you might want to take a look at the `price_data` parameter where the Price is defined in real time.
 
 > 💡 Read our [product and prices guide](https://stripe.com/docs/billing/prices-guide) for a full walkthrough
 
@@ -230,7 +230,10 @@ From here, the following response will be returned:
 Next up, copy the product ID (`prod_HzZBX2ah9uNJl5`) in order to create a Price for that Product:
 
 ```sh
-stripe prices create --unit-amount 999 --currency USD --product prod_HzZBX2ah9uNJl5
+stripe prices create \
+  --unit-amount 999 \
+  --currency USD \
+  --product prod_HzZBX2ah9uNJl5
 ```
 
 If successful, you should see the following response:
@@ -306,7 +309,7 @@ We'll be using HTML and vanilla JavaScript on the client.
 Add a button tag and a quantity input to the body of the HTML. We're pre-populating the value to 3 here so that we don't need to enter a value when testing. We'd remove that value after we're done with testing locally:
 
 ```html
-<input id="quantity" type="number" step="1" value="3" />
+<input id="quantity" type="number" step="1" value="3"/>
 <button id="btn">Pay</button>
 ```
 
@@ -434,7 +437,9 @@ Since `id` contains the string ID of the Checkout Session, we can pass this attr
 
   fetch("/checkout-session?id=" + id)
     .then((response) => response.json())
-    .then((session) => {})
+    .then((session) => {
+      // update our pre tag.
+    })
     .catch((error) => {
       console.error("Error:", error);
     });
@@ -529,11 +534,17 @@ which then returns the following response:
 
 ### Creating the product's price
 
-Now that we have a new Product (`prod_HzZwd49TuS5j1s`), we will create the related recurring Price. Note the new argument is `recurring[interval]`
+Now that we have a new Product (`prod_HzZwd49TuS5j1s`), we will create the related recurring Price:
 
 ```sh
-stripe prices create --unit-amount 3999 --currency USD --product prod_HzZwd49TuS5j1s -d "recurring[interval]=month"
+stripe prices create \
+  --unit-amount 3999 \
+  --currency USD \
+  --product prod_HzZwd49TuS5j1s \
+  -d "recurring[interval]=month"
 ```
+
+(Note the new argument is `recurring[interval]`)
 
 This command returns the following response:
 
@@ -593,14 +604,18 @@ Note the the code snippet above, the quantity represents the number of "seats" f
 
 ## Tax Rates
 
-As Mari mentioned in the overview, one of the most requested features is support for Taxes. To enable taxes in Checkout, we first need to create a [TaxRate](https://stripe.com/docs/api/tax_rates) object.
+One of the most requested features is support for Taxes. To enable taxes in Checkout, we first need to create a [TaxRate](https://stripe.com/docs/api/tax_rates) object.
 
 When applying tax rates, Stripe calculates the total tax amount per tax rate, summarizing it in a table of the collected tax rates and amounts, and ultimately, into exported tax summary reports.
 
 Let’s create a tax rate with the Stripe CLI:
 
 ```sh
-stripe tax_rates create --display-name "Sales Tax" --jurisdiction "CA - SF" --percentage 8.5  --inclusive false
+stripe tax_rates create \
+  --display-name "Sales Tax" \
+  --jurisdiction "CA - SF" \
+  --percentage 8.5 \
+  --inclusive false
 ```
 
 Setting that command will log the following response:
@@ -664,7 +679,13 @@ The full docs for dynamic tax rates is here: https://stripe.com/docs/billing/sub
 In order for dynamic tax rates to work, they require two extra parameters when creating the tax rate: `country` and `state`. Note that these params are also in beta. Let’s create two new tax rates, one each for San Francisco and New York City:
 
 ```sh
-stripe tax_rates create --display-name "Sales Tax" --jurisdiction "CA - SF" --percentage 8.5  --inclusive false -d "country=US" -d "state=CA"
+stripe tax_rates create \
+  --display-name "Sales Tax" \
+  --jurisdiction "CA - SF" \
+  --percentage 8.5 \
+  --inclusive false \
+  -d "country=US" \
+  -d "state=CA"
 ```
 
 which logs the following:
@@ -690,7 +711,13 @@ which logs the following:
 Here's an example of setting the tax rates for New York City:
 
 ```sh
-stripe tax_rates create --display-name "Sales Tax" --jurisdiction "NY - NYC" --percentage 8.875  --inclusive false -d "country=US" -d "state=NY"
+stripe tax_rates create \
+  --display-name "Sales Tax" \
+  --jurisdiction "NY - NYC" \
+  --percentage 8.875 \
+  --inclusive false \
+  -d "country=US" \
+  -d "state=NY"
 ```
 
 which will log the following:
@@ -754,7 +781,9 @@ First we [create a coupon](https://stripe.com/docs/api/coupons/create) to define
 
 We can create a coupon from the CLI with the following:
 
-`stripe coupons create --percent-off 20 --duration once`
+```sh
+stripe coupons create --percent-off 20 --duration once
+```
 
 which will log the following:
 
@@ -782,10 +811,13 @@ It’s possible to apply a coupon directly to a Subscription with the `coupon` p
 
 ### Entering coupon codes on the frontend
 
-If you want to allow customers to enter their own codes, we need to [create a PromotionCode](https://stripe.com/docs/api/promotion_codes/create) from a coupon. From the CLI, we can create a new PromotionCode from the Coupon we just created:
+If you want to allow customers to enter their own codes, we need to [create a PromotionCode](https://stripe.com/docs/api/promotion_codes/create) from a coupon. From the CLI, we can create a new PromotionCode from the coupon we just created:
 
 ```sh
-stripe promotion_codes create --coupon LXu8C4Uk --code FRIENDS20 --api-key sk_test_xxx
+stripe promotion_codes create \
+  --coupon LXu8C4Uk \
+  --code FRIENDS20 \
+  --api-key sk_test_xxx
 ```
 
 To enable customers to enter their own PromotionCodes at Checkout, we need to pass the `allow_promotion_codes` parameter with the value `true` in our Checkout Session configuration.
