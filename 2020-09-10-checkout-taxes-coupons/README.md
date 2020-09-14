@@ -15,7 +15,7 @@
 
 - [**CJ Avilla**](https://twitter.com/cjav_dev) - Developer Advocate @ Stripe
 
-### Developer introduction
+### Developer introduction [🎬](https://www.youtube.com/watch?v=UjcSWxPNo18&t=5s)
 
 If you’re ready to start taking payments and want to get up and running quickly, Stripe Checkout is a great place to start. Whether you’re a technical founder working on spinning up a side project or a dev working for a multinational online marketplace, accepting payments, and more importantly optimizing for conversion is a critical component to your business.
 
@@ -23,7 +23,7 @@ We're delighted to share several newly released features with you. Today you’l
 
 Accepting payments with Stripe Checkout consists of two steps (1) creating a session for what your customer intends to purchase, and (2) redirecting your customer to a Stripe-hosted payment form to complete their purchase. Later you can optionally add a webhook handler to automate the fulfillment of a purchase.
 
-### Product overview
+### Product overview [🎬](https://youtu.be/UjcSWxPNo18?t=80)
 
 Checkout is a hosted payment page designed to make it easy for you to begin accepting payments and offers flexible, scalable features to help your business grow. We often hear from our users that they underestimate how much work it will take to build and maintain a first-class payment experience.
 
@@ -53,7 +53,7 @@ local machine for development and testing purposes.
 - [Node.js](https://nodejs.org/en/download/)
 - [Stripe CLI](https://github.com/stripe/stripe-cli/)
 
-### Create a checkout session on the server
+### Create a checkout session on the server [🎬](https://youtu.be/UjcSWxPNo18?t=303)
 
 This is an example of [creating the Checkout Session](https://stripe.com/docs/api/checkout/sessions/create) on the server. Here we’re using the [stripe-node](https://github.com/stripe/stripe-node) client library.
 
@@ -75,7 +75,7 @@ Remember at this session creation time is when we configure what the customer is
 
 ---
 
-### Redirecting to Checkout on the frontend
+### Redirecting to Checkout on the frontend [🎬](https://youtu.be/UjcSWxPNo18?t=343)
 
 ```js
 <script src="https://js.stripe.com/v3/"></script>
@@ -92,7 +92,7 @@ Above is an example of redirecting to Checkout on the frontend. We’re using St
 
 For most cases, this is the only code required on the frontend and is purely for redirecting to that Checkout Session we created on the server.
 
-### One time payments with Checkout
+### One time payments with Checkout [🎬](https://youtu.be/UjcSWxPNo18?t=368)
 
 Let’s implement accepting a basic one-time payment. Then we will show how you might choose to implement fulfillment using webhook events. Finally, we’ll refactor our implementation to start a subscription to collect recurring payments.
 
@@ -102,7 +102,7 @@ Let’s implement accepting a basic one-time payment. Then we will show how you 
 >
 > If you’re new to the Stripe CLI or are unfamiliar with command-line interfaces in general, we have an [office hours episode](https://www.youtube.com/watch?v=Psq5N5C-FGo) to get up and running.
 
-**Launch the Checkout sample**
+**Launch the Checkout sample** [🎬](https://youtu.be/UjcSWxPNo18?t=384)
 
 From the terminal, run the following command:
 
@@ -121,7 +121,7 @@ npm start
 
 You will know this step was successful when the CLI says `Node server listening on port 4242!`
 
-**Localhost starter page**
+**Localhost starter page** [🎬](https://youtu.be/UjcSWxPNo18?t=446)
 
 Open http://localhost:4242 in the browser to find the "boilerplate" start template for Developer Office Hours. For the next steps, there are two paths you can choose to take:
 
@@ -131,7 +131,7 @@ Open http://localhost:4242 in the browser to find the "boilerplate" start templa
 - 🅱️ **Async:** Create the Checkout Session "just in time", which creates the Checkout Session the moment a customer takes action.
   - 👉 If the customer will provide any input that will change their checkout experience, you’ll want to create the Checkout Session just before redirecting.
 
-**Editing the starter office hours page**
+**Editing the starter office hours page** [🎬](https://youtu.be/UjcSWxPNo18?t=497)
 
 For the example today, we’ll add an input so the customer can enter a quantity for the number of items (or seats in the case of Subscriptions) they would like to purchase. Once the form is submitted, we’ll send an AJAX request to our server to create the Checkout Session and return it's ID in order for us to redirect on the client.
 
@@ -145,7 +145,7 @@ app.post("/create-checkout-session", async (req, res) => {
 });
 ```
 
-**Create a new checkout session**
+**Create a new checkout session** [🎬](https://youtu.be/UjcSWxPNo18?t=516)
 
 ```js
 app.post('/create-checkout-session', async (req, res) => {
@@ -175,7 +175,7 @@ A few items to observe in the code snippet above:
   - `subscription` for recurring payments
   - or `setup` for collecting payment method details, without charging.
 
-**Prices and line items**
+**Prices and line items** [🎬](https://youtu.be/UjcSWxPNo18?t=672)
 
 Next, we need to add a list of one or more `line_items`. This parameter is new and has replaced display items and SKUs as of the `2020-08-27` API version.
 Moving forward, you’ll want to use `line_items` with the new [`Price`](https://stripe.com/docs/api/prices) object when setting up payments.
@@ -196,7 +196,7 @@ It’s worth mentioning that if your customers pay a variable price, for instanc
 
 A best practice for reporting and inventory tracking is to actually create Products and Prices in your Stripe account. You can do this either with the API or directly in your [Stripe Dashboard](https://dashboard.stripe.com/products).
 
-### Creating product and prices using the Stripe CLI
+### Creating product and prices using the Stripe CLI [🎬](https://youtu.be/UjcSWxPNo18?t=756)
 
 For this segment of the demo, we’ll need a Product and a one-time Price, so let’s create that with the Stripe CLI.
 
@@ -300,7 +300,7 @@ app.post("/create-checkout-session", async (req, res) => {
 });
 ```
 
-### Adding a purchase button to the frontend
+### Adding a purchase button to the frontend [🎬](https://youtu.be/UjcSWxPNo18?t=927)
 
 Now that the route is working as expected on the server, we can go to the frontend to add a button to trigger this endpoint and ultimately redirect.
 
@@ -331,7 +331,7 @@ In our inline `script` tag, we'll grab reference to the `input` and `button` the
 </script>
 ```
 
-**Creating the Checkout Session**
+**Creating the Checkout Session** [🎬](https://youtu.be/UjcSWxPNo18?t=960)
 
 Inside the click handler is where we'll make the AJAX call to the server to create the Checkout Session. This allows us to pass in any other user input that we might use to configure the Checkout Session. For instance, we might collect the currency or some other product options and pass those to the server here so that we can customize the Checkout Session further:
 
@@ -387,7 +387,7 @@ Finally, we redirect to Checkout using the ID of the `session` response from our
 </script>
 ```
 
-### Relaunch the localhost sample with the changes
+### Relaunch the localhost sample with the changes [🎬](https://youtu.be/UjcSWxPNo18?t=1107)
 
 If the server and client are working as expected you should be able to restart the server with `npm start`, open http://localhost:4242, and walk through the payment flow.
 
@@ -495,13 +495,13 @@ app.get("/checkout-session", async (req, res) => {
 
 Try refreshing the page now and there is the new `line_items` property!
 
-## Implementing recurring payments with Stripe Billing
+## Implementing recurring payments with Stripe Billing [🎬](https://youtu.be/UjcSWxPNo18?t=1571)
 
 At this point, you have a very basic proof of concept for accepting one-time payments. Let's now upgrade to accept some recurring payments.
 
 The first thing we need to do is to create a new Price. Recall that Prices can either be one-time or recurring. We'll first create a new Product that represents our recurring service. You can create these products using the dashboard or the CLI.
 
-### Creating a product
+### Creating a product [🎬](https://youtu.be/UjcSWxPNo18?t=1587)
 
 For the dashboard, here are steps to create products: https://support.stripe.com/questions/how-to-create-products-and-prices
 
@@ -532,7 +532,7 @@ which then returns the following response:
 }
 ```
 
-### Creating the product's price
+### Creating the product's price [🎬](https://youtu.be/UjcSWxPNo18?t=1608)
 
 Now that we have a new Product (`prod_HzZwd49TuS5j1s`), we will create the related recurring Price:
 
@@ -576,7 +576,7 @@ This command returns the following response:
 }
 ```
 
-### Updating the Checkout session details
+### Updating the Checkout session details [🎬](https://youtu.be/UjcSWxPNo18?t=1648)
 
 The Checkout Session `create` call needs to be updated now to use this new Price (`price_1HPaoKKoPpUdiYpLgVdf3SMC`) and switch the `mode` to `subscription`:
 
@@ -602,7 +602,7 @@ app.post("/create-checkout-session", async (req, res) => {
 
 Note the code snippet above, the quantity represents the number of "seats" for the Subscription. Walking back through the payment flow in the browser, you'll notice the changes to the Checkout page now reflect the fact that this price is recurring. Now the customer will be charged this amount on a monthly basis.
 
-## Tax Rates
+## Tax Rates [🎬](https://youtu.be/UjcSWxPNo18?t=1751)
 
 One of the most requested features is support for Taxes. To enable taxes in Checkout, we first need to create a [TaxRate](https://stripe.com/docs/api/tax_rates) object.
 
@@ -638,7 +638,7 @@ Setting that command will log the following response:
 
 In addition, setting `inclusive` to false means the tax amount not already included in the overall amount.
 
-### Passing the tax rate for line items
+### Passing the tax rate for line items [🎬](https://youtu.be/UjcSWxPNo18?t=1805)
 
 Now we can take this TaxRate ID (`txr_1HPatkKoPpUdiYpL8uUhRaMo`) and pass that in the `tax_rates` field for the `line_item` when configuring the Checkout Session:
 
@@ -665,7 +665,7 @@ app.post("/create-checkout-session", async (req, res) => {
 
 This will apply the 8.5% tax rate to recurring payments.
 
-### Understanding dynamic tax rates
+### Understanding dynamic tax rates [🎬](https://youtu.be/UjcSWxPNo18?t=1864)
 
 The next feature we’ll look at is called dynamic tax rates.
 
@@ -766,13 +766,13 @@ app.post("/create-checkout-session", async (req, res) => {
 });
 ```
 
-### Restart the service for dynamic tax rates
+### Restart the server for dynamic tax rates [🎬](https://youtu.be/UjcSWxPNo18?t=1952)
 
 Restart the server and run through the payment flow to see the new dynamic tax rates are derived based on the address of the customer.
 
 Stay tuned to [@StripeDev](https://twitter.com/stripedev) on Twitter for an announcement when dynamic tax rates are generally available.
 
-## Discounts in Stripe Checkout
+## Discounts in Stripe Checkout [🎬](https://youtu.be/UjcSWxPNo18?t=2014)
 
 - [Coupons](https://stripe.com/docs/api/coupons) are merchant-facing objects you can use to control discounts on subscriptions or invoices.
 - [PromotionCodes](https://stripe.com/docs/api/promotion_codes) are customer-facing codes that are created on top of coupons and can be shared directly with your customers.
@@ -809,7 +809,7 @@ which will log the following:
 
 It’s possible to apply a coupon directly to a Subscription with the `coupon` parameter in the [`subscription_data`](https://stripe.com/docs/api/checkout/sessions/create#create_checkout_session-subscription_data-coupon) hash. You might do this if you know the coupon to apply for a specific Checkout Session ahead of time.
 
-### Entering coupon codes on the frontend
+### Entering coupon codes on the frontend [🎬](https://youtu.be/UjcSWxPNo18?t=2118)
 
 If you want to allow customers to enter their own codes, we need to [create a PromotionCode](https://stripe.com/docs/api/promotion_codes/create) from a coupon. From the CLI, we can create a new PromotionCode from the coupon we just created:
 
