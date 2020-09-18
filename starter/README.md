@@ -52,7 +52,7 @@ cp .env.example server/node/.env
 ```
 
 You will need a Stripe account in order to run the demo. Once you set up your
-account, go to the Stripe [developer dashboard](https://stripe.com/docs/development#api-keys) to find your API keys.
+account, go to the Stripe [developer dashboard](https://stripe.com/docs/development/quickstart#api-keys) to find your API keys.
 
 ```
 STRIPE_PUBLISHABLE_KEY=<replace-with-your-publishable-key>
