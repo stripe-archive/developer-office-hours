@@ -1,6 +1,6 @@
-# SEPA Direct Debit with Checkout - Office Hours 2020-09-24
+# SEPA Direct Debit with Checkout - Office Hours 2020-09-23
 
-> [🎬 Watch on YouTube](Link upcoming)
+> [🎬 Watch on YouTube](https://www.youtube.com/watch?v=ekU_4WkeD9A)
 
 ## Requirements
 * Ruby
