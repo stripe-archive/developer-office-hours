@@ -36,6 +36,7 @@ button {
   outline: none;
   cursor: pointer;
   transition: all 0.15s ease;
+  margin-top: 10px;
 }
 
 #main {
