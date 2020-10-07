@@ -404,20 +404,25 @@ local machine for development and testing purposes.
 git clone git@github.com:stripe-samples/developer-office-hours.git
 cd developer-office-hours/2020-06-29-customer-portal
 bundle install
+yarn install --check-files
 ```
 
 2. Update API keys
 
 ```sh
+rm config/credentials.yml.enc
 EDITOR=vi rails credentials:edit
 ```
 
 Add your [Stripe API keys](https://dashboard.stripe.com/test/apikeys) to the
-Rails credentials.
+Rails credentials. You can get the webhook secret from the Stripe CLI by
+running `stripe listen --print-secret`:
 
 ```yml
 stripe:
-  secret_key: sk_your_secret_key
+  secret_key: sk_test_
+  publishable_key: pk_test_
+  webhook_secret: whsec_
 ```
 
 3. Setup Database

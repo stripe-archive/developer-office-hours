@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2020_04_23_220621) do
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
-    t.string "plan" # lookup_key
+    t.string "plan"
     t.string "stripe_customer_id"
     t.string "session_token"
     t.datetime "created_at", precision: 6, null: false
@@ -27,4 +27,5 @@ ActiveRecord::Schema.define(version: 2020_04_23_220621) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["stripe_customer_id"], name: "index_users_on_stripe_customer_id", unique: true
   end
+
 end
