@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Stripe Payment Page Sample</title>
+    <link href="https://stripe-samples.github.io/developer-office-hours/demo.css" rel="stylesheet" type="text/css">
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+  <body>
+    <div id="main">
+      <div id="container">
+        <div id="panel">
+          <h1>Collect Payment</h1>
+
+          <form id="payment-form">
+            <label>
+              <span>Email</span>
+              <input type="email" class="field" id="email-input" value="jenny.rosen@example.com">
+            </label>
+            <label for="">Card</label>
+            <div id="card-element">
+            </div>
+            <button>Pay $14</button>
+          </form>
+          <div id="debug-message">
+          </div>
+        </div>
+      </div>
+    </div>
+    <script charset="utf-8">
+      var stripe = Stripe('pk_test_vAZ3gh1LcuM7fW4rKNvqafgB00DR9RKOjN');
+      var form = document.getElementById('payment-form');
+      var emailInput = document.getElementById('email-input');
+      var elements = stripe.elements();
+      var cardElement = elements.create('card');
+      cardElement.mount('#card-element');
+
+      debug('Registering form submit handler...');
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        // create payment intent (server)
+        debug('Creating payment intent...');
+        fetch('/create-payment-intent', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: emailInput.value
+          }),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          debug('Created payment intent: ' + data.client_secret);
+
+          stripe.confirmCardPayment(
+            data.client_secret, {
+              payment_method: {
+                card: cardElement, // card element || card number element
+              }
+            }
+          ).then(function(result) {
+            if(result.error) {
+              debug('Payment intent confirmation failed');
+              debug(result.error.message)
+            } else {
+              debug('Payment intent confirmed!');
+              debug(JSON.stringify(result, null, 2));
+            }
+          })
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+        // then confirm payment intent (client)
+      });
+
+
+      function debug(message) {
+        var debugMessage = document.getElementById('debug-message');
+        console.log('Debug: ', message);
+        debugMessage.innerText += '\n' + message;
+      }
+    </script>
+  </body>
+</html>
