@@ -1,0 +1,12 @@
+{
+    "name": "cjavilla/office-hours",
+    "require": {
+        "stripe/stripe-php": "^7.61"
+    },
+    "authors": [
+        {
+            "name": "CJ Avilla",
+            "email": "cjavilla@stripe.com"
+        }
+    ]
+}
