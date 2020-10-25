@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "dgSpecHash": "y5EqXEYynVpwKrwbdXWVDVBLYF+5jHFlBE9AsQemdQpWLPBef3/3cQfy/imlQinrf45cTCscEs9yByhdRucB2Q==",
+  "success": true,
+  "projectFilePath": "/Users/ahlee/stripe-samples/developer-office-hours/2020-10-30-client-libraries/dotnet/pagination/pagination.csproj",
+  "expectedPackageFiles": [
+    "/Users/ahlee/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.0/microsoft.bcl.asyncinterfaces.1.1.0.nupkg.sha512",
+    "/Users/ahlee/.nuget/packages/microsoft.netcore.platforms/2.0.0/microsoft.netcore.platforms.2.0.0.nupkg.sha512",
+    "/Users/ahlee/.nuget/packages/newtonsoft.json/11.0.1/newtonsoft.json.11.0.1.nupkg.sha512",
+    "/Users/ahlee/.nuget/packages/stripe.net/39.17.0/stripe.net.39.17.0.nupkg.sha512",
+    "/Users/ahlee/.nuget/packages/system.configuration.configurationmanager/4.5.0/system.configuration.configurationmanager.4.5.0.nupkg.sha512",
+    "/Users/ahlee/.nuget/packages/system.security.accesscontrol/4.5.0/system.security.accesscontrol.4.5.0.nupkg.sha512",
+    "/Users/ahlee/.nuget/packages/system.security.cryptography.protecteddata/4.5.0/system.security.cryptography.protecteddata.4.5.0.nupkg.sha512",
+    "/Users/ahlee/.nuget/packages/system.security.permissions/4.5.0/system.security.permissions.4.5.0.nupkg.sha512",
+    "/Users/ahlee/.nuget/packages/system.security.principal.windows/4.5.0/system.security.principal.windows.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
