@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-filename=Authentication.java
+filename=$1
 basename=$(basename $1 .java)
 java_classes=stripe-java-20.14.0.jar:gson-2.8.5.jar:.
 
