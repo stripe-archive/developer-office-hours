@@ -1,0 +1,64 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/ahlee/stripe-samples/developer-office-hours/2020-10-30-client-libraries/dotnet/pagination/pagination.csproj": {}
+  },
+  "projects": {
+    "/Users/ahlee/stripe-samples/developer-office-hours/2020-10-30-client-libraries/dotnet/pagination/pagination.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/ahlee/stripe-samples/developer-office-hours/2020-10-30-client-libraries/dotnet/pagination/pagination.csproj",
+        "projectName": "pagination",
+        "projectPath": "/Users/ahlee/stripe-samples/developer-office-hours/2020-10-30-client-libraries/dotnet/pagination/pagination.csproj",
+        "packagesPath": "/Users/ahlee/.nuget/packages/",
+        "outputPath": "/Users/ahlee/stripe-samples/developer-office-hours/2020-10-30-client-libraries/dotnet/pagination/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/ahlee/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Stripe.net": {
+              "target": "Package",
+              "version": "[39.17.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.402/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/Users/ahlee/.dotnet/store/|arch|/|tfm|",
+      "/Users/ahlee/.nuget/packages"
+    ]
+  }
+}
