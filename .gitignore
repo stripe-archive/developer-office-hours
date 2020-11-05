@@ -28,3 +28,15 @@
 /2019-10-16-webhooks/config/master.key
 /2020-01-28-variable-checkout/__pycache__
 /2020-01-28-variable-checkout/venv
+/2020-11-19-euro-payment-methods/.bundle
+/2020-11-19-euro-payment-methods/log/*
+/2020-11-19-euro-payment-methods/tmp/*
+/2020-11-19-euro-payment-methods/log/.keep
+/2020-11-19-euro-payment-methods/tmp/.keep
+/2020-11-19-euro-payment-methods/storage/*
+/2020-11-19-euro-payment-methods/storage/.keep
+/2020-11-19-euro-payment-methods/node_modules
+/2020-11-19-euro-payment-methods/yarn-error.log
+/2020-11-19-euro-payment-methods/public/assets
+/2020-11-19-euro-payment-methods.byebug_history
+/2020-11-19-euro-payment-methods/config/master.key
