@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "nYYwF36O768whfAiCZe2+NoJWKosZmxy1gg6jjL6RJAad+OuHsZPpKvLG8lfAcrecAtjLH+ZFTnzmMj7vsNh/Q==",
+  "dgSpecHash": "TLYjUImQkf5hpB7PVPMV5A9yjb0CB+iLy567IuTK6yCeMqo+uD60oyIcrpKs4FQ/OdVlKaC9ZG5bBRDJVqxBOw==",
   "success": true,
   "projectFilePath": "/Users/cjavilla/repos/developer-office-hours/starter/server/dotnet/server.csproj",
   "expectedPackageFiles": [
@@ -31,7 +31,7 @@
     "/Users/cjavilla/.nuget/packages/runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl/4.3.0/runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "/Users/cjavilla/.nuget/packages/runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl/4.3.0/runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "/Users/cjavilla/.nuget/packages/runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl/4.3.0/runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
-    "/Users/cjavilla/.nuget/packages/stripe.net/35.14.0/stripe.net.35.14.0.nupkg.sha512",
+    "/Users/cjavilla/.nuget/packages/stripe.net/39.23.0/stripe.net.39.23.0.nupkg.sha512",
     "/Users/cjavilla/.nuget/packages/system.appcontext/4.3.0/system.appcontext.4.3.0.nupkg.sha512",
     "/Users/cjavilla/.nuget/packages/system.buffers/4.3.0/system.buffers.4.3.0.nupkg.sha512",
     "/Users/cjavilla/.nuget/packages/system.collections/4.3.0/system.collections.4.3.0.nupkg.sha512",

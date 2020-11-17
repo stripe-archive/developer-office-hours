@@ -53,7 +53,7 @@
             },
             "Stripe.net": {
               "target": "Package",
-              "version": "[35.14.0, )"
+              "version": "[*, )"
             }
           },
           "imports": [
