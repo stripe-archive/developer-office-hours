@@ -2,7 +2,7 @@ package main
 import (
 	"fmt"
 	"encoding/json"
-    "github.com/stripe/stripe-go/v72"
+	"github.com/stripe/stripe-go/v72"
 	"github.com/stripe/stripe-go/v72/customer"
 	"github.com/stripe/stripe-go/v72/event"
 	"github.com/stripe/stripe-go/v72/webhookendpoint"
