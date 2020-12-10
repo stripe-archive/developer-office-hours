@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Stripe Payment Page Sample</title>
+    <link href="https://stripe-samples.github.io/developer-office-hours/demo.css" rel="stylesheet" type="text/css">
+    <script src="https://js.stripe.com/v3"></script>
+  </head>
+  <body>
+    <div id="main">
+      <div id="container">
+        <div id="panel">
+          <h1>Connected Account Checkout</h1>
+          <h2>Example Product - $9.99</h2>
+          <form id="payment-form">
+            <ul>
+              {% for c in cards %}
+              <li style='list-style-type:none;'>
+                <input type='radio' id='{{ c.id }}' name='payment-options' value='{{ c.id }}'>
+                <label for=' {{ c.id }}'>
+                {{ c.card.brand.upper() }} - {{ c.id }} - {{ c.last4 }} {{ c.card.exp_month }}/{{ c.card.exp_year }}
+                </label>
+              </li>
+              {% endfor %}
+            </ul>
+            <button>Pay</button>
+          </form>
+        <div id="debug-message"></div>
+        </div>
+      </div>
+    </div>
+    {% block javascript %}
+    <script charset="utf-8">
+
+      // Initialize Stripe JS
+      let connectedAccount = '{{ connected_account }}'
+      let stripe = Stripe('{{ publishable_key }}', {stripeAccount: connectedAccount});
+
+      let form = document.getElementById('payment-form');
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        debugClear();
+
+        // Get the card that's currently selected
+        let card = document.querySelector("input[name='payment-options']:checked").value;
+        debug(`Got the card ${card} from the Platform account...`)
+
+        debug(`Creating a clone of the card and sharing it with Connected account ${connectedAccount}`)     
+        // Share the card with the Connected Account using share-card
+        let response = await fetch('/share-card', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            "payment_method": card
+          })
+        });
+        response =  await response.json();
+        card = response['card'];
+
+        debug(`Got a new card for our Connected account: ${card}!`)
+
+        // Call the create-payment-intent endpoint and get the client_secret
+        response = await fetch('/create-payment-intent', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({})
+        });
+        response =  await response.json();
+        clientSecret = response.client_secret;
+
+        debug(`Got client secret: ${clientSecret}`)
+
+        debug('Confirming the payment intent...')
+        // Confirm the card payment using stripe.confirmCardPayment
+        confirmedPaymentIntent = await stripe.confirmCardPayment(
+          clientSecret,
+        {payment_method: card}
+        );
+
+        debug(JSON.stringify(confirmedPaymentIntent, null, 2))
+
+      });
+
+      function debug(message) {
+        let debugMessage = document.getElementById('debug-message')
+        console.log('Debug: ', message);
+        debugMessage.innerText += '\n' + message;
+      }
+
+      function debugClear(message) {
+        let debugMessage = document.getElementById('debug-message');
+        debugMessage.innerText = '';
+      }
+      
+    </script>
+    {% endblock %}
+  </body>
+</html>
