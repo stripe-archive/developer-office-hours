@@ -332,11 +332,11 @@
           }
         }
       },
-      "Stripe.net/35.14.0": {
+      "Stripe.net/39.23.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.Bcl.AsyncInterfaces": "1.1.0",
-          "Newtonsoft.Json": "9.0.1",
+          "Newtonsoft.Json": "11.0.1",
           "System.Configuration.ConfigurationManager": "4.5.0"
         },
         "compile": {
@@ -1843,23 +1843,22 @@
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
       ]
     },
-    "Stripe.net/35.14.0": {
-      "sha512": "msk0tbC28I6jh6+XUQxyI1uJFKy+wRP5gTHD3RXBmYsM8JTHL+Ys3vLBj0y9zOhqVA6kIRvIG+77j6cZNPwGGA==",
+    "Stripe.net/39.23.0": {
+      "sha512": "MEejeYQVRxbmtB7D8gjmWVwAPFO2+e42HyRS9kI+Ec3+LYjKPNKFuva34hMCGudXAWr7qVsvZ/K/ZUUYnrEmZw==",
       "type": "package",
-      "path": "stripe.net/35.14.0",
+      "path": "stripe.net/39.23.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "lib/net45/Stripe.net.dll",
-        "lib/net45/Stripe.net.pdb",
-        "lib/net45/Stripe.net.xml",
+        "LICENSE",
+        "icon.png",
         "lib/net461/Stripe.net.dll",
         "lib/net461/Stripe.net.pdb",
         "lib/net461/Stripe.net.xml",
         "lib/netstandard2.0/Stripe.net.dll",
         "lib/netstandard2.0/Stripe.net.pdb",
         "lib/netstandard2.0/Stripe.net.xml",
-        "stripe.net.35.14.0.nupkg.sha512",
+        "stripe.net.39.23.0.nupkg.sha512",
         "stripe.net.nuspec"
       ]
     },
@@ -4949,7 +4948,7 @@
       "DotNetEnv >= 1.4.0",
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 3.1.3",
       "Newtonsoft.Json >= 12.0.3",
-      "Stripe.net >= 35.14.0"
+      "Stripe.net >= *"
     ]
   },
   "packageFolders": {
@@ -4959,17 +4958,17 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/cjavilla/office-hours/server/server.csproj",
+      "projectUniqueName": "/Users/cjavilla/repos/developer-office-hours/starter/server/dotnet/server.csproj",
       "projectName": "server",
-      "projectPath": "/Users/cjavilla/office-hours/server/server.csproj",
+      "projectPath": "/Users/cjavilla/repos/developer-office-hours/starter/server/dotnet/server.csproj",
       "packagesPath": "/Users/cjavilla/.nuget/packages/",
-      "outputPath": "/Users/cjavilla/office-hours/server/obj/",
+      "outputPath": "/Users/cjavilla/repos/developer-office-hours/starter/server/dotnet/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/cjavilla/.config/NuGet/NuGet.Config"
+        "/Users/cjavilla/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -5005,7 +5004,7 @@
           },
           "Stripe.net": {
             "target": "Package",
-            "version": "[35.14.0, )"
+            "version": "[*, )"
           }
         },
         "imports": [
@@ -5026,7 +5025,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.200/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.402/RuntimeIdentifierGraph.json"
       }
     }
   }

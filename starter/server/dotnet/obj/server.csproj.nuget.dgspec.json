@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "/Users/cjavilla/office-hours/server/server.csproj": {}
+    "/Users/cjavilla/repos/developer-office-hours/starter/server/dotnet/server.csproj": {}
   },
   "projects": {
-    "/Users/cjavilla/office-hours/server/server.csproj": {
+    "/Users/cjavilla/repos/developer-office-hours/starter/server/dotnet/server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/cjavilla/office-hours/server/server.csproj",
+        "projectUniqueName": "/Users/cjavilla/repos/developer-office-hours/starter/server/dotnet/server.csproj",
         "projectName": "server",
-        "projectPath": "/Users/cjavilla/office-hours/server/server.csproj",
+        "projectPath": "/Users/cjavilla/repos/developer-office-hours/starter/server/dotnet/server.csproj",
         "packagesPath": "/Users/cjavilla/.nuget/packages/",
-        "outputPath": "/Users/cjavilla/office-hours/server/obj/",
+        "outputPath": "/Users/cjavilla/repos/developer-office-hours/starter/server/dotnet/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "/Users/cjavilla/.config/NuGet/NuGet.Config"
+          "/Users/cjavilla/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -53,7 +53,7 @@
             },
             "Stripe.net": {
               "target": "Package",
-              "version": "[35.14.0, )"
+              "version": "[*, )"
             }
           },
           "imports": [
@@ -74,7 +74,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.200/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.402/RuntimeIdentifierGraph.json"
         }
       }
     }

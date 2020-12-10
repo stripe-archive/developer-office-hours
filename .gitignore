@@ -32,5 +32,4 @@
 /2020-10-30-client-libraries/go/go.sum
 /2020-10-30-client-libraries/java/*.class
 /2020-10-30-client-libraries/node/package*
-
-
+/starter/server/dotnet/obj/**/*
