@@ -28,4 +28,8 @@
 /2019-10-16-webhooks/config/master.key
 /2020-01-28-variable-checkout/__pycache__
 /2020-01-28-variable-checkout/venv
+/2020-10-30-client-libraries/go/go.mod
+/2020-10-30-client-libraries/go/go.sum
+/2020-10-30-client-libraries/java/*.class
+/2020-10-30-client-libraries/node/package*
 /starter/server/dotnet/obj/**/*
