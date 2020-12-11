@@ -38,7 +38,7 @@ python server.py
 
 5. Go in your browser `http://localhost:4242` to see the demo
 
-![A screenshot of cloning a payment method for a one-time payment.](./clone-payment-method.png)
+![A gif of cloning a payment method for a one-time payment.](./clone-payment-method.gif)
 
 ## More resources
 * [The Flask Starter episode](https://www.youtube.com/watch?v=7Ul1vfmsDck)
