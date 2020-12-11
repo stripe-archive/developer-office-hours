@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-  stripe.Key = "sk_test_51EceeUCZ6qsJgndJDSi5feJtMJs4e4SOOQL7TIGtQyIA7GsyJczBvxvrFsuB71OkREXySaFDzcjLYb2IoDmuX1jL00e4sdsH5H"
+  stripe.Key = "sk_test..."
   fmt.Println("Making requests!")
 
   // Create a customer with no params

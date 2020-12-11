@@ -7,7 +7,7 @@ import com.stripe.param.*;
 
 public class DemoRequest {
   public static void main(String[] args) {
-    Stripe.apiKey = "sk_test_51EceeUCZ6qsJgndJDSi5feJtMJs4e4SOOQL7TIGtQyIA7GsyJczBvxvrFsuB71OkREXySaFDzcjLYb2IoDmuX1jL00e4sdsH5H";
+    Stripe.apiKey = "sk_test...";
     System.out.println("Make requests!");
 
     // Create a customer with no params.

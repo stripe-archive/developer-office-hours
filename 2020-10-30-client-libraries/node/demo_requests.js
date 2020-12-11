@@ -1,4 +1,4 @@
-const stripe = require('stripe')('sk_test_51EceeUCZ6qsJgndJDSi5feJtMJs4e4SOOQL7TIGtQyIA7GsyJczBvxvrFsuB71OkREXySaFDzcjLYb2IoDmuX1jL00e4sdsH5H');
+const stripe = require('stripe')('sk_test...');
 
 (async () => {
   console.log('Making requests!');

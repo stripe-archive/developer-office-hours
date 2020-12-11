@@ -9,7 +9,7 @@ namespace pagination
     {
         static void Main(string[] args)
         {
-        	StripeConfiguration.ApiKey = "sk_test_51HcmwVKtORRCudu1Z6V90FT2UzpG7M9v7PrTA71NRgvorPJFtZN7RS9adCAHXn1qWOV8HNx3NynFf0Iem6OwVvWB00kvzdeTz2";
+        	StripeConfiguration.ApiKey = "sk_test_...";
             Console.WriteLine("Pagination in .NET");
 
             // Cursor-based pagination
@@ -20,7 +20,7 @@ namespace pagination
             // };
             // var service = new CustomerService();
             // StripeList<Customer> customers = service.List(options);
-            // foreach (Customer c in customers) 
+            // foreach (Customer c in customers)
             // {
             //     customerIds.Add(c.Id);
             // }
@@ -29,7 +29,7 @@ namespace pagination
             // {
             //     options.StartingAfter = customers.Data.Last().Id;
             //     customers = service.List(options);
-            //     foreach (Customer c in customers) 
+            //     foreach (Customer c in customers)
             //     {
             //         customerIds.Add(c.Id);
             //     }

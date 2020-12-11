@@ -1,5 +1,5 @@
 import stripe
-stripe.api_key = 'sk_test_51EceeUCZ6qsJgndJDSi5feJtMJs4e4SOOQL7TIGtQyIA7GsyJczBvxvrFsuB71OkREXySaFDzcjLYb2IoDmuX1jL00e4sdsH5H'
+stripe.api_key = 'sk_test...'
 
 print('Making requests!')
 

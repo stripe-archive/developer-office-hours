@@ -1,6 +1,6 @@
 <?php
 require_once('vendor/autoload.php');
-$stripe = new \Stripe\StripeClient('sk_test_51EceeUCZ6qsJgndJDSi5feJtMJs4e4SOOQL7TIGtQyIA7GsyJczBvxvrFsuB71OkREXySaFDzcjLYb2IoDmuX1jL00e4sdsH5H');
+$stripe = new \Stripe\StripeClient('sk_test...');
 echo 'Making requests!';
 
 // Create a customer with no params
