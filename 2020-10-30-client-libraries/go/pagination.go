@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-  stripe.Key = "sk_test_51HcmwVKtORRCudu1Z6V90FT2UzpG7M9v7PrTA71NRgvorPJFtZN7RS9adCAHXn1qWOV8HNx3NynFf0Iem6OwVvWB00kvzdeTz2"
+  stripe.Key = "sk_test..."
   fmt.Println("Pagination in Go!")
 
   // Cursor-based pagination
@@ -27,7 +27,7 @@ func main() {
   //   for i.Next() {
   //     customer := i.Customer()
   //     customerIds = append(customerIds, customer.ID)
-  //   }  
+  //   }
   // }
 
   // fmt.Println(customerIds)

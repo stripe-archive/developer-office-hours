@@ -9,7 +9,7 @@ import com.stripe.param.CustomerListParams;
 public class Pagination {
 
     public static void main(String[] args) {
-        Stripe.apiKey = "sk_test_51HcmwVKtORRCudu1Z6V90FT2UzpG7M9v7PrTA71NRgvorPJFtZN7RS9adCAHXn1qWOV8HNx3NynFf0Iem6OwVvWB00kvzdeTz2";
+        Stripe.apiKey = "sk_test...";
         System.out.println("Pagination in Java!");
 
         try {

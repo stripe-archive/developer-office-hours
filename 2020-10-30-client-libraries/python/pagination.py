@@ -1,7 +1,7 @@
 import stripe
 import json
 
-stripe.api_key = "sk_test_51HcmwVKtORRCudu1Z6V90FT2UzpG7M9v7PrTA71NRgvorPJFtZN7RS9adCAHXn1qWOV8HNx3NynFf0Iem6OwVvWB00kvzdeTz2"
+stripe.api_key = "sk_test..."
 print ("Pagination in python!")
 
 # Cursor-based pagination

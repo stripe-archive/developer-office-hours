@@ -8,7 +8,7 @@ namespace authentication
         static void Main(string[] args)
         {
             // Globally set API key
-            // StripeConfiguration.ApiKey = "sk_test_51EceeUCZ6qsJgndJDSi5feJtMJs4e4SOOQL7TIGtQyIA7GsyJczBvxvrFsuB71OkREXySaFDzcjLYb2IoDmuX1jL00e4sdsH5H";
+            // StripeConfiguration.ApiKey = "sk_test...";
             // var service = new CustomerService();
             // var customer = service.Get("cus_ICiIH7WIPI4Gr1");
             // Console.WriteLine(customer);
@@ -17,13 +17,13 @@ namespace authentication
             // var service = new CustomerService();
             // var requestOptions = new RequestOptions
             // {
-            //   ApiKey = "sk_test_51EceeUCZ6qsJgndJDSi5feJtMJs4e4SOOQL7TIGtQyIA7GsyJczBvxvrFsuB71OkREXySaFDzcjLYb2IoDmuX1jL00e4sdsH5H",
+            //   ApiKey = "sk_test...",
             // };
             // var customer = service.Get("cus_ICiIH7WIPI4Gr1", null, requestOptions);
             // Console.WriteLine(customer);
 
             // With connect
-            StripeConfiguration.ApiKey = "sk_test_51EceeUCZ6qsJgndJDSi5feJtMJs4e4SOOQL7TIGtQyIA7GsyJczBvxvrFsuB71OkREXySaFDzcjLYb2IoDmuX1jL00e4sdsH5H";
+            StripeConfiguration.ApiKey = "sk_test...";
             var service = new CustomerService();
             var requestOptions = new RequestOptions
             {
