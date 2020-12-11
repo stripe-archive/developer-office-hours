@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "dgSpecHash": "mwvVVKJSX9FLQ8Hc3fLjIVWxFLGz6fWyyRZEbQlCA2oNhvXo8m0VmS21Y0wduwnU+1pLVlu/a3isnW/18kdxSQ==",
+  "success": true,
+  "projectFilePath": "/Users/cjavilla/office-hours/requests/requests.csproj",
+  "expectedPackageFiles": [
+    "/Users/cjavilla/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.0/microsoft.bcl.asyncinterfaces.1.1.0.nupkg.sha512",
+    "/Users/cjavilla/.nuget/packages/microsoft.netcore.platforms/2.0.0/microsoft.netcore.platforms.2.0.0.nupkg.sha512",
+    "/Users/cjavilla/.nuget/packages/newtonsoft.json/11.0.1/newtonsoft.json.11.0.1.nupkg.sha512",
+    "/Users/cjavilla/.nuget/packages/stripe.net/39.29.0/stripe.net.39.29.0.nupkg.sha512",
+    "/Users/cjavilla/.nuget/packages/system.configuration.configurationmanager/4.5.0/system.configuration.configurationmanager.4.5.0.nupkg.sha512",
+    "/Users/cjavilla/.nuget/packages/system.security.accesscontrol/4.5.0/system.security.accesscontrol.4.5.0.nupkg.sha512",
+    "/Users/cjavilla/.nuget/packages/system.security.cryptography.protecteddata/4.5.0/system.security.cryptography.protecteddata.4.5.0.nupkg.sha512",
+    "/Users/cjavilla/.nuget/packages/system.security.permissions/4.5.0/system.security.permissions.4.5.0.nupkg.sha512",
+    "/Users/cjavilla/.nuget/packages/system.security.principal.windows/4.5.0/system.security.principal.windows.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
