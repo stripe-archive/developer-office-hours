@@ -1,8 +1,6 @@
-![Developer Office Hours](./assets/developer-office-hours.png)
-
 # Stripe Developer Office Hours - Accept a payment
 
-> [🎬 Watch on YouTube]()
+> [🎬 Watch on YouTube](https://www.youtube.com/watch?v=ri07uPos1gs)
 
 ## Requirements
 * Python
