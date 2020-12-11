@@ -7,6 +7,7 @@ Stripe Engineers answering questions and walking through code examples on variou
 
 Session | Hosts | Topic | Resources
 ---------|----------|---------|--------
+[2020-12-15](./2020-12-15-clone-payment-method) | [Charles Watkins](https://www.linkedin.com/in/wcharlesw/) | [**Clone payment methods**](./2020-12-15-clone-payment-method)<br />Live demonstration showing how to clone a payment method from platform to connected account. | [🎦 YouTube](https://www.youtube.com/watch?v=ri07uPos1gs&feature=youtu.be)
 
 > ℹ To receive notifications for future office hours, please subscribe to our [🎬YouTube playlist](https://www.youtube.com/playlist?list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs)
 
