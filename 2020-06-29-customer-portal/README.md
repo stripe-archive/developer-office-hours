@@ -205,7 +205,7 @@ us to provision access and control whether the user has access or not.
   end
 ```
 
-From the `dashbaord.html.erb` layout, we want to add our button that will
+From the `dashboard.html.erb` layout, we want to add our button that will
 redirect to the customer portal.
 
 ```html
