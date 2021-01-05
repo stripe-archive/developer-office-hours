@@ -2,7 +2,7 @@
 <?php
 require_once('vendor/autoload.php');
 // Set with a valid test API key.
-$stripe = new \Stripe\StripeClient('sk_test_W68Nv0DzFFUWqH6s8zUwhTYG00b8wVY3oI');
+$stripe = new \Stripe\StripeClient('sk_test_XXX');
 
 echo 'Hello, Metadata!';
 

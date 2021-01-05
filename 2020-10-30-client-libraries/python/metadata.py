@@ -1,7 +1,7 @@
 import stripe
 
 # Set with a valid test API key.
-stripe.api_key = 'sk_test_W68Nv0DzFFUWqH6s8zUwhTYG00b8wVY3oI'
+stripe.api_key = 'sk_test_XXX'
 
 print('Hello metadata!')
 
