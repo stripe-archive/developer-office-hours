@@ -9,7 +9,7 @@ namespace pagination
     {
         static void Main(string[] args)
         {
-        	StripeConfiguration.ApiKey = "sk_test_...";
+            StripeConfiguration.ApiKey = "sk_test_...";
             Console.WriteLine("Pagination in .NET");
 
             // Cursor-based pagination

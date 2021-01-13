@@ -22,7 +22,7 @@ print ("Pagination in python!")
 customer_ids = []
 customers = stripe.Customer.list(limit=100)
 for c in customers.auto_paging_iter():
-	customer_ids.append(c.id)
+    customer_ids.append(c.id)
 
 print(json.dumps(customer_ids,  encoding='ascii'))
 print("# of customers: {:d}".format(len(customer_ids)))
