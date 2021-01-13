@@ -7,7 +7,7 @@ Stripe Engineers answering questions and walking through code examples on variou
 
 Session | Hosts | Topic | Resources
 ---------|----------|---------|--------
-[2020-12-15](./2020-12-15-clone-payment-method) | [Charles Watkins](https://www.linkedin.com/in/wcharlesw/) | [**Clone payment methods**](./2020-12-15-clone-payment-method)<br />Live demonstration showing how to clone a payment method from platform to connected account. | [🎦 YouTube](https://www.youtube.com/watch?v=ri07uPos1gs&feature=youtu.be)
+2021-01-29 | [Brody Klapko](https://www.linkedin.com/in/brodyklapko/) | **Technical writing**<br />Learn some technical writing basics for writing the best technical documentation.
 
 > ℹ To receive notifications for future office hours, please subscribe to our [🎬YouTube playlist](https://www.youtube.com/playlist?list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs)
 
@@ -41,6 +41,7 @@ Session | Hosts | Topic | Resources
  [2020-09-17](./2020-09-17-checkout-bacs-payment) | [Matthew Ling](https://www.linkedin.com/in/matthew-ling-53427711/) | [**Checkout**](./2020-09-17-checkout-sepa-payment)<br />Live demonstration of integrating [Stripe Checkout](https://stripe.com/docs/checkout) to accept payment with Bacs. | [🎦 YouTube](https://www.youtube.com/watch?v=67BKXVAY6m8)
  [2020-09-23](./2020-09-23-checkout-sepa-payment) | [Matthew Ling](https://www.linkedin.com/in/matthew-ling-53427711/) | [**Checkout**](./2020-09-23-checkout-bacs-payment)<br />Live demonstration of integrating [Stripe Checkout](https://stripe.com/docs/checkout) to accept payment with SEPA.
  [2020-10-08](./2020-10-08-accept-a-payment) | [CJ Avilla](https://twitter.com/cjav_dev) | [**Accept a payment**](./2020-10-08-accept-a-payment)<br />Live demonstration for the basics of taking payment.
+ [2020-12-15](./2020-12-15-clone-payment-method) | [Charles Watkins](https://www.linkedin.com/in/wcharlesw/) | [**Clone payment methods**](./2020-12-15-clone-payment-method)<br />Live demonstration showing how to clone a payment method from platform to connected account. | [🎦 YouTube](https://www.youtube.com/watch?v=ri07uPos1gs&feature=youtu.be)
 
 
 ## Changes
