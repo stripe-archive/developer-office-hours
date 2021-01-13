@@ -7,7 +7,7 @@ Stripe Engineers answering questions and walking through code examples on variou
 
 Session | Hosts | Topic | Resources
 ---------|----------|---------|--------
-2021-01-29 | [Brody Klapko](https://www.linkedin.com/in/brodyklapko/) | **Technical writing**<br />Learn some technical writing basics for writing the best technical documentation.
+2021-01-29 | [Brody Klapko](https://www.linkedin.com/in/brodyklapko/) | **Technical writing**<br />Learn technical writing basics for writing the best technical documentation.
 
 > ℹ To receive notifications for future office hours, please subscribe to our [🎬YouTube playlist](https://www.youtube.com/playlist?list=PLy1nL-pvL2M6IYfRCmhOPcyC70zJqFoCs)
 
