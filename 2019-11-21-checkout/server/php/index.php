@@ -3,9 +3,13 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 use Stripe\Stripe;
 require 'vendor/autoload.php';
-$dotenv = Dotenv\Dotenv::create(realpath('../../..'));
-$dotenv->load();
-Stripe::setApiKey(getenv('STRIPE_SECRET_KEY'));
+// Use a .env file by renaming .env.example to .env in this directory, or
+// by updating the secret API key below
+//
+// $dotenv = Dotenv\Dotenv::create(realpath('../../..'));
+// $dotenv->load();
+// Stripe::setApiKey(getenv('STRIPE_SECRET_KEY'));
+Stripe::setApiKey('<enter your stripe secret api key>');
 
 $db = new SQLite3('./store.db');
 $db->exec("CREATE TABLE IF NOT EXISTS sessions(id INTEGER PRIMARY KEY, stripe_id TEXT, status TEXT)");
@@ -87,7 +91,8 @@ $app->post('/create-session', function(Request $request, Response $response) use
 $app->post('/webhook', function(Request $request, Response $response) use ($app)  {
 
   // You can find your endpoint's secret in your webhook settings
-  $endpoint_secret = getenv('STRIPE_WEBHOOK_SECRET');
+  // $endpoint_secret = getenv('STRIPE_WEBHOOK_SECRET');
+  $endpoint_secret = '<your stripe webhook signing secret>';
   $payload = $request->getBody();
   $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
   $event = null;

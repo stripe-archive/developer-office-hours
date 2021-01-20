@@ -24,11 +24,7 @@ and recurring payments.
 
 1. **Configure your keys**
 
-Copy the example `.env` file and update those values with your Stripe API keys.
-
-```
-cp .env.example .env
-```
+Set your secret API key and webhook signing secret in the index.php file.
 
 Then, be sure to update the publishable key (pk_xxx) in client/index.html
 
