@@ -47,14 +47,13 @@ Stripe Engineers answering questions and walking through code examples on variou
 
 The Stripe API's and libraries are always being updated. It's possible that since recording, an API or library function has been deprecated. Please refer to this [changelog](https://stripe.com/blog/changelog) for updates.
 
-## Additional Support
+## Get support
+If you found a bug or want to suggest a new topic, please [file an issue](../../issues).
 
-Find help and support for Stripe. Our support center provides answers on all types of situations, including account information, charges and refunds, and subscriptions information.
+If you have questions, comments, or need help with code, we're here to help:
+- on [IRC via freenode](https://webchat.freenode.net/?channel=#stripe)
+- on Twitter at [@StripeDev](https://twitter.com/StripeDev)
+- on Stack Overflow at the [stripe-payments](https://stackoverflow.com/tags/stripe-payments/info) tag
+- by [email](mailto:support+github@stripe.com)
 
-Get your questions answered and find international support for Stripe.
-
-👉 [support.stripe.com](https://support.stripe.com)
-
-### Technical questions on IRC
-
-Have any technical questions? Our developers hang out in [#stripe on freenode](https://webchat.freenode.net/?channel=#stripe).
+Sign up to [stay updated with developer news](https://go.stripe.global/dev-digest).
