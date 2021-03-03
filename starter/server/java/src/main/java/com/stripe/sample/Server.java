@@ -27,41 +27,20 @@ import com.google.gson.JsonSyntaxException;
 public class Server {
   private static Gson gson = new Gson();
 
-  static class CreateCustomerRequest {
-    @SerializedName("email")
-    String email;
-
-    public String getEmail() {
-      return email;
-    }
-  }
-
   public static void main(String[] args) {
-    port(4242);
     Dotenv dotenv = Dotenv.load();
 
+    // Load the API key from `./.env`
     Stripe.apiKey = dotenv.get("STRIPE_SECRET_KEY");
+
+    // serve static assets, most commonly in `../client`
+    port(4242);
     staticFiles.externalLocation(
         Paths.get(Paths.get("").toAbsolutePath().toString(),
           dotenv.get("STATIC_DIR")).normalize().toString());
 
-    get("/public-keys", (request, response) -> {
-      response.type("application/json");
-
-      Map<String, Object> responseData = new HashMap<>();
-      responseData.put("publishableKey", dotenv.get("STRIPE_PUBLISHABLE_KEY"));
-      return gson.toJson(responseData);
-    });
-
-    post("/create-customer", (request, response) -> {
-      response.type("application/json");
-      CreateCustomerRequest data = gson.fromJson(request.body(), CreateCustomerRequest.class);
-      System.out.println("The customer's email is: " + data.getEmail());
-
-      // Echo back the same data.
-      return gson.toJson(data);
-    });
-
+    // webhook handler for building automations when events
+    // fire on your Stripe account.
     post("/webhook", (request, response) -> {
       String payload = request.body();
       Event event = null;
@@ -85,7 +64,7 @@ public class Server {
         // instructions on how to handle this case, or return an error here.
       }
 
-      // Handle the event
+      // Handle events
       switch (event.getType()) {
         case "payment_intent.succeeded":
           PaymentIntent paymentIntent = (PaymentIntent) stripeObject;
