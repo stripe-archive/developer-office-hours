@@ -4,7 +4,7 @@
   "integrations": [
     {
       "name": "starter",
-      "clients": ["web"],
+      "clients": ["html", "react-cra"],
       "servers": ["node", "php-slim", "python", "ruby", "go-http", "java", "dotnet", "go-echo"]
     }
   ]
