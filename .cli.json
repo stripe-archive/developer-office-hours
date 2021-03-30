@@ -5,7 +5,7 @@
     {
       "name": "starter",
       "clients": ["html", "react-cra"],
-      "servers": ["node", "php-slim", "python", "ruby", "go-http", "java", "dotnet", "go-echo"]
+      "servers": ["node", "php", "python", "ruby", "go-http", "java", "dotnet", "go-echo", "php-slim"]
     }
   ]
 }
