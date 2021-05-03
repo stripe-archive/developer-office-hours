@@ -1,0 +1,25 @@
+﻿<Properties StartupConfiguration="{E279C522-36AE-4E78-B6A3-2EA3728D66FA}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Idempotency/Program.cs">
+    <Files>
+      <File FileName="Idempotency/Program.cs" Line="24" Column="15" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Idempotency" expanded="True">
+            <Node name="Idempotency" expanded="True">
+              <Node name="Program.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Idempotency PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
