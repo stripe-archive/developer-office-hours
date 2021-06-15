@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Stripe Payment Page Sample</title>
+    <link href="https://stripe-samples.github.io/developer-office-hours/demo.css" rel="stylesheet" type="text/css">
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+  <body>
+    <div id="main">
+      <div id="container">
+        <div id="panel">
+          <h1>Verify identity</h1>
+
+          <button type="submit" id="verify-btn">Verify</button>
+        </div>
+      </div>
+    </div>
+    <script charset="utf-8">
+      var stripe = Stripe('pk_test_vAZ3gh1LcuM7fW4rKNvqafgB00DR9RKOjN');
+      const verifyBtn = document.querySelector('#verify-btn');
+      verifyBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+
+        // Create a verification session on the server
+        const {
+          clientSecret
+        } = await fetch('/create-verification-session', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({}),
+        }).then(r => r.json());
+
+        // Open the verification modal and process the identity
+        const {error} = await stripe.verifyIdentity(clientSecret);
+
+        if(error && error.message) {
+          alert(error.message);
+        }
+      });
+    </script>
+  </body>
+</html>
