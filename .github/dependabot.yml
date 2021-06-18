@@ -1,0 +1,56 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+updates:
+  # ruby dependencies
+  - package-ecosystem: "bundler"
+    directory: "/starter/server/ruby/"
+    schedule:
+      interval: "daily"
+
+  # python dependencies
+  - package-ecosystem: "pip"
+    directory: "/starter/server/python/"
+    schedule:
+      interval: "daily"
+
+  # php dependencies
+  - package-ecosystem: "composer"
+    directory: "/starter/server/php/"
+    schedule:
+      interval: "daily"
+
+  # node dependencies
+  - package-ecosystem: "npm"
+    directory: "/starter/server/node/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/starter/server/node-typescript/"
+    schedule:
+      interval: "daily"
+
+  # go dependencies
+  - package-ecosystem: "gomod"
+    directory: "/starter/server/go-echo/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "gomod"
+    directory: "/starter/server/go-http/"
+    schedule:
+      interval: "daily"
+
+  # java dependencies
+  - package-ecosystem: "maven"
+    directory: "/starter/server/java/"
+    schedule:
+      interval: "daily"
+
+  # dotnet dependencies
+  - package-ecosystem: "nuget"
+    directory: "/starter/server/dotnet/"
+    schedule:
+      interval: "daily"
