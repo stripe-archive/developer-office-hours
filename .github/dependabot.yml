@@ -54,6 +54,5 @@ updates:
     directory: "/starter/server/dotnet/"
     schedule:
       interval: "daily"
-    ignored_updates:
-      - match:
-          dependency_name: "Microsoft.AspNetCore.Mvc.NewtonsoftJson"
+    ignore:
+      - dependency-name: "Microsoft.AspNetCore.Mvc.NewtonsoftJson"
