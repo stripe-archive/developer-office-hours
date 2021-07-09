@@ -36,8 +36,6 @@ This is what your customer will experience when they are going through the payme
 **Demo - try for yourself**
 
 > [💳 Preview Checkout directly from the docs](https://stripe.com/docs/payments/checkout)
->
-> > [🌏 Preview Stripe Checkout across the world](https://j0u1n.sse.codesandbox.io/)
 
 ---
 
