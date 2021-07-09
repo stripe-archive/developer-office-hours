@@ -8,7 +8,7 @@ Jinja2==3.0.1
 MarkupSafe==2.0.1
 python-dotenv==0.18.0
 requests==2.25.1
-stripe==2.58.0
+stripe==2.59.0
 toml==0.10.2
-urllib3==1.26.5
+urllib3==1.26.6
 Werkzeug==2.0.1
