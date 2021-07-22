@@ -1,5 +1,8 @@
 <?php
 
+// For more information about this demo, please see:
+//   https://www.youtube.com/watch?v=xmfgetuwf-0
+
 require_once('./vendor/autoload.php');
 
 $stripe = new \Stripe\StripeClient(

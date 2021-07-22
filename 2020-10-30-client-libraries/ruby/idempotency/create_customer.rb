@@ -1,3 +1,5 @@
+# For more information about this demo, please see:
+#   https://www.youtube.com/watch?v=dkpknsaWuQQ
 require 'stripe'
 
 Stripe.api_key = 'sk_test_xxx'

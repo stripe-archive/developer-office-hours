@@ -1,3 +1,6 @@
+// For more information about this demo, please see:
+//   https://www.youtube.com/watch?v=UA7c4Y524HY
+
 package main
 
 import (

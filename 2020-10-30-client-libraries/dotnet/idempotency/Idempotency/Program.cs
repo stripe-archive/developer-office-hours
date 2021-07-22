@@ -1,4 +1,7 @@
-﻿using System;
+﻿// For more information about this demo, please see:
+//   https://www.youtube.com/watch?v=ODf4LyTmci8
+
+using System;
 using Stripe;
 
 namespace Idempotency
