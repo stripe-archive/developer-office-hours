@@ -1,3 +1,6 @@
+// For more information about this demo, please see:
+//   https://www.youtube.com/watch?v=6Ffo4id49QI
+
 package com.stripe.app;
 
 import com.stripe.Stripe;
