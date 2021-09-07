@@ -81,7 +81,7 @@ Remember at this session creation time is when we configure what the customer is
 <script>
   var stripe = Stripe("pk_test_789xyz");
   stripe.redirectToCheckout({
-    sessionId: sesison.id
+    sessionId: session.id
   });
 </script>
 ```
