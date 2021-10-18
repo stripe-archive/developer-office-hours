@@ -11,4 +11,4 @@ requests==2.26.0
 stripe==2.61.0
 toml==0.10.2
 urllib3==1.26.7
-Werkzeug==2.0.1
+Werkzeug==2.0.2
