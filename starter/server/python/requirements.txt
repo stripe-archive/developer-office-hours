@@ -7,7 +7,7 @@ itsdangerous==2.0.1
 Jinja2==3.0.3
 MarkupSafe==2.0.1
 python-dotenv==0.19.2
-requests==2.26.0
+requests==2.27.1
 stripe==2.66.0
 toml==0.10.2
 urllib3==1.26.8
