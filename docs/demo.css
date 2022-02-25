@@ -398,7 +398,9 @@ label {
 /* Inputs */
 .sr-input,
 .sr-select,
-input[type="text"] {
+input[type="text"],
+input[type="email"],
+input[type="tel"]{
   border: 1px solid var(--gray-border);
   border-radius: var(--radius);
   padding: 5px 12px;
