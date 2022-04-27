@@ -1,3 +1,7 @@
+> <img src="https://stripe.dev/images/badges/archived.png" width="250">
+>
+> This repository is no longer being maintained, and new projects will be in standalone repositories.
+
 ![Developer Office Hours](./assets/developer-office-hours.png)
 
 # Stripe Developer Office Hours
